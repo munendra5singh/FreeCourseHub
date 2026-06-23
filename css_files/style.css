@@ -1,0 +1,1440 @@
+/* ==========================================================================
+   1. GLOBAL RESETS & FONTS (Sari Files ke liye Base Layout)
+   ========================================================================== */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+body{
+    background: #f8fafc;
+    color: #333;
+    padding-top: 70px; /* Fixed Navbar ke liye desktop spacing */
+    transition: background 0.3s, color 0.3s;
+}
+
+/* ==========================================================================
+   2. UNIVERSAL NAVBAR (Sari Files me 100% Same Structure)
+   ========================================================================== */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 70px;
+    background: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 8%;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    z-index: 1000;
+    /* Smooth sliding animation */
+    transition: top 0.4s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s, box-shadow 0.3s;
+}
+
+/* Dark mode ke liye background fix */
+body.dark-mode .navbar {
+    background: #000000 !important;
+}
+
+.logo{
+    font-size: 32px;
+    font-weight: bold;
+    color: #4f46e5;
+}
+
+.nav-links{
+    display: flex;
+    list-style: none;
+    gap: 25px;
+    align-items: center;
+}
+
+.nav-links a{
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 8px;
+    transition: .3s;
+}
+
+.nav-links a:hover, .nav-links a.active{
+    color: #4f46e5;
+}
+
+/* Active Page colorful line matching all sub-pages layout blueprint */
+.nav-links a.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #4f46e5, #06b6d4);
+    border-radius: 10px;
+}
+
+.nav-btn{
+    text-decoration: none;
+    background: #4f46e5;
+    color: #fff;
+    padding: 10px 25px;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: .3s;
+}
+
+.nav-btn:hover{
+    background: #3730a3;
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
+}
+
+/* Theme Toggle Button Style */
+.theme-toggle-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #333;
+    transition: 0.3s;
+    padding: 5px;
+}
+body.dark-mode .theme-toggle-btn {
+    color: #f59e0b;
+}
+
+/* ==========================================================================
+   3. UNIVERSAL HEADERS & SEARCH BOXES (Hero Banners)
+   ========================================================================== */
+header, .page-header {
+    background: linear-gradient(135deg, #4f46e5, #06b6d4);
+    color: white;
+    text-align: center;
+    padding: 80px 20px;
+}
+
+header h1, .page-header h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+header p, .page-header p {
+    font-size: 1.1rem;
+}
+
+.search-box, .search {
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.search-box input, .search input {
+    width: 100%;
+    padding: 15px 20px;
+    border: 2px solid #e2e8f0;
+    border-radius: 50px;
+    font-size: 16px;
+    outline: none;
+    box-shadow: 0 5px 15px rgba(0,0,0,.05);
+    transition: .3s;
+}
+
+.search-box input:focus, .search input:focus {
+    border-color: #4f46e5;
+    box-shadow: 0 4px 20px rgba(79, 70, 229, 0.15);
+}
+
+/* ==========================================================================
+   4. INDEX & MAIN COURSES CARDS GRID (Sari Course Grid Files ke liye)
+   ========================================================================== */
+.courses, .course-section {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 60px 0;
+    text-align: center;
+}
+
+.course-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.course-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,.06);
+    transition: .3s;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    position: relative;
+    border: 1px solid #f1f5f9;
+}
+
+.course-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(79, 70, 229, 0.12);
+}
+
+.course-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.course-card h3 {
+    padding: 20px 20px 10px;
+    font-size: 22px;
+    color: #1e293b;
+}
+
+.course-card p {
+    padding: 0 20px 20px;
+    color: #64748b;
+    line-height: 1.5;
+    flex-grow: 1;
+}
+
+.course-btn {
+    display: block;
+    text-align: center;
+    background: #4f46e5;
+    color: white;
+    text-decoration: none;
+    padding: 14px;
+    margin: 0 20px 20px;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: .3s;
+}
+
+.course-btn:hover {
+    background: #3730a3;
+}
+
+/* ==========================================================================
+   5. COMPONENT: LIKE BUTTONS & FAVORITES PAGE SPECIAL
+   ========================================================================== */
+.like-btn, .remove-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #fff;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    color: #64748b;
+    font-size: 20px;
+    transition: 0.3s;
+    z-index: 10;
+}
+
+.like-btn:hover, .remove-btn:hover { transform: scale(1.1); }
+.like-btn.liked { color: #ef4444; }
+.remove-btn { color: #ef4444; }
+.remove-btn:hover { background: #fee2e2; }
+
+/* Favorites Special Layout Elements */
+.fav-hero {
+    background: linear-gradient(135deg, #3b22de 0%, #0099ff 100%);
+    color: white;
+    text-align: center;
+    padding: 60px 20px;
+    margin-bottom: 40px;
+    border-radius: 0 0 40px 40px;
+    box-shadow: 0 10px 25px rgba(59, 34, 222, 0.15);
+}
+.fav-hero h1 { font-size: 42px; font-weight: bold; margin-bottom: 15px; }
+.fav-hero p { color: rgba(255, 255, 255, 0.9); font-size: 18px; }
+.fav-container { max-width: 1200px; margin: 0 auto; padding: 0 20px 40px; }
+
+.empty-message { text-align: center; padding: 60px 20px; grid-column: 1 / -1; }
+.empty-message i { font-size: 60px; color: #cbd5e1; margin-bottom: 20px; }
+.empty-message h2 { font-size: 24px; color: #475569; margin-bottom: 15px; }
+.explore-btn { display: inline-block; background: #4f46e5; color: white; text-decoration: none; padding: 12px 30px; border-radius: 30px; font-weight: bold; transition: 0.3s; }
+
+
+
+
+/* COMPONENT: INDEX FEATURE BOXES & VIEW MORE */
+.features { padding: 80px 8%; text-align: center; background: white; transition: background 0.3s; }
+.features h2 { font-size: 36px; margin-bottom: 40px; }
+.feature-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+.feature-box { padding: 40px 20px; background: #f8fafc; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); transition: .3s; }
+.feature-box:hover { transform: translateY(-5px); }
+.feature-box i { font-size: 45px; color: #4f46e5; margin-bottom: 20px; }
+.feature-box h3 { margin-bottom: 12px; font-size: 22px; }
+.feature-box p { color: #666; line-height: 1.5; }
+
+/* View More Container फिक्स */
+.view-more-container { 
+    margin-top: 40px; /* थोड़ा स्पेस बढ़ा दिया */
+    display: flex; 
+    justify-content: center; /* यह बटन को सेंटर में लाएगा */
+    align-items: center;
+    width: 100%;
+}
+
+.view-more-btn { 
+    background: transparent; 
+    color: #4f46e5; 
+    border: 2px solid #4f46e5; 
+    padding: 12px 30px; 
+    font-size: 16px; 
+    font-weight: bold; 
+    border-radius: 30px; 
+    cursor: pointer; 
+    transition: .3s; 
+}
+.view-more-btn:hover { background: #4f46e5; color: white; }
+
+
+/* ==========================================================================
+   6. COMPONENT: INDEX FEATURE BOXES & VIEW MORE
+   ========================================================================== 
+.features { padding: 80px 8%; text-align: center; background: white; transition: background 0.3s; }
+.features h2 { font-size: 36px; margin-bottom: 40px; }
+.feature-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+.feature-box { padding: 40px 20px; background: #f8fafc; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); transition: .3s; }
+.feature-box:hover { transform: translateY(-5px); }
+.feature-box i { font-size: 45px; color: #4f46e5; margin-bottom: 20px; }
+.feature-box h3 { margin-bottom: 12px; font-size: 22px; }
+.feature-box p { color: #666; line-height: 1.5; }
+
+.view-more-container { margin-top: 20px;  }
+.view-more-btn { background: transparent; color: #4f46e5; border: 2px solid #4f46e5; padding: 12px 30px; font-size: 16px; font-weight: bold; border-radius: 30px; cursor: pointer; transition: .3s; }
+.view-more-btn:hover { background: #4f46e5; color: white; }  */
+
+/* ==========================================================================
+   7. COMPONENT: CATEGORIES HUB SPECIAL (section.html)
+   ========================================================================== */
+.categories { width: 90%; max-width: 1200px; margin: auto; padding-bottom: 60px; }
+.category-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+.category-card { background: white; padding: 35px 30px; border-radius: 20px; text-align: center; text-decoration: none; color: #333; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: .3s; display: flex; flex-direction: column; align-items: center; }
+.category-card:hover { transform: translateY(-8px); box-shadow: 0 12px 25px rgba(0,0,0,0.12); }
+.category-icon { font-size: 55px; margin-bottom: 15px; color: #4f46e5; transition: transform .3s; }
+.category-card:hover .category-icon { transform: scale(1.1); }
+.category-card h3 { margin-bottom: 12px; color: #1e293b; font-size: 22px; transition: .3s; }
+.category-card:hover h3 { color: #4f46e5; }
+.category-card p { color: #64748b; line-height: 1.5; font-size: 15px; }
+
+/* ==========================================================================
+   8. COMPONENT: BLOG PAGE STRUCTURE LAYOUT (blog.html)
+   ========================================================================== */
+.hero h1 { font-size: 60px; margin-bottom: 15px; }
+.hero p { font-size: 20px; }
+.search { max-width: 700px; margin: -30px auto 50px; padding: 0 20px; }
+.featured { width: 90%; max-width: 1200px; margin: auto; }
+.featured-card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,.08); }
+.featured-card img { width: 100%; height: 400px; object-fit: cover; }
+.featured-content { padding: 30px; }
+.featured-content h2 { margin-bottom: 15px; }
+.btn { display: inline-block; margin-top: 15px; padding: 12px 25px; background: #4f46e5; color: white; text-decoration: none; border-radius: 30px; }
+.category-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
+.category { background: #eef2ff; color: #4f46e5; padding: 12px 20px; border-radius: 30px; font-weight: bold; }
+.popular { width: 90%; max-width: 1200px; margin: auto; }
+.popular h2, .roadmaps h2, .blogs h2 { text-align: center; margin-bottom: 30px; }
+.post-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+.post-card { background: white; padding: 25px; border-radius: 20px; box-shadow: 0 5px 20px rgba(0,0,0,.08); }
+.roadmaps { padding: 80px 8%; }
+.roadmap-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
+.roadmap-card { background: white; padding: 30px; border-left: 5px solid #4f46e5; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,.08); }
+.featured-course { background: #eef2ff; padding: 80px 8%; text-align: center; }
+.course-box { max-width: 700px; margin: auto; background: white; padding: 40px; border-radius: 20px; box-shadow: 0 5px 20px rgba(0,0,0,.08); }
+.blogs { width: 90%; max-width: 1200px; margin: 80px auto; }
+.blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+.blog-card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,.08); display: flex; flex-direction: column; }
+.blog-card img { width: 100%; height: 220px; object-fit: cover; }
+.blog-content { padding: 20px; flex-grow: 1; }
+
+/* ==========================================================================
+   9. COMPONENT: PORTFOLIO SHOWCASE & FILTERS (portfolio.html)
+   ========================================================================== */
+.filter-container { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin: 40px auto; padding: 0 20px; max-width: 800px; }
+.filter-btn { padding: 10px 25px; border: 2px solid #4f46e5; background: transparent; color: #4f46e5; font-size: 16px; font-weight: bold; border-radius: 30px; cursor: pointer; transition: 0.3s; }
+.filter-btn.active-filter, .filter-btn:hover { background: #4f46e5; color: white; box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3); }
+.work-section { width: 90%; max-width: 1200px; margin: auto; padding-bottom: 80px; }
+.work-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+.work-card { background: #fff; border-radius: 20px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,.04); transition: .4s ease; display: flex; flex-direction: column; border: 1px solid #e2e8f0; }
+.work-card.hide { display: none; }
+.work-card:hover { transform: translateY(-8px); box-shadow: 0 12px 25px rgba(0,0,0,.1); }
+.work-img-container { height: 200px; background: #e2e8f0; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; }
+.work-img-container img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.work-content { padding: 25px; display: flex; flex-direction: column; flex-grow: 1; }
+.work-content h3 { color: #1e293b; font-size: 22px; margin-bottom: 10px; }
+.work-content p { color: #64748b; line-height: 1.6; margin-bottom: 20px; flex-grow: 1; }
+.tech-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+.tag { background: #eef2ff; color: #4f46e5; padding: 5px 12px; border-radius: 20px; font-size: 13px; font-weight: 600; }
+.card-buttons { display: flex; gap: 15px; }
+.project-btn { flex: 1; text-align: center; padding: 10px; text-decoration: none; border-radius: 10px; font-weight: 600; font-size: 15px; transition: .3s; }
+.view-live { background: #4f46e5; color: white; }
+.view-live:hover { background: #3730a3; }
+.view-code { background: #f1f5f9; color: #334155; }
+.view-code:hover { background: #e2e8f0; }
+
+/* ==========================================================================
+   10. COMPONENT: CREATOR PROFILE, BIO & CONTACT BOX (contact.html)
+   ========================================================================== */
+.creator { background: linear-gradient(135deg, #4f46e5, #06b6d4); padding: 100px 20px; text-align: center; color: white; }
+.creator img { width: 160px; height: 160px; border-radius: 50%; border: 6px solid rgba(255,255,255,.3); object-fit: cover; }
+.creator h1 { font-size: 52px; margin-top: 20px; }
+.creator p { max-width: 700px; margin: 15px auto; font-size: 20px; line-height: 1.7; }
+.stats { width: 90%; max-width: 1100px; margin: -50px auto 80px; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
+.stat-box { background: white; padding: 35px; text-align: center; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,.08); }
+.stat-box h2 { color: #4f46e5; font-size: 40px; }
+.stat-box p { color: #040223; font-size: 20px; }
+.social-section { width: 90%; max-width: 1200px; margin: auto; padding-bottom: 80px; }
+.social-title { text-align: center; font-size: 48px; margin-bottom: 50px; }
+.social-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+
+.social-card { text-decoration: none; background: white; color: #333; padding: 30px; border-radius: 20px; box-shadow: 0 5px 20px rgba(0,0,0,.08); transition: .3s; border-top: 4px solid #4f46e5; }
+.social-card:hover { transform: translateY(-10px); }
+.social-card i { font-size: 45px; color: #4f46e5; margin-bottom: 15px; }
+.social-card:hover i { transform: scale(1.15); transition: .3s; }
+.social-card h3 { margin-bottom: 10px; }
+.contact-box { width: 90%; max-width: 800px; margin: 50px auto; background: white; padding: 40px; border-radius: 20px; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,.08); }
+.contact-box h2 { margin-bottom: 20px; }
+.contact-box p { color:red ; }
+
+.whatsapp-btn { display: inline-block; margin-top: 20px; padding: 15px 35px; background: #25D366; color: white; text-decoration: none; border-radius: 40px; font-weight: bold; transition: .3s; }
+.whatsapp-btn:hover { background: #1ebd54; box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4); }
+
+.author { text-align: center; padding: 80px 20px; background: white; }
+.author img { width: 140px; height: 140px; border-radius: 50%; object-fit: cover; margin-bottom: 20px; }
+.author p { max-width: 700px; margin: auto; margin-top: 15px; }
+.newsletter { background: linear-gradient(135deg, #4f46e5, #06b6d4); color: white; text-align: center; padding: 80px 20px; }
+.newsletter input { width: 100%; max-width: 450px; padding: 15px; border: none; border-radius: 30px; margin-top: 20px; outline: none; }
+.newsletter button { padding: 15px 25px; border: none; border-radius: 30px; margin-top: 15px; cursor: pointer; background: white; color: #4f46e5; font-weight: bold; }
+
+/* ==========================================================================
+   11. GLOBAL CTA & FOOTER
+   ========================================================================== */
+.cta { background: #b4bfe6; padding: 80px 20px; text-align: center; transition: background 0.3s; border-radius: 30px;  }
+.cta h2 { font-size: 36px; margin-bottom: 15px; color: #1e293b; }
+.cta p { font-size: 18px; color: #475569; margin-bottom: 30px; }
+.cta .hero-btn { background: #4f46e5; color: white; }
+.cta .hero-btn:hover { background: #3730a3; }
+
+footer { background: #111827; color: white; text-align: center; padding: 40px 20px; margin-top: 40px;
+border-top: 30px; }
+.footer-content h3 { font-size: 24px; margin-bottom: 15px; }
+.footer-content p { color: #9ca3af; font-size: 14px; margin-bottom: 10px; }
+
+/* ==========================================================================
+   12. UNIVERSAL DARK MODE RULES
+   ========================================================================== */
+body.dark-mode { background: #0f172a; color: #f1f5f9; }
+body.dark-mode .navbar { background: #1e293b; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+body.dark-mode .navbar .logo { color: #818cf8; }
+body.dark-mode .nav-links a { color: #cbd5e1; }
+body.dark-mode .nav-links a:hover, body.dark-mode .nav-links a.active { color: #818cf8; }
+body.dark-mode .features { background: #1e293b; }
+body.dark-mode .feature-box { background: #0f172a; }
+body.dark-mode .feature-box p { color: #94a3b8; }
+body.dark-mode .search-section input, body.dark-mode .search-box input, body.dark-mode .search input { background: #f0f1f4; border-color: #300aef; color: #0d0c0c; }
+body.dark-mode .course-card { background: #1e293b; box-shadow: 0 5px 20px rgba(0,0,0,0.3); }
+body.dark-mode .course-card h3 { color: #f1f5f9; }
+body.dark-mode .course-card p { color: #94a3b8; }
+body.dark-mode .cta { background: #1e293b; }
+body.dark-mode .cta h2 { color: #f1f5f9; }
+body.dark-mode .cta p { color: #94a3b8; }
+
+/* ==========================================================================
+   13. UNIVERSAL MOBILE RESPONSIVE UI (Media Queries)
+   ========================================================================== */
+@media(max-width:768px){
+    .navbar{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        height: auto;
+        padding: 15px;
+        gap: 10px;
+    }
+    body{
+        padding-top: 190px; /* Sari dynamic files ke liye same standard safe mobile padding */
+    }
+    .nav-links{
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+    }
+    .nav-btn{
+        padding: 8px 20px;
+        font-size: 14px;
+    }
+    header h1, .page-header h1, .hero h1 {
+        font-size: 2.2rem;
+    }
+    .hero h1 { font-size: 40px; }
+    .creator h1, .social-title { font-size: 36px; }
+    .creator p { font-size: 16px; }
+}
+
+/* ==========================================================================
+   15. NEXT-GEN PREMIUM HOME LAYOUT WITH GRADIENT BANNER (100% SYNC)
+   ========================================================================== */
+body.home-page {
+    padding-top: 70px !important;
+    background: #f8fafc !important;
+}
+
+body.home-page header {
+    background: none !important;
+    padding: 0 !important;
+}
+
+/* Perfect Match Gradient Banner for Hero */
+body.home-page .hero {
+    background: linear-gradient(135deg, #4f46e5, #06b6d4) !important;
+    color: white !important;
+    text-align: center !important;
+    padding: 100px 20px !important;
+    margin-bottom: 0 !important;
+    position: relative;
+    overflow: hidden;
+    display: block !important; 
+}
+
+body.home-page .hero h1 {
+    font-size: 56px !important;
+    font-weight: 900 !important;
+    line-height: 1.2 !important;
+    margin-bottom: 20px !important;
+    letter-spacing: -1.5px !important;
+    color: white !important;
+}
+
+body.home-page .hero p {
+    font-size: 22px !important;
+    max-width: 750px !important;
+    margin: 0 auto 40px !important;
+    line-height: 1.6 !important;
+    color: rgba(255, 255, 255, 0.95) !important;
+    font-weight: 500;
+}
+
+/* Premium Action Pill Buttons Inside Banner */
+.hero-action-buttons {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center; 
+}
+
+body.home-page .hero-btn {
+    background: white !important;
+    color: #4f46e5 !important;
+    padding: 16px 40px !important;
+    border-radius: 50px !important;
+    font-weight: 700 !important;
+    text-decoration: none !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important;
+    transition: all 0.3s ease !important;
+    border: none !important;
+}
+
+body.home-page .hero-btn:hover {
+    transform: translateY(-4px) !important;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25) !important;
+}
+
+.hero-secondary-btn {
+    color: white;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: 0.3s;
+}
+.hero-secondary-btn:hover { color: #eef2ff; transform: translateX(6px); }
+
+/* ==========================================================================
+   MODERN BENTO GRID SECTION (Sari Files ke sath optimized)
+   ========================================================================== */
+.bento-section {
+    width: 84%;
+    max-width: 1200px;
+    margin: 60px auto 60px;
+}
+
+.modern-section-title { font-size: 36px; font-weight: 800; text-align: center; margin: 60px 0 20px; color: #0f172a; }
+.modern-section-subtitle { text-align: center; color:#ffffff; font-size: 18px; margin-bottom: 5px; }
+
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: minmax(180px, auto);
+    gap: 25px;
+    margin-top: 40px;
+}
+
+.bento-card {
+    background: lab(0.58% 2.62 0.92);
+    border-radius: 28px;
+    padding: 40px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.01);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.bento-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 15px 35px rgba(15, 23, 42, 0.05);
+    border-color: #cbd5e1;
+}
+
+.bento-card.col-2 { grid-column: span 2; }
+.bento-card.row-2 { grid-row: span 2; justify-content: space-between; }
+
+.bento-card .icon-box {
+    width: 54px;
+    height: 54px;
+    background: #eef2ff;
+    color: #4f46e5;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+.bento-card:nth-child(2) .icon-box { background: #ecfeff; color: #06b6d4; }
+.bento-card:nth-child(3) .icon-box { background: #f0fdf4; color: #107c41; }
+
+.bento-card h3 { font-size: 24px; font-weight: 800; color: #ecfeff; margin-bottom: 12px; letter-spacing: -0.5px; }
+.bento-card p { color: #64748b; font-size: 15px; line-height: 1.6; }
+
+.bento-link-list { list-style: none; margin-top: 20px; }
+.bento-link-list li { margin-bottom: 12px; }
+.bento-link-list a { color: #4f46e5; text-decoration: none; font-weight: 700; display: flex; align-items: center; gap: 8px; font-size: 15px; transition: 0.2s; }
+.bento-link-list a:hover { color: #3730a3; transform: translateX(4px); }
+
+/* Home Search Box Smooth Customization */
+body.home-page .search-section { max-width: 600px; margin: 80px auto 40px; padding: 0 20px; }
+body.home-page .search-box input {
+    width: 100% !important;
+    padding: 20px 30px !important;
+    border: 3px solid #1511f6 !important;
+    border-radius: 100px !important;
+    font-size: 16px !important;
+    outline: #0099ff;
+    outline:#fff !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.02) !important;
+    background: #fff !important;
+    transition: all 0.3s ease !important;
+}
+body.home-page .search-box input:focus { 
+    border-color: #4f46e5 !important; 
+    box-shadow: 0 10px 25px rgba(79, 70, 229, 0.12) !important;
+}
+
+
+    
+/* FIX: Mapped home-mode-dark selectors to universal dark-mode class */
+body.dark-mode .hero { background: linear-gradient(135deg, #3b22de 0%, #0099ff 100%) !important; }
+body.dark-mode .bento-card { background: #111827; border-color: #1f2937; }
+body.dark-mode .bento-card h3 { color: #ffffff; }
+body.dark-mode .bento-card p { color: #94a3b8; }
+body.dark-mode .bento-card .icon-box { background: #1f2937; color: #0971f1; }
+body.dark-mode .modern-section-title { color: #f6f2f2; }
+body.dark-mode .search-box input { background: #010a18 !important; color: #fff !important; border-color: #1f2937 !important; }
+
+/* Responsive Engineering */
+@media(max-width:1024px) {
+    body.home-page .hero { padding: 100px 20px !important; }
+    .bento-grid { grid-template-columns: 1fr; }
+    .bento-card.col-2 { grid-column: span 1; }
+}
+@media(max-width:768px) {
+    body.home-page { padding-top: 190px !important; }
+    body.home-page .hero h1 { font-size: 40px !important; letter-spacing: -1px !important; }
+    .bento-section { width: 90%; }
+}
+
+
+@media(max-width:768px) {
+    .navbar {
+        height: auto !important; /* Mobile par height auto rakhein */
+        transition: top 0.3s ease-in-out;
+    }
+    
+    /* Navbar jab hidden class lagaye, toh top ko uski actual height se bahar bheje */
+    .navbar.hidden {
+        top: -150px !important; /* Mobile navbar height jitna */
+    }
+}
+
+/* ==========================================================================
+   16. HOME & BLOG FIXES (Bento Layout Balance)
+   ========================================================================== */
+body:not(.home-page) .hero {
+    
+    background: linear-gradient(135deg, #3b22de 0%, #0099ff 100%) !important; 
+    color: white !important;
+    text-align: center !important;
+    padding: 80px 20px !important;
+    margin-bottom: 0 !important;
+}
+
+body:not(.home-page) .hero h1 {
+    font-size: 3rem !important;
+    font-weight: 800 !important;
+    color: white !important;
+    margin-bottom: 10px !important;
+}
+
+body:not(.home-page) .hero p {
+    font-size: 1.2rem !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Featured Section Fix */
+.featured {
+    width: 84%;
+    max-width: 1200px;
+    margin: 40px auto;
+}
+
+.featured-card {
+    background: white;
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+    border: 1px solid #e2e8f0;
+}
+
+.featured-card img {
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+}
+
+.featured-content {
+    padding: 35px;
+}
+
+.featured-content h2 {
+    font-size: 28px;
+    color: #0f172a;
+    margin-bottom: 15px;
+}
+
+.featured-content p {
+    color: #64748b;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 30px;
+    background: #0f172a;
+    color: white;
+    text-decoration: none;
+    border-radius: 14px;
+    font-weight: 700;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #4f46e5;
+    box-shadow: 0 10px 20px rgba(79, 70, 229, 0.2);
+}
+
+/* Category Badges Fix */
+.categories {
+    width: 84%;
+    max-width: 1200px;
+    margin: 60px auto;
+    text-align: center;
+}
+
+.categories h2, .popular h2, .roadmaps h2, .blogs h2, .featured-course h2 {
+    font-size: 32px;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 30px;
+}
+
+.category-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.category {
+    background: #eef2ff;
+    color: #4f46e5;
+    padding: 12px 25px;
+    border-radius: 100px;
+    font-weight: 700;
+    font-size: 15px;
+    border: 1px solid rgba(79, 70, 229, 0.1);
+}
+
+/* Popular Grid Fix */
+.popular, .roadmaps, .featured-course, .blogs {
+    width: 84%;
+    max-width: 1200px;
+    margin: 60px auto;
+}
+
+.post-grid, .roadmap-grid, .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.post-card, .roadmap-card {
+    background: white;
+    padding: 35px;
+    border-radius: 24px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.01);
+    border: 1px solid #e2e8f0;
+    transition: 0.3s;
+}
+
+.post-card:hover, .roadmap-card:hover {
+    transform: translateY(-5px);
+    border-color: #cbd5e1;
+}
+
+.post-card h3, .roadmap-card {
+    color: #0f172a;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.post-card p {
+    color: #64748b;
+    margin-top: 10px;
+    line-height: 1.5;
+}
+
+.roadmap-card {
+    border-left: 6px solid #4f46e5;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* Course box fix */
+.featured-course {
+    text-align: center;
+    border-radius: 30px;
+}
+
+.course-box {
+    max-width: 700px;
+    margin: auto;
+    background: white;
+    padding: 40px;
+    border-radius: 28px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+    border: 1px solid #e2e8f0;
+}
+
+.course-box h3 {
+    font-size: 24px;
+    color: #0f172a;
+    margin-bottom: 12px;
+}
+
+.course-box p {
+    color: #64748b;
+}
+
+/* Author Section Fix */
+.author {
+    text-align: center;
+    padding: 80px 20px;
+    background: white;
+    border-top: 1px solid #f1f5f9;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.author img {
+    width: 130px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 4px solid #eef2ff;
+}
+
+.author h2 {
+    font-size: 28px;
+    color: #0f172a;
+}
+
+.author p {
+    max-width: 650px;
+    margin: 15px auto 0;
+    color: #64748b;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* Newsletter Fix */
+.newsletter {
+    background: linear-gradient(135deg, #4f46e5, #06b6d4);
+    color: white;
+    text-align: center;
+    padding: 80px 20px;
+    border-radius: 32px;
+    width: 84%;
+    max-width: 1200px;
+    margin: 60px auto;
+}
+
+.newsletter h2 {
+    font-size: 32px;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.newsletter p {
+    color: rgba(255,255,255,0.9);
+    font-size: 16px;
+}
+
+.newsletter input {
+    width: 100%;
+    max-width: 400px;
+    padding: 16px 25px;
+    border: none;
+    border-radius: 100px;
+    margin-top: 25px;
+    outline: none;
+    font-size: 15px;
+}
+
+.newsletter button {
+    padding: 15px 35px;
+    border: none;
+    border-radius: 100px;
+    margin-top: 15px;
+    cursor: pointer;
+    background: #0f172a;
+    color: white;
+    font-weight: 700;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+.newsletter button:hover {
+    background: white;
+    color: #4f46e5;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* FIX: Refactored blog dark tags to hook directly to universal dark-mode class */
+body.dark-mode .featured-card,
+body.dark-mode .post-card,
+body.dark-mode .roadmap-card,
+body.dark-mode .course-box,
+body.dark-mode .author {
+    background: #111827 !important;
+    border-left: 5px solid blue !important;
+}
+body.dark-mode .featured-content h2,
+body.dark-mode .categories h2,
+body.dark-mode .popular h2,
+body.dark-mode .roadmaps h2,
+body.dark-mode .blogs h2,
+body.dark-mode .featured-course h2,
+body.dark-mode .post-card h3,
+body.dark-mode .roadmap-card,
+body.dark-mode .course-box h3,
+body.dark-mode .author h2 {
+    color: #fff !important;
+}
+
+body.dark-mode .featured-course{
+      background-color: #120101 !important;
+      border: 2px solid white;
+      
+}
+
+body.dark-mode .category {
+    background: #1f2937;
+    color: #818cf8;
+    border-color: blue;
+}
+body.dark-mode .btn {
+    background: #4f46e5;
+}
+body.dark-mode .btn:hover {
+    background: #3730a3;
+}
+body.dark-mode .newsletter button {
+    background: #1f2937;
+}
+body.dark-mode .newsletter button:hover {
+    background: white;
+    color: #4f46e5;
+}
+
+@media(max-width:768px) {
+    body.home-page .hero {
+        padding-top: 100px !important; /* Mobile banner sync fix */
+    }
+    body:not(.home-page) .hero {
+        padding-top: 190px !important;
+    }
+    .featured, .categories, .popular, .roadmaps, .featured-course, .blogs, .newsletter {
+        width: 90%;
+    }
+    .featured-card img {
+        height: 240px;
+    }
+}
+
+
+
+
+
+
+/* ==========================================================================
+   UPDATED DARK MODE LOGIC (Black Page + White Cards)
+   ========================================================================== */
+
+/* 1. Page Background Black in Dark Mode */
+body.dark-mode { 
+    background: #000000 !important; 
+    color: white !important; 
+}
+
+/* 2. Grid & Cards remains White in Dark Mode */
+body.dark-mode .bento-card,
+body.dark-mode .course-card,
+
+body.dark-mode .post-card,
+body.dark-mode .roadmap-card,
+
+body.dark-mode .author,
+body.dark-mode .feature-box,
+body.dark-mode .social-card,
+body.dark-mode .contact-box {
+    background: #080000 !important; /* Grid White */
+    border: 1px solid #f4f7fa  !important;
+    border-radius: 5px;
+}
+
+
+body.dark-mode .social-card h3{
+color: white;
+}
+
+body.dark-mode .social-card p{
+color: white;
+}
+
+
+body.dark-mode .featured-card{
+    background: #110101 !important; /* Grid White */
+    border: 1px solid #e2e8f0  !important;
+    border-radius: 5px;
+}
+
+body.dark-mode .course-box{
+    background: black !important; /* Grid White */
+    border: 1px solid #e2e8f0  !important;
+    border-radius: 5px;
+}
+
+/* 3. Ensure Text inside White Cards stays Dark (Readable) */
+body.dark-mode .bento-card h3,
+body.dark-mode .bento-card p,
+body.dark-mode .course-card h3,
+body.dark-mode .course-card p,
+body.dark-mode .post-card h3,
+body.dark-mode .post-card p,
+body.dark-mode .feature-box h3,
+body.dark-mode .feature-box p,
+body.dark-mode .author h2,
+body.dark-mode .author p {
+    color: #eff2f6 !important; 
+}
+
+/* 4. Navbar & Other elements fix for Dark Mode */
+body.dark-mode .navbar { 
+    background: #000000 !important; 
+    border-bottom: 1px solid #333;
+}
+
+body.dark-mode .nav-links a { 
+    color: #ffffff !important; 
+}
+
+body.dark-mode .features { 
+    background: #000000 !important; 
+}
+
+/* 5. Hero Section fix for Dark Mode */
+body.dark-mode .hero, 
+body.dark-mode .page-header {
+        background: linear-gradient(135deg, #3b22de 0%, #0099ff 100%);
+ /* Slightly lighter than pure black for depth */
+}
+
+/* 6. Newsletter Fix */
+body.dark-mode .newsletter {
+    background: #111111 !important;
+    border: 1px solid #333;
+}
+
+body.dark-mode .newsletter input {
+    background: #ffffff !important;
+    color: #000 !important;
+}
+
+
+.hidden { display: none !important; }
+
+
+/* Container Style */
+.followers-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 20px;
+    width: 90%;
+    max-width: 700px;
+    height: 350px;
+    margin: 30px auto;
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 2px solid #28a745; /* गहरा हरा बॉर्डर */
+    border-radius: 20px;
+    overflow-y: auto;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+
+
+
+}
+
+/* Modern Card Design */
+.follower-card {
+    background: #e6e2e2;
+    border: 2px solid #28a745;
+    border-radius: 20px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+}
+
+.follower-card:hover {
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 0 15px 25px rgba(40, 167, 69, 0.2);
+}
+
+/* Inner Gender Box */
+.inner-box {
+    background: #e8f5e9;
+    border: 2px solid #141414;
+    border-radius: 12px;
+    padding: 10px 20px;
+    font-size: 40px;
+    margin-bottom: 10px;
+    transition: 0.3s;
+}
+
+.name-text {
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: #2c3e50;
+    text-transform: capitalize;
+}
+
+
+.inner-box:hover{
+
+    font-size: 60px;
+} 
+
+/* Dark Mode Enhancements */
+body.dark-mode .follower-card { background: #1e1e26; border-color: #0b3ef7; }
+body.dark-mode .name-text { color: #ffffff; }
+body.dark-mode .inner-box { background: #1a2e1c; border-color: #f6f7f6; }
+
+/* Follow Button - Modern Gradient */
+.follow-btn {
+    padding: 12px 30px;
+    background: linear-gradient(135deg, #28a745, #218838);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+}
+
+.follow-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(40, 167, 69, 0.5);
+}
+
+
+
+
+.follower-card {
+    animation: highlight 2s ease;
+}
+
+.follow-btn {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+
+#toast {
+    transition: all 0.5s ease-in-out;
+    top: -100px; /* शुरुआत में स्क्रीन के बाहर छुपाएं */
+}
+
+#toast.show {
+    top: 20px; /* स्लाइड होकर नीचे आएगा */
+}
+
+
+
+.whatsapp-highlight {
+    animation: glow 1.5s infinite alternate;
+    background-color: #25D366 !important;
+    border: 2px solid white !important;
+    padding: 10px 20px !important;
+    border-radius: 8px !important;
+    display: inline-block;
+    text-decoration: none !important;
+    color: white !important;
+}
+
+@keyframes glow {
+    from { box-shadow: 0 0 5px #25D366, 0 0 10px #25D366; }
+    to { box-shadow: 0 0 20px #25D366, 0 0 30px #25D366; }
+}
+
+
+/* मोबाइल डिवाइस के लिए (स्क्रीन 600px से छोटी) */
+@media screen and (max-width: 600px) {
+    .modal-content {
+        width: 90% !important; /* स्क्रीन की चौड़ाई का 90% लेगा */
+        margin: 10% auto;      /* ऊपर से थोड़ी जगह छोड़ देगा */
+        padding: 15px !important;
+    }
+    
+    #toast {
+        min-width: 90% !important; /* मोबाइल पर पूरा फैलेगा */
+        font-size: 14px;
+        padding: 10px !important;
+    }
+    
+    .whatsapp-highlight {
+        padding: 8px 12px !important;
+        font-size: 14px !important;
+    }
+}
+
+
+.work-card {
+    position: relative; /* यह सबसे महत्वपूर्ण है */
+    /* बाकी पुरानी स्टाइलिंग... */
+}
+
+
+/* Modern Popup Overlay */
+.modal {
+    display: none; 
+    position: fixed;
+    top: 0; left: 0; 
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+}
+
+/* Modern Popup Content */
+.modal-content {
+    background: #ffffff;
+    margin: 10% auto;
+    padding: 30px;
+    width: 90%;
+    max-width: 400px;
+    border-radius: 25px;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+    position: relative;
+    animation: slideDown 0.4s ease;
+    box-sizing: border-box;
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.modal h3 { margin-bottom: 20px; color: #333; font-family: sans-serif; }
+
+/* Stylish Inputs */
+.modal input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 2px solid #eee;
+    border-radius: 12px;
+    outline: none;
+    transition: 0.3s;
+    box-sizing: border-box;
+}
+.modal input:focus { border-color: #28a745; }
+
+/* --- NEW GENDER TOGGLE SWITCH CSS --- */
+.gender-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 2px solid #eee;
+    border-radius: 12px;
+    padding: 10px 15px;
+    margin: 12px 0;
+    box-sizing: border-box;
+}
+
+.gender-label {
+    font-family: sans-serif;
+    font-size: 16px;
+    color: #444;
+}
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* Slider Base - Default Male (Blue) */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #00aeef; /* Male Blue */
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 22px;
+    width: 22px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+/* When checked - Female (Pink) */
+.toggle-switch input:checked + .slider {
+    background-color: #ff69b4; /* Female Pink */
+}
+
+.toggle-switch input:checked + .slider:before {
+    transform: translateX(30px);
+}
+
+/* Gender Text Styles */
+.gender-text {
+    font-family: sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 4px 10px;
+    border-radius: 8px;
+    color: white;
+    transition: background-color 0.4s ease;
+    min-width: 95px;
+    text-align: center;
+}
+
+.male-mode { background-color: #00aeef; }
+.female-mode { background-color: #ff69b4; }
+
+/* Green Submit Button */
+.submit-btn {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #28a745, #218838);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.close {
+    position: absolute;
+    top: 15px; right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #999;
+}
+
+
+/* 1. छिपे हुए इनपुट को कीबोर्ड फोकस के लिए सुधारे */
+.toggle-switch input:focus-visible + .slider {
+    outline: 3px solid #28a745; /* ग्रीन कलर की आउटलाइन दिखेगी जब Tab दबाकर यहाँ आएंगे */
+    outline-offset: 3px;
+}
+
+/* 2. पूरे जेंडर कंटेनर को भी कीबोर्ड फ्रेंडली बनाएं */
+.toggle-switch input:focus-visible ~ .gender-text {
+    box-shadow: 0 0 0 2px #333;
+}

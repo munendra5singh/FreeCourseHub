@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>https://munendra5singh.github.io/FreeCourseHub/</loc>
+  </url>
+
+  <url>
+    <loc>https://munendra5singh.github.io/FreeCourseHub/share.html</loc>
+  </url>
+
+  <!-- Sections -->
+  <url>
+    <loc>https://munendra5singh.github.io/FreeCourseHub/sections/blog.html</loc>
+  </url>
+
+  <url>
+    <loc>https://munendra5singh.github.io/FreeCourseHub/sections/Categories.html</loc>
+  </url>
+
+  <url>
+    <loc>https://munendra5singh.github.io/FreeCourseHub/sections/contact.html</loc>
+  </url>
+
+  <url>
+    <loc>https://munendra5singh.github.io/FreeCourseHub/sections/Courses.html</loc>
+  </url>
+
+  <url>
+    <loc>https://munendra5singh.github.io/FreeCourseHub/sections/favorites.html</loc>
+  </url>
+
+  <!-- Categories -->
+  <url>
+    <loc>https://munendra5singh.github.io/FreeCourseHub/categories/artificial_Intelligence.html</loc>
+  </url>
+
+  <url>
+    <loc>https://munendra5singh.github.io/FreeCourseHub/categories/career.html</loc>
+  </url>
+
+  <url>
+    <loc>https://munendra5singh.github.io/FreeCourseHub/categories/communication_skill.html</loc>
+  </url>
+
+  <url>
+    <loc>https://munendra5singh.github.io/FreeCourseHub/categories/data_analytics.html</loc>
+  </url>
+
+  <url>
+    <loc>https://munendra5singh.github.io/FreeCourseHub/categories/databass.html</loc>
+  </url>
+
+  <url>
+    <loc>https://munendra5singh.github.io/FreeCourseHub/categories/graphic_design.html</loc>
+  </url>
+
+  <url>
+    <loc>https://munendra5singh.github.io/FreeCourseHub/categories/ms_office.html</loc>
+  </url>
+
+  <url>
+    <loc>https://munendra5singh.github.io/FreeCourseHub/categories/programming.html</loc>
+  </url>
+
+  <url>
+    <loc>https://munendra5singh.github.io/FreeCourseHub/categories/web_development.html</loc>
+  </url>
+
+<!-- My Projects -->
+
+<url>
+  <loc>https://munendra5singh.github.io/FreeCourseHub/my_projects/portfolio.html</loc>
+</url>
+
+<url>
+  <loc>https://munendra5singh.github.io/FreeCourseHub/my_projects/details/agecalculater.html</loc>
+</url>
+
+<url>
+  <loc>https://munendra5singh.github.io/FreeCourseHub/my_projects/details/attendance.html</loc>
+</url>
+
+<url>
+  <loc>https://munendra5singh.github.io/FreeCourseHub/my_projects/details/autopay_roll.html</loc>
+</url>
+
+<url>
+  <loc>https://munendra5singh.github.io/FreeCourseHub/my_projects/details/freecoursehubdetail.html</loc>
+</url>
+
+<url>
+  <loc>https://munendra5singh.github.io/FreeCourseHub/my_projects/details/money_cal.html</loc>
+</url>
+
+</urlset>

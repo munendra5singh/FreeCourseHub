@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>My Favorite Saved Courses | FreeCourseHub</title>
+    <meta name="description" content="Access your personalized learning playlist at FreeCourseHub. View and manage all your saved free online courses in programming, AI, data analytics, and design in one place.">
+    <meta name="keywords" content="my saved courses, favorite free online courses, freecoursehub playlist, learning bookmark">
+    <meta name="robots" content="index, follow">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../css_files/style.css">
+     <link rel="icon" type="image/png" href="favicon.png">
+</head>
+<body>
+
+    <!-- FIXED: Perfect Synchronized Navbar with Theme Toggle Button -->
+    <nav class="navbar">
+        <div class="logo">FreeCourseHub</div>
+
+        <ul class="nav-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../sections/Courses.html">Courses</a></li>
+            <li><a href="../sections/Categories.html">Categories</a></li>
+            <li><a href="../sections/blog.html">Blog</a></li>
+            <li><a href="../sections/contact.html">Contact</a></li>
+            <li><a href="../sections/favorites.html"  class="active">My Favorites ❤️</a></li>
+        </ul>
+
+        <button class="theme-toggle-btn" onclick="toggleTheme()" title="थिम बदलें">
+            <i class="fas fa-moon"></i>
+        </button>
+
+        <a href="../sections/Courses.html" class="nav-btn">Explore More</a>
+    </nav>
+
+    <div class="fav-hero">
+        <h1>My Favorite Courses</h1>
+        <p>Your saved learning playlist. Start learning your saved courses anytime!</p>
+    </div>
+
+    <div class="fav-container">
+        <div class="course-grid" id="favoritesGrid">
+            <div class="empty-message">
+                <i class="far fa-heart" aria-hidden="true" style="font-size: 50px; color: #ef4444; margin-bottom: 15px;"></i>
+                <h2>Loading your collection...</h2>
+                <p style="margin-bottom:20px; color:#64748b;">Please wait while we set up your playlist.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>© 2026 FreeCourseHub. All Rights Reserved.</p>
+            All courses and videos belong to their respective owners. <br> We only organize and share free educational links
+        </div>
+    </footer>
+
+  <script>
+    // --- Favorites Logic ---
+    function displayFavorites() {
+        const favoritesGrid = document.getElementById("favoritesGrid");
+        const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+        // Guard clause: ensure the element exists before trying to update it
+        if (!favoritesGrid) return; 
+
+        favoritesGrid.innerHTML = ""; 
+
+        if (favorites.length === 0) {
+            favoritesGrid.innerHTML = `
+                <div class="empty-message">
+                    <i class="far fa-heart" aria-hidden="true" style="font-size: 50px; color: #ef4444; margin-bottom: 15px;"></i>
+                    <h2>You haven't liked any courses yet!</h2>
+                    <p style="margin-bottom:20px; color:#64748b;">Browse our catalog and tap the ❤️ button to save them here.</p>
+                    <a href="Courses.html" class="nav-btn" style="display:inline-block; text-align:center;">Browse Courses</a>
+                </div>
+            `;
+            return;
+        }
+
+        favorites.forEach(courseId => {
+            const courseData = allCoursesMasterData.find(c => c.id === courseId);
+
+            if (courseData) {
+                const card = document.createElement("div");
+                card.className = "course-card";
+                card.style.position = "relative";
+                card.innerHTML = `
+                    <button class="fav-btn" onclick="removeFavorite(event, '${courseData.id}')" title="Remove from favorites" aria-label="Remove ${courseData.name} from favorites" style="position: absolute; top: 15px; right: 15px; background: rgba(255,255,255,0.85); border: none; border-radius: 50%; width: 36px; height: 36px; cursor: pointer; z-index: 10; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
+                        <i class="fas fa-heart" style="color: #ef4444; font-size: 18px;"></i>
+                    </button>
+                    <img src="${courseData.img}" alt="${courseData.name} Interface Cover">
+                    <h3>${courseData.name}</h3>
+                    <p>${courseData.desc}</p>
+                    <a href="${courseData.link}" target="_blank" rel="noopener noreferrer" class="course-btn"><i class="fas fa-play" style="margin-right:8px;" aria-hidden="true"></i>Start Learning</a>
+                `;
+                favoritesGrid.appendChild(card);
+            }
+        });
+    }
+
+    function removeFavorite(event, courseId) {
+        event.preventDefault();
+        let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+        favorites = favorites.filter(id => id !== courseId);
+        localStorage.setItem("favorites", JSON.stringify(favorites));
+        displayFavorites(); 
+    }
+
+    // --- Navigation Logic ---
+    function setActiveNavLink() {
+        let currentPath = window.location.pathname.split("/").pop();
+        if (currentPath === "" || currentPath === "index.html") { currentPath = "index.html"; }
+        
+        const navLinks = document.querySelectorAll('.nav-links a');
+        navLinks.forEach(link => {
+            if (link.getAttribute('href') === currentPath) {
+                link.classList.add('active');
+            }
+        });
+    }
+
+    // --- Execution on Load ---
+    document.addEventListener("DOMContentLoaded", () => {
+        displayFavorites();
+        setActiveNavLink();
+    });
+</script>
+    <script src="../js_files/theme.js"></script>
+    <Script src="../js_files/all_courses.js"></Script>
+</body>
+</html>

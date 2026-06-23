@@ -1,0 +1,758 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Munendra Singh - Project Showcases & Portfolio | FreeCourseHub</title>
+<meta name="description" content="Explore the professional work, formal qualifications, and technical certifications of Munendra Singh. Featuring FreeCourseHub development, advanced Excel data models, and full-stack credentials.">
+<meta name="keywords" content="Munendra Singh portfolio, web development qualifications, advanced excel certification, data analytics showcases, freecoursehub developer, HNBGU economics geography, 10th 12th computer course">
+<meta name="robots" content="index, follow">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+ <link rel="icon" type="image/png" href="favicon.png">
+
+<style>
+:root {
+    --bg-color: #ffffff;
+    --text-color: #1e293b;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial, sans-serif;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+body{
+    background:#f8fafc;
+    color: #333;
+    padding-top: 70px; 
+    transition: background 0.3s, color 0.3s;
+}
+
+/* Navbar Style */
+.navbar{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:70px;
+    background:#fff;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 8%;
+    box-shadow:0 2px 10px rgba(0,0,0,0.08);
+    z-index:1000;
+}
+
+.logo{
+    font-size:32px;
+    font-weight:bold;
+    color:#4f46e5;
+}
+
+.nav-links{
+    display:flex;
+    list-style:none;
+    gap:25px;
+    align-items: center;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:#333;
+    font-weight:600;
+    position: relative;
+    padding-bottom: 8px;
+    transition: .3s;
+}
+
+.nav-links a:hover, .nav-links a.active{
+    color:#4f46e5;
+}
+
+.nav-links a.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #4f46e5, #06b6d4);
+    border-radius: 10px;
+}
+
+.nav-btn{
+    text-decoration:none;
+    background:#4f46e5;
+    color:#fff;
+    padding:10px 25px;
+    border-radius:30px;
+    font-weight: 600;
+    transition: .3s;
+}
+
+.nav-btn:hover{ background: #3730a3; }
+
+/* Header Banner */
+header.hero-banner{
+    background:linear-gradient(135deg,#4f46e5,#06b6d4);
+    color:white;
+    text-align:center;
+    padding:80px 20px;
+}
+
+header.hero-banner h1{
+    font-size:3rem;
+    margin-bottom:10px;
+    font-weight: 900;
+}
+
+header.hero-banner p {
+    font-size: 1.1rem;
+}
+
+/* Stats Strip */
+.portfolio-stats-strip {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin: -30px auto 40px;
+    padding: 0 20px;
+    max-width: 800px;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 10;
+}
+
+.portfolio-mini-box {
+    background: white;
+    padding: 15px 30px;
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.portfolio-mini-box i { font-size: 20px; color: #4f46e5; }
+.portfolio-mini-box span { font-weight: 700; color: #1e293b; font-size: 15px; }
+
+/* Filter Buttons Styling */
+.filter-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 40px auto;
+    padding: 0 20px;
+    max-width: 800px;
+}
+
+.filter-btn {
+    padding: 10px 25px;
+    border: 2px solid #4f46e5;
+    background: transparent;
+    color: #4f46e5;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.filter-btn.active-filter, .filter-btn:hover {
+    background: #4f46e5;
+    color: white;
+    box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
+}
+
+/* Projects Grid Layout */
+.work-section{
+    width:90%;
+    max-width:1200px;
+    margin:auto;
+    padding-bottom:60px;
+}
+
+.work-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:30px;
+}
+
+/* Card Styling */
+.work-card{
+    background:#fff;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 5px 15px rgba(0,0,0,.04);
+    transition:.4s ease;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #e2e8f0;
+    position: relative;
+}
+
+
+
+.work-card:hover {
+    transform: translateY(-10px) scale(1.02); /* कार्ड को ऊपर उठाना और हल्का ज़ूम करना */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15); /* होवर पर गहरा शैडो */
+    border-color: #4f46e5; /* होवर पर बॉर्डर का रंग बदलना (Optional) */
+    border: 2px solid #4f05fd;
+}
+
+
+body.dark-mode .work-card:hover {
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5); /* डार्क मोड में शैडो को और डार्क रखें */
+    border-color: #6366f1; /* डार्क मोड में थोड़ा हल्का बॉर्डर रंग */
+}
+
+.work-card.hide { display: none !important; }
+
+.card-category-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 6px 14px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #4f46e5;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    z-index: 5;
+}
+
+.work-card[data-category="excel"] .card-category-badge { color: #107c41; }
+.work-card[data-category="analytics"] .card-category-badge { color: #06b6d4; }
+
+.work-img-container{
+    height: 200px;
+    background: #e2e8f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.work-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.work-content{
+    padding:25px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.work-content h3{
+    color:#1e293b;
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.work-content p{
+    color:#64748b;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    flex-grow: 1;
+}
+
+.tech-tags{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.tag{
+    background: #eef2ff;
+    color: #4f46e5;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.card-buttons{
+    display: flex;
+    gap: 15px;
+}
+
+.project-btn{
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 15px;
+    transition: .3s;
+}
+
+ .project-btn:hover{
+    transform: translateY(-4px) scale(1.02); /* कार्ड को ऊपर उठाना और हल्का ज़ूम करना */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15); /* होवर पर गहरा शैडो */
+    border-color: #4f46e5; /* होवर पर बॉर्डर का रंग बदलना (Optional) */
+    border: 2px solid #4f05fd;
+}
+
+.view-live{ background: #4f46e5; color: white; }
+.view-live:hover{ background: #3730a3; }
+.view-code{ background: #f1f5f9; color: #334155; }
+.view-code:hover{ background: #e2e8f0; }
+
+/* Qualifications & Certificates Bento Block CSS */
+.edu-cert-section {
+    width: 84%;
+    max-width: 1200px;
+    margin: 60px auto 40px;
+}
+
+.modern-section-title { font-size: 36px; font-weight: 800; text-align: center; margin: 40px 0 10px; color: #0f172a; }
+.modern-section-subtitle { text-align: center; color: #64748b; font-size: 18px; margin-bottom: 30px; }
+
+.edu-cert-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.edu-cert-card {
+    background: #ffffff;
+    border-radius: 28px;
+    padding: 40px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.01);
+    position: relative;
+    transition: 0.3s;
+}
+.edu-cert-card:hover {
+    transform: translateY(-5px);
+    border-color: #cbd5e1;
+}
+
+.edu-cert-card h3 {
+    font-size: 24px;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 2px solid #f1f5f9;
+    padding-bottom: 15px;
+}
+
+.edu-cert-card h3 i { color: #4f46e5; }
+
+.timeline-item {
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 25px;
+    border-left: 2px solid #e2e8f0;
+}
+.timeline-item:last-child { margin-bottom: 0; }
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -7px;
+    top: 5px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #4f46e5;
+    border: 2px solid #ffffff;
+}
+
+.timeline-year {
+    font-size: 13px;
+    font-weight: 700;
+    color: #4f46e5;
+    background: #eef2ff;
+    padding: 4px 10px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-bottom: 8px;
+}
+
+.timeline-title { font-size: 18px; font-weight: 700; color: #1e293b; }
+.timeline-institute { font-size: 14px; color: #64748b; margin-top: 4px; font-weight: 600; }
+.timeline-desc { font-size: 14px; color: #64748b; margin-top: 8px; line-height: 1.5; }
+
+footer{
+    background:#111827;
+    color:white;
+    text-align:center;
+    padding:25px 20px;
+    margin-top: 40px;
+}
+
+/* Universal Dark Mode Sync Setup */
+body.dark-mode { background: #0f172a; color: #f1f5f9; --bg-color: #111827; --text-color: #ffffff; }
+body.dark-mode .navbar { background: #1e293b; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+body.dark-mode .nav-links a { color: #cbd5e1; }
+body.dark-mode .portfolio-mini-box { background: #111827; border-color: #1f2937; }
+body.dark-mode .portfolio-mini-box span { color: #ffffff; }
+body.dark-mode .card-category-badge { background: rgba(17, 24, 39, 0.9); border: 1px solid rgba(255,255,255,0.1); }
+body.dark-mode .work-card { background: #1e293b; border-color: #1f2937; }
+body.dark-mode .work-content h3 { color: #f1f5f9; }
+body.dark-mode .edu-cert-card { background: #111827; border-color: #1f2937; }
+body.dark-mode .edu-cert-card h3 { color: #ffffff; border-color: #1f2937; }
+body.dark-mode .timeline-title { color: #f1f5f9; }
+body.dark-mode .timeline-item { border-color: #1f2937; }
+body.dark-mode .timeline-year { background: #1f2937; color: #818cf8; }
+body.dark-mode .modern-section-title { color: #ffffff; }
+
+@media(max-width:992px) {
+    .edu-cert-grid { grid-template-columns: 1fr; }
+}
+
+@media(max-width:768px){
+    .navbar{ flex-direction:column; height:auto; padding:15px; gap:10px; }
+    body{ padding-top:190px; } 
+    .nav-links{ flex-wrap:wrap; justify-content:center; gap:12px; }
+    header.hero-banner h1{ font-size:2.2rem; }
+    .edu-cert-section { width: 90%; }
+}
+</style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">FreeCourseHub</div>
+        <ul class="nav-links">
+             <li><a href="../index.html">Home</a></li>
+            <li><a href="../sections/Courses.html">Courses</a></li>
+            <li><a href="../sections/Categories.html">Categories</a></li>
+            <li><a href="../sections/blog.html">Blog</a></li>
+            <li><a href="../sections/contact.html" class="active">My projects</a></li>
+            <li><a href="../sections/favorites.html">My Favorites ❤️</a></li>
+        </ul>
+        
+        <button class="theme-toggle-btn" onclick="toggleTheme()" title="थिम बदलें" style="background:none; border:none; font-size:20px; cursor:pointer; color:#f6a00a; padding:5px;">
+            <i class="fas fa-moon"></i>
+        </button>
+        
+        <a href="index.html#courses" class="nav-btn">Explore</a>
+    </nav>
+
+    <header class="hero-banner">
+        <h1>My Project Showcases</h1>
+        <p>Explore my Web Development, Excel, and Data Analytics Work</p>
+    </header>
+
+    <section class="portfolio-stats-strip">
+        <div class="portfolio-mini-box">
+            <i class="fas fa-laptop-code"></i>
+            <span>Development Tracks</span>
+        </div>
+        <div class="portfolio-mini-box">
+            <i class="fas fa-table"></i>
+            <span>Advanced Data Models</span>
+        </div>
+    </section>
+
+    <div class="filter-container">
+        <button class="filter-btn active-filter" data-target="all" type="button">All Projects</button>
+        <button class="filter-btn" data-target="web" type="button">Web Development</button>
+        <button class="filter-btn" data-target="excel" type="button">Advanced Excel</button>
+        <button class="filter-btn" data-target="analytics" type="button">Data Analytics</button>
+    </div>
+
+    <section class="work-section">
+        <div class="work-grid" id="portfolioGrid">
+
+            <div class="work-card" data-category="web">
+                <div class="card-category-badge">Web Dev</div>
+                <div class="work-img-container">
+                    <img src="../image/freecoursehub.png" alt="FreeCourseHub Platform">
+                </div>
+                <div class="work-content">
+                    <h3>FreeCourseHub Platform</h3>
+                    <p>एक संपूर्ण वैभवशाली एजुकेशन क्युरेशन प्लेटफॉर्म जिसमें लाइव सर्च बार और ऑटोमैटिक एक्टिव लिंक इंडिकेटर शामिल हैं</p>
+                    <div class="tech-tags">
+                        <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
+                    </div>
+                    <div class="card-buttons">
+                        <a href="../index.html" class="project-btn view-live">Open Web</a>
+                        <a href="../my_projects/details/freecousehubdetail.html" class="project-btn view-code">Details</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="work-card" data-category="excel">
+                <div class="card-category-badge">Excel</div>
+                <div class="work-img-container">
+                    <img src="../image/mony_calculater.png" alt="Money Break Cash Counter Spreadsheet Visualization">
+                </div>
+                <div class="work-content">
+                    <h3>MONEY BREAK CALCULATOR</h3>
+                    <p>Automated Cash Counter & Tracker: दैनिक नकदी प्रबंधन (Daily Cash Management) के लिए बनाया गया एक एडवांस एक्सेल टूल. यह कुल दर्ज की गई राशि के आधार पर नोटों की संख्या (No. of Notes) और कुल मूल्य (Total Amount) का सटीक मिलान दिखाता है.</p>
+                    <div class="tech-tags">
+                        <span class="tag">Excel Formulas</span><span class="tag">Cash Counter</span>
+                    </div>
+                    <div class="card-buttons">
+                        <a href="../my_projects/money_breck_calculater.xlsx" class="project-btn view-live">Open Sheet</a>
+                        <a href="../my_projects/details/money_cal.html" class="project-btn view-code">Details</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="work-card" data-category="analytics">
+                <div class="card-category-badge">Analytics</div>
+                <div class="work-img-container">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800" alt="Indian Automotive Industry Trend Visual Analytics Dashboard">
+                </div>
+                <div class="work-content">
+                    <h3>Indian Automotive Industry Insights</h3>
+                    <p>टाटा मोटर्स और महिंद्रा ग्रुप के कमर्शियल/लक्ज़री वाहनों के सेल्स डेटा का विस्तृत एनालिसिस और ट्रेंड विजुअलाइजेशन.</p>
+                    <div class="tech-tags">
+                        <span class="tag">Data Mining</span><span class="tag">Python</span><span class="tag">Data Analysis</span>
+                    </div>
+                    <div class="card-buttons">
+                        <a href="#" class="project-btn view-live">View Report</a>
+                        <a href="#" class="project-btn view-code">Dataset</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="work-card" data-category="excel">
+                <div class="card-category-badge">Excel</div>
+                <div class="work-img-container">
+                    <img src="../image/att.png" alt="Student Attendance Management Dashboard Sheet Matrix">
+                </div>
+                <div class="work-content">
+                    <h3>Student Attendance Dashboard</h3>
+                    <p>Microsoft Excel आधारित Attendance Management Sheet, जिसमें उपस्थिति ट्रैकिंग, प्रतिशत गणना और रिपोर्टिंग की सुविधा शामिल है.</p>
+                    <div class="tech-tags">
+                        <span class="tag">Macros</span><span class="tag">Formulas</span><span class="tag">Dashboard</span>
+                    </div>
+                    <div class="card-buttons">
+                        <a href="../my_projects/attendance_sheet.xlsx" class="project-btn view-live">Open sheet</a>
+                        <a href="../my_projects/details/attendance.html" class="project-btn view-code">Details</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="work-card" data-category="excel">
+                <div class="card-category-badge">Excel</div>
+                <div class="work-img-container">
+                    <img src="../image/autopayroll.png" alt="AUTO MATIC PAY ROLL">
+                </div>
+                <div class="work-content">
+                    <h3>AUTO MATIC PAY ROLL</h3>
+                    <p>यह एक Automated Payroll Management System है, जिसे Microsoft Excel में बनाया गया है। यह कर्मचारियों के वेतन, भत्तों, कटौतियों और Net Salary की गणना स्वतः करता है।</p>
+                    <div class="tech-tags">
+                        <span class="tag">Excel Formulas</span><span class="tag">Employeesheet</span>
+                    </div>
+                    <div class="card-buttons">
+                        <a href="../my_projects/auto_pay_roll.xlsx" class="project-btn view-live">Open Sheet</a>
+                        <a href="../my_projects/details/autopay_roll.html" class="project-btn view-code">Details</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="work-card" data-category="web">
+                <div class="card-category-badge">Web Dev</div>
+                <div class="work-img-container">
+                    <img src="../image/agecalculater.png" alt="Smart Age & Date Calculator">
+                </div>
+                <div class="work-content">
+                    <h3>Smart Age & Date Calculator</h3>
+                    <p>Age & Date Calculator एक वेब आधारित स्मार्ट टूल है जो जन्म तिथि (Date of Birth) या किसी भी दो तिथियों के बीच का अंतर वर्षों, महीनों और दिनों में स्वतः गणना करता है।</p>
+                    <div class="tech-tags">
+                        <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
+                    </div>
+                    <div class="card-buttons">
+                        <a href="https://date-time-difference-calculator.netlify.app/" class="project-btn view-live">Open Web</a>
+                        <a href="../my_projects/details/agecalculater.html" class="project-btn view-code">Details</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="edu-cert-section">
+        <h2 class="modern-section-title">Education & Credentials</h2>
+        <p class="modern-section-subtitle">A blend of formal academic learning and modern professional tech specializations.</p>
+        
+        <div class="edu-cert-grid">
+            
+            <div class="edu-cert-card">
+                <h3><i class="fas fa-graduation-cap"></i> Formal Education</h3>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">Pursuing</div>
+                    <div class="timeline-title">Bachelor of Arts (B.A.)</div>
+                    <div class="timeline-institute">Hemwati Nandan Bahuguna Garhwal University (HNBGU)</div>
+                    <div class="timeline-desc">Specializing in core subjects including Economics, Geography, and Political Science with strong foundational understanding.</div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">Completed</div>
+                    <div class="timeline-title">Higher Secondary School Certificate (12th)</div>
+                    <div class="timeline-institute">Board Examination</div>
+                    <div class="timeline-desc">Completed Senior Secondary Education with focused theoretical study models.</div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">Completed</div>
+                    <div class="timeline-title">Secondary School Certificate (10th)</div>
+                    <div class="timeline-institute">Board Examination</div>
+                    <div class="timeline-desc">Completed general high school curriculum with clean analytical performance scores.</div>
+                </div>
+            </div>
+
+            <div class="edu-cert-card">
+                <h3><i class="fas fa-award"></i> Professional Certifications</h3>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">In Progress</div>
+                    <div class="timeline-title">Full Stack Web Development</div>
+                    <div class="timeline-institute">PhysicsWallah (PW) Certified</div>
+                    <div class="timeline-desc">Intensive training program focused on core structures (HTML5, CSS3), responsive layouts, modern grid frameworks, and JavaScript architectures.</div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">In Progress</div>
+                    <div class="timeline-title">Data Analytics & Management</div>
+                    <div class="timeline-institute">PhysicsWallah (PW) Certified</div>
+                    <div class="timeline-desc">Specialized track for handling advanced data sheets, automated trackers, cash management templates, and reporting dashboards.</div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">Completed</div>
+                    <div class="timeline-title">Basic & Advanced Computer Course</div>
+                    <div class="timeline-institute">Certified Technical Training</div>
+                    <div class="timeline-desc">Mastered core productivity tools including advanced database architectures in Microsoft Excel, layout structuring in MS Word, and presentation design in PowerPoint.</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <div id="followersList" style="display: none; margin-top: 50px; padding: 25px; border: 1px solid #4f46e5; border-radius: 15px; max-width: 800px; margin-left: auto; margin-right: auto; background-color: var(--bg-color); color: var(--text-color);">
+        <h3 style="margin-bottom: 15px;">Manage Followers</h3>
+        
+        <div style="overflow-x: auto;">
+            <table id="listDisplay" style="width: 100%; border-collapse: collapse; color: inherit;">
+                <thead>
+                    <tr style="border-bottom: 2px solid #4f46e5;">
+                        <th style="padding: 10px; text-align: left;">Name</th>
+                        <th style="padding: 10px; text-align: left;">Phone</th>
+                        <th style="padding: 10px; text-align: left;">Gender</th>
+                        <th style="padding: 10px; text-align: left;">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+
+        <button onclick="exportToExcel()" style="margin-top: 20px; padding: 10px 20px; background: #107c41; color: white; border: none; border-radius: 8px; cursor: pointer;">
+            Export to Excel (.csv)
+        </button>
+    </div>
+
+    <div style="text-align: center; margin: 20px;">
+        <button onclick="showAdminPanel()" style="background:transparent; border:none; color:gray; font-size:12px; cursor:pointer;">Settings</button>
+    </div>
+
+    <footer>
+        <p>© 2026 FreeCourseHub | Created by Munendra Singh</p>
+        <p style="font-size: 13px; color: #9ca3af; margin-top: 5px;">All showcase metrics and datasets belong to their respective execution boundaries.</p>
+    </footer>
+
+<script>
+// 1. Automated Portfolio Grid Filters
+document.addEventListener("DOMContentLoaded", () => {
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const projectCards = document.querySelectorAll(".work-card");
+
+    filterButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            const currentActive = document.querySelector(".active-filter");
+            if (currentActive) {
+                currentActive.classList.remove("active-filter");
+            }
+            button.classList.add("active-filter");
+
+            const targetCategory = button.getAttribute("data-target");
+
+            projectCards.forEach(card => {
+                const cardCategory = card.getAttribute("data-category");
+                if (targetCategory === "all" || cardCategory === targetCategory) {
+                    card.classList.remove("hide");
+                } else {
+                    card.classList.add("hide");
+                }
+            });
+        });
+    });
+});
+
+// 2. Admin Panel Control Engine
+const ADMIN_PASSWORD = "alpha@52314";
+
+window.showAdminPanel = function() {
+    const pass = prompt("Admin Password Enter Karein:");
+    if (pass === ADMIN_PASSWORD) {
+        const followersList = document.getElementById('followersList');
+        if (followersList) followersList.style.display = 'block';
+        window.renderList(); 
+    } else {
+        alert("❌ गलत पासवर्ड!");
+    }
+}
+
+window.renderList = async function() {
+    if (typeof window.renderListFirebase === 'function') {
+        await window.renderListFirebase();
+    }
+}
+
+window.exportToExcel = async function() {
+    if (typeof window.exportToExcelFirebase === 'function') {
+        await window.exportToExcelFirebase();
+    }
+}
+
+window.removeFollower = async function(index) {
+    if (typeof window.removeFollowerFirebase === 'function') {
+        await window.removeFollowerFirebase(index);
+        if (typeof window.renderListFirebase === 'function') {
+            window.renderListFirebase(); 
+        }
+    }
+}
+</script>
+    
+    <script src="../js_files/theme.js"></script>
+    <script type="module" src="../js_files/firebase-config.js"></script>
+    <script type="module" src="../js_files/community.js"></script>
+
+</body>
+</html>

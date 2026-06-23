@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://munendra5singh.github.io/FreeCourseHub/sitemap.xml

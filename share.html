@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Explore Free Courses | FreeCourseHub</title>
+    <meta name="description" content="FreeCourseHub -मुफ्त ऑनलाइन कोर्स का आपका भरोसेमंद प्लेटफॉर्म। नई स्किल्स सीखें और अपने करियर को आगे बढ़ाएं">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Explore Premium Free Courses">
+    <meta property="og:description" content="FreeCourseHub –मुफ्त ऑनलाइन कोर्स का आपका भरोसेमंद प्लेटफॉर्म। नई स्किल्स सीखें और अपने करियर को आगे बढ़ाएं।">
+    <meta property="og:image" content="https://raw.githubusercontent.com/munendra5singh/FreeCourseHub/main/preview.png">
+    <meta property="og:description" content="मुनेंद्र के प्लेटफॉर्म पर बिल्कुल फ्री में कोर्सेज सीखें। यहाँ क्लिक करें और सीखना शुरू करें।">
+    <meta property="og:image" content="https://github.com/munendra5singh/FreeCourseHub/blob/main/preview.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="https://munendra5singh.github.io/FreeCourseHub/share.html">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Explore Premium Free Courses">
+    <meta name="twitter:description" content="FreeCourseHub –मुफ्त ऑनलाइन कोर्स का आपका भरोसेमंद प्लेटफॉर्म। नई स्किल्स सीखें और अपने करियर को आगे बढ़ाएं।">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/munendra5singh/FreeCourseHub/main/preview.png">
+    <meta name="twitter:description" content="मुनेंद्र के प्लेटफॉर्म पर बिल्कुल फ्री में कोर्सेज सीखें।">
+    <meta name="twitter:image" content="https://github.com/munendra5singh/FreeCourseHub/blob/main/preview.png">
+
+
+
+<script>
+window.onload = function() {
+    const params = new URLSearchParams(window.location.search);
+    const courseId = params.get('id');
+
+    if (courseId) {
+        const mainSite =
+            "https://munendra5singh.github.io/FreeCourseHub/SECTIONS/Courses.html?course=" +
+            encodeURIComponent(courseId) +
+            "&open=true";
+
+        setTimeout(() => {
+            window.location.replace(mainSite);
+        }, 3000);
+    } else {
+        setTimeout(() => {
+            window.location.replace("https://munendra5singh.github.io/FreeCourseHub/");
+        }, 3000);
+    }
+};
+</script>
+    
+    <style>
+        /* एक प्रोफेशनल लुक जब तक पेज रीडायरेक्ट हो रहा हो */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #f3f4f6;
+            color: #1f2937;
+        }
+        .loader-container {
+            text-align: center;
+        }
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border-left-color: #3b82f6;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+    <div class="loader-container">
+        <div class="spinner"></div>
+        <p style="font-weight: bold;">Loading Course Preview...</p>
+        <p style="font-size: 12px; color: #6b7280;">Redirecting you to FreeCourseHub</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Attendance Management Sheet | Project Details</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="icon" type="image/png" href="/favicon.png">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body{
+    background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+    min-height: 100vh;
+    padding: 40px 20px 60px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* बैक बटन स्टाइल */
+.back-container {
+    width: 100%;
+    max-width: 850px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.back-project-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    background: #ffffff;
+    color: #4f46e5;
+    padding: 10px 22px;
+    border-radius: 30px;
+    font-size: 14.5px;
+    font-weight: 700;
+    box-shadow: 0 4px 15px rgba(79, 70, 229, 0.08);
+    border: 1px solid rgba(79, 70, 229, 0.15);
+    transition: 0.3s ease;
+}
+
+.back-project-btn:hover {
+    background: #4f46e5;
+    color: #ffffff;
+    transform: translateX(-4px);
+    box-shadow: 0 6px 20px rgba(79, 70, 229, 0.2);
+}
+
+/* मुख्य हेडिंग स्टाइल */
+.page-title{
+    text-align: center;
+    font-size: 42px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #4f46e5, #06b6d4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 30px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+/* मुख्य कंटेंट बॉक्स */
+.content-box{
+    width: 100%;
+    max-width: 850px;
+    background: #ffffff;
+    border-radius: 24px;
+    box-shadow: 0 15px 35px rgba(79, 70, 229, 0.08);
+    padding: 45px;
+    border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+/* सेक्शन की सब-हेडिंग्स */
+h2 {
+    color: #1e293b;
+    font-size: 22px;
+    font-weight: 700;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+h2::after {
+    content: '';
+    flex: 1;
+    height: 2px;
+    background: #f1f5f9;
+}
+
+/* टेक्स्ट पैराग्राफ स्टाइल */
+p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #475569;
+    margin-bottom: 18px;
+}
+
+/* उदाहरण बॉक्स स्टाइल */
+.example-section {
+    background: #f8fafc;
+    border-left: 4px solid #107c41; 
+    padding: 20px;
+    border-radius: 12px;
+    margin: 25px 0;
+}
+
+.example-section h3 {
+    color: #107c41;
+    font-size: 16px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* अटेंडेंस समरी ग्रिड */
+.calc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
+    gap: 10px;
+    list-style: none;
+    margin-bottom: 15px;
+}
+
+.calc-grid li {
+    background: #fff;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #334155;
+    border: 1px solid #e2e8f0;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+}
+
+.total-amount {
+    font-size: 16px;
+    background: #e0f2fe;
+    color: #0369a1;
+    padding: 10px 15px;
+    border-radius: 8px;
+    display: inline-block;
+    font-weight: 700;
+}
+
+/* फीचर्स और यूज़ केसेस की लिस्ट आइटम */
+ul.feature-list, ul.use-cases {
+    list-style: none;
+    margin-bottom: 25px;
+}
+
+ul.feature-list li, ul.use-cases li {
+    font-size: 14.5px;
+    color: #475569;
+    line-height: 1.6;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+/* लिस्ट के टिक आइकॉन्स */
+ul.feature-list li::before {
+    content: "\f058"; 
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color: #4f46e5; 
+    font-size: 16px;
+}
+
+ul.use-cases li::before {
+    content: "\f0a4"; 
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color: #06b6d4; 
+    font-size: 16px;
+}
+
+/* विभाजक रेखा */
+hr {
+    border: none;
+    height: 1px;
+    background: #e2e8f0;
+    margin: 30px 0;
+}
+
+/* पादलेख (Footer) */
+.footer{
+    text-align: center;
+    margin-top: 40px;
+    color: #94a3b8;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    position: relative;
+}
+
+.footer::before, .footer::after {
+    content: '';
+    display: inline-block;
+    width: 30px;
+    height: 2px;
+    background: #cbd5e1;
+    vertical-align: middle;
+    margin: 0 10px;
+}
+
+/* मोबाइल रिस्पॉन्सिव */
+@media(max-width: 768px){
+    body { padding: 20px 15px 40px; }
+    .back-container { margin-bottom: 15px; }
+    .back-project-btn { padding: 8px 18px; font-size: 13px; }
+    .page-title { font-size: 26px; margin-bottom: 20px; }
+    .content-box { padding: 25px; border-radius: 16px; }
+    h2 { font-size: 18px; }
+    p, ul.feature-list li, ul.use-cases li { font-size: 13.5px; }
+}
+</style>
+</head>
+<body>
+
+<div class="back-container">
+    <a href="#" onclick="history.back(); return false;" class="back-project-btn">
+        <i class="fa-solid fa-arrow-left"></i> Back to Projects
+    </a>
+</div>
+
+<h1 class="page-title">
+    <i class="fa-solid fa-calendar-days"></i> Attendance Management Sheet
+</h1>
+
+<div class="content-box">
+
+    <h2><i class="fa-solid fa-file-contract" style="color: #4f46e5;"></i> Project Description</h2>
+    <p>
+        <strong>Attendance Management Sheet</strong> एक उन्नत और स्वचालित Excel आधारित ट्रैकिंग सिस्टम है जिसे मैंने डेटा संगठन और रिपोर्टिंग को सरल बनाने के लिए डिज़ाइन किया है। इस प्रोजेक्ट का मुख्य उद्देश्य विद्यार्थियों, प्रशिक्षुओं या कर्मचारियों की दैनिक उपस्थिति को पूरी तरह व्यवस्थित रूप से रिकॉर्ड और विश्लेषित करना है।
+    </p>
+    <p>
+        इस शीट में उम्मीदवारों की व्यक्तिगत जानकारी दर्ज करने के साथ ही दैनिक उपस्थिति रिकॉर्ड के आधार पर कुल उपस्थिति (Total Present), कुल अनुपस्थिति (Total Absent) और उपस्थिति प्रतिशत (Attendance Percentage) की गणना पूरी तरह स्वचालित (Automatic) रूप से होती है।
+    </p>
+
+    <div class="example-section">
+        <h3><i class="fa-solid fa-chart-bar"></i> Automated Metric Summary</h3>
+        <ul class="calc-grid">
+            <li>Total Days = 30</li>
+            <li>Present (P) = 24</li>
+            <li>Absent (A) = 05</li>
+            <li>Leave (L) = 01</li>
+        </ul>
+        <div class="total-amount">📊 Real-time Attendance = 80%</div>
+    </div>
+
+    <h2><i class="fa-solid fa-star" style="color: #eab308;"></i> Key Features</h2>
+    <ul class="feature-list">
+        <li>स्मार्ट और रियल-टाइम डेली अटेंडेंस ट्रैकिंग आर्किटेक्चर।</li>
+        <li>COUNTIF और प्रतिशत फॉर्मूलों पर आधारित ऑटोमैटिक अटेंडेंस कैलकुलेशन।</li>
+        <li>डेटा को आसान बनाने के लिए रंग-कोडेड (Conditional Formatting) विजुअल समरी।</li>
+        <li>बैच और ग्रुप के अनुसार (Batch-wise) उपस्थिति की निगरानी करने की क्षमता।</li>
+        <li>बड़ी मात्रा में डेटा (Large Datasets) को बिना लैग के संभालने के लिए अनुकूलित संरचना।</li>
+        <li>क्लीन, व्यवस्थित और यूजर-फ्रेंडली प्रोफेशनल स्प्रेडशीट लेआउट।</li>
+    </ul>
+
+    <h2><i class="fa-solid fa-laptop-code" style="color: #06b6d4;"></i> Tech Stack & Skills</h2>
+    <ul class="use-cases">
+        <li><strong>Microsoft Excel:</strong> मुख्य प्लेटफॉर्म और एडवांस डेटा ग्रिड मैनेजमेंट।</li>
+        <li><strong>Formulas & Functions:</strong> तार्किक गणनाओं और ऑटोमेशन के लिए लॉजिकल फॉर्मूले।</li>
+        <li><strong>Data Formatting:</strong> प्रोफेशनल और साफ-सुथरा स्प्रेडशीट डिज़ाइन।</li>
+        <li><strong>Information Organization:</strong> जटिल डेटा को सरल और तुरंत प्राप्त करने योग्य बनाने की कला।</li>
+    </ul>
+
+    <p>
+        यह प्रोजेक्ट न केवल स्प्रेडशीट डिज़ाइन की मेरी तकनीकों को दर्शाता है, बल्कि यह भी साबित करता है कि मैं डेटा को प्रभावी ढंग से प्रबंधित, विश्लेषित और व्यावसायिक रूप से प्रस्तुत कर सकता हूँ।
+    </p>
+
+</div>
+
+<div class="footer">
+    THANK YOU
+</div>
+
+</body>
+</html>

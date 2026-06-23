@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Free Web Development Courses | Learn HTML, CSS & JavaScript - FreeCourseHub</title>
+    <meta name="description" content="Master front-end web development with 100% free verified tutorials.">
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="stylesheet" href="../css_files/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">FreeCourseHub</div>
+        <ul class="nav-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../sections/Courses.html">Courses</a></li>
+            <li><a href="../sections/Categories.html" class="active">WebDevlop</a></li>
+            <li><a href="../sections/blog.html">Blog</a></li>
+            <li><a href="../sections/contact.html">Contact</a></li>
+            <li><a href="../sections/favorites.html">My Favorites ❤️</a></li>
+        </ul>
+        <button class="theme-toggle-btn" onclick="toggleTheme()" title="थिम बदलें">
+            <i class="fas fa-moon"></i>
+        </button>
+        <a href="index.html#courses" class="nav-btn">Explore</a>
+    </nav>
+
+    <header class="hero">
+        <h1>Web Development Courses</h1>
+        <p>Learn Web Development Completely Free</p>
+    </header>
+
+    <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search Course..." aria-label="Search Web Development Courses">
+    </div>
+
+    <section class="course-section">
+        <!-- यहाँ कोर्सेज अपने आप Load होंगे -->
+        <div class="course-grid" id="courseGrid"></div>
+    </section>
+
+    <footer>
+        <p>© 2026 FreeCourseHub | All Rights Reserved</p>
+        All courses and videos belong to their respective owners. <br> We only organize and share free educational links
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../js_files/all_courses.js"></script>
+    <script src="../js_files/theme.js"></script>
+    
+    <script>
+        // 1. कोर्स रेंडर करें (सिर्फ "Web Development" कैटेगरी वाले)
+        document.addEventListener("DOMContentLoaded", () => {
+            renderCourses("courseGrid", "Web Development");
+        });
+
+        // 2. सर्च लॉजिक (अब ये रेंडर होने के बाद भी काम करेगा)
+        document.getElementById("searchInput").addEventListener("keyup", function(){
+            const value = this.value.toLowerCase();
+            document.querySelectorAll(".course-card").forEach(card => {
+                const title = card.querySelector("h3").textContent.toLowerCase();
+                card.style.display = title.includes(value) ? "" : "none";
+            });
+        });
+    </script>
+</body>
+</html>

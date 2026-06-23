@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Cash Breakdown Calculator | Project Details</title>
+
+<!-- सुंदर आइकॉन्स के लिए FontAwesome लिंक -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="icon" type="image/png" href="/favicon.png">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body{
+    background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+    min-height: 100vh;
+    padding: 40px 20px 60px; /* बटन के लिए पैडिंग को बैलेंस किया */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ===================================================
+   नया बटन स्टाइल: बैक जाने के लिए (Top Left Floating / Sticky Look)
+   =================================================== */
+.back-container {
+    width: 100%;
+    max-width: 850px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.back-project-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    background: #ffffff;
+    color: #4f46e5;
+    padding: 10px 22px;
+    border-radius: 30px;
+    font-size: 14.5px;
+    font-weight: 700;
+    box-shadow: 0 4px 15px rgba(79, 70, 229, 0.08);
+    border: 1px solid rgba(79, 70, 229, 0.15);
+    transition: 0.3s ease;
+}
+
+.back-project-btn:hover {
+    background: #4f46e5;
+    color: #ffffff;
+    transform: translateX(-4px); /* पीछे की तरफ हल्का सा खिसकेगा */
+    box-shadow: 0 6px 20px rgba(79, 70, 229, 0.2);
+}
+
+/* मुख्य हेडिंग स्टाइल */
+.page-title{
+    text-align: center;
+    font-size: 42px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #4f46e5, #06b6d4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 30px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+/* मुख्य कंटेंट बॉक्स - प्रीमियम वाइट */
+.content-box{
+    width: 100%;
+    max-width: 850px;
+    background: #ffffff;
+    border-radius: 24px;
+    box-shadow: 0 15px 35px rgba(79, 70, 229, 0.08);
+    padding: 45px;
+    border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+/* सेक्शन की सब-हेडिंग्स */
+h2 {
+    color: #1e293b;
+    font-size: 22px;
+    font-weight: 700;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+h2::after {
+    content: '';
+    flex: 1;
+    height: 2px;
+    background: #f1f5f9;
+}
+
+/* टेक्स्ट पैराग्राफ स्टाइल */
+p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #475569;
+    margin-bottom: 18px;
+}
+
+/* उदाहरण (Example) बॉक्स स्टाइल */
+.example-section {
+    background: #f8fafc;
+    border-left: 4px solid #107c41; /* एक्सेल ग्रीन कलर */
+    padding: 20px;
+    border-radius: 12px;
+    margin: 25px 0;
+}
+
+.example-section h3 {
+    color: #107c41;
+    font-size: 16px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* करेंसी कैलकुलेशन लिस्ट */
+.calc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 10px;
+    list-style: none;
+    margin-bottom: 15px;
+}
+
+.calc-grid li {
+    background: #fff;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #334155;
+    border: 1px solid #e2e8f0;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+}
+
+.total-amount {
+    font-size: 16px;
+    color: #0f172a;
+    background: #dcfce7;
+    color: #14532d;
+    padding: 10px 15px;
+    border-radius: 8px;
+    display: inline-block;
+    font-weight: 700;
+}
+
+/* फीचर्स और यूज़ केसेस की लिस्ट आइटम */
+ul.feature-list, ul.use-cases {
+    list-style: none;
+    margin-bottom: 25px;
+}
+
+ul.feature-list li, ul.use-cases li {
+    font-size: 14.5px;
+    color: #475569;
+    line-height: 1.6;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+/* लिस्ट के टिक आइकॉन्स */
+ul.feature-list li::before {
+    content: "\f058"; /* FontAwesome Check Circle */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color: #4f46e5; /* पर्पल टिक */
+    font-size: 16px;
+}
+
+ul.use-cases li::before {
+    content: "\f0a4"; /* FontAwesome Pointing Right */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color: #06b6d4; /* स्यान ब्लू एरो */
+    font-size: 16px;
+}
+
+/* विभाजक रेखा (Divider Line) */
+hr {
+    border: none;
+    height: 1px;
+    background: #e2e8f0;
+    margin: 30px 0;
+}
+
+/* पादलेख (Footer) */
+.footer{
+    text-align: center;
+    margin-top: 40px;
+    color: #94a3b8;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    position: relative;
+}
+
+.footer::before, .footer::after {
+    content: '';
+    display: inline-block;
+    width: 30px;
+    height: 2px;
+    background: #cbd5e1;
+    vertical-align: middle;
+    margin: 0 10px;
+}
+
+/* मोबाइल रिस्पॉन्सिव */
+@media(max-width: 768px){
+    body { padding: 20px 15px 40px; }
+    .back-container { margin-bottom: 15px; }
+    .back-project-btn { padding: 8px 18px; font-size: 13px; }
+    .page-title { font-size: 26px; margin-bottom: 20px; }
+    .content-box { padding: 25px; border-radius: 16px; }
+    h2 { font-size: 18px; }
+    p, ul.feature-list li, ul.use-cases li { font-size: 13.5px; }
+}
+</style>
+</head>
+<body>
+
+<!-- वापस जाने का बटन कंटेनर (यहाँ आप अपनी पोर्टफोलियो फाइल का नाम portfolio.html सेट कर सकते हैं) 
+<div class="back-container">
+    <a href="portfolio.html" class="back-project-btn">
+        <i class="fa-solid fa-arrow-left"></i> Back to Projects
+    </a>
+</div> -->
+
+<div class="back-container">
+    <a href="#" onclick="history.back(); return false;" class="back-project-btn">
+        <i class="fa-solid fa-arrow-left"></i> Back to Projects
+    </a>
+</div>
+
+<!-- मुख्य आकर्षक शीर्षक -->
+<h1 class="page-title">
+    <i class="fa-solid fa-money-bill-transfer"></i> Smart Cash Breakdown Calculator
+</h1>
+
+<div class="content-box">
+
+    <!-- सेक्शन 1: विवरण -->
+    <h2><i class="fa-solid fa-file-invoice-dollar" style="color: #4f46e5;"></i> Project Description</h2>
+    <p>
+        <strong>Smart Cash Breakdown Calculator</strong> एक एडवांस्ड Excel आधारित ऑटोमेशन टूल है जो किसी भी दर्ज की गई बड़ी या छोटी धनराशि को भारतीय मुद्रा (जैसे: ₹500, ₹200, ₹100, ₹50, ₹20, ₹10, ₹5, ₹2 oars ₹1) के नोटों एवं सिक्कों में स्वचालित रूप से विभाजित कर देता है।
+    </p>
+    <p>
+        जैसे ही उपयोगकर्ता कोई भी अमाउंट इनपुट करता है, यह सिस्टम सबसे बड़े मूल्यवर्ग के नोट से शुरुआत करते हुए न्यूनतम संख्या (Minimum Count) में नोटों और सिक्कों का एक सटीक वितरण ढांचा तैयार करता है।
+    </p>
+
+    <!-- सेक्शन 2: उदाहरण (कैलकुलेशन ग्रिड बॉक्स) -->
+    <div class="example-section">
+        <h3><i class="fa-solid fa-calculator"></i> Live Dynamic Example</h3>
+        <ul class="calc-grid">
+            <li>₹2000 × 1 = 2000</li>
+            <li>₹500 × 1 = ₹500</li>
+            <li>₹200 × 1 = ₹200</li>
+            <li>₹100 × 1 = ₹100</li>
+            <li>₹50 × 1 = ₹50</li>
+            <li>₹20 × 1 = ₹20</li>
+            <li>₹10 × 1 = ₹10</li>
+            <li>₹5 × 1 = ₹5</li>
+            <li>₹2 × 1 = ₹2</li>
+            <li>₹1 × 1 = ₹1</li>
+        </ul>
+        <div class="total-amount">💡 Total Amount = ₹2,888</div>
+    </div>
+
+    <!-- सेक्शन 3: मुख्य फीचर्स -->
+    <h2><i class="fa-solid fa-star" style="color: #eab308;"></i> Key Features</h2>
+    <ul class="feature-list">
+        <li>किसी भी इनपुट राशि का त्वरित और स्वचालित नोट एवं सिक्का विभाजन।</li>
+        <li>कम से कम नोटों का उपयोग करने के लिए तार्किक फ़ॉर्मूला गणना।</li>
+        <li>भारतीय रिजर्व बैंक (RBI) के सभी प्रमुख मूल्यवर्गों का पूर्ण समर्थन।</li>
+        <li>बिना किसी मानवीय त्रुटि के 100% सटीक और तेज़ परिणाम।</li>
+        <li>कैश काउंटिंग, डिस्ट्रीब्यूशन और डेली अकाउंटिंग कार्यों के लिए अत्यधिक उपयोगी।</li>
+        <li>बिना भारी मैक्रोज़ के शुद्ध Excel फ़ॉर्मूला आधारित लॉजिक आर्किटेक्चर।</li>
+    </ul>
+
+    <!-- सेक्शन 4: उपयोग के मामले -->
+    <h2><i class="fa-solid fa-bullseye" style="color: #06b6d4;"></i> Use Cases</h2>
+    <ul class="use-cases">
+        <li>बैंकों, कैश काउंटरों और कैशियर संचालन को आसान बनाने के लिए।</li>
+        <li>दुकानदारों, खुदरा विक्रेताओं एवं व्यापारियों द्वारा दैनिक नकद मिलान हेतु।</li>
+        <li>संस्थाओं में कर्मचारियों के नकद भुगतान और सैलरी पैकेट्स की योजना बनाने में।</li>
+        <li>डेटा एनालिटिक्स और एडवांस्ड एक्सेल प्रोजेक्ट प्रदर्शन के लिए बेहतरीन मॉडल।</li>
+    </ul>
+
+    <p>
+        यह टूल नकद लेन-देन को सबसे प्रभावी तरीके से व्यवस्थित करके मूल्यवान समय बचाता है और भौतिक नोटों की गिनती की प्रक्रिया को पूरी तरह से पारदर्शी बनाता है।
+    </p>
+
+</div>
+
+<!-- सुंदर पादलेख -->
+<div class="footer">
+    THANK YOU
+</div>
+
+</body>
+</html>

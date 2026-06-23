@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>FreeCourseHub Blog | Expert Learning Roadmaps & Career Tips</title>
+<meta name="description" content="Read latest articles, verified learning roadmaps, and tutorials on HTML, CSS, JavaScript, Python, and AI. Boost your career with expert learning resources completely for free.">
+<meta name="keywords" content="web development roadmaps, free programming tutorials, learn python free 2026, beginners ai guide, career tips for students, freecoursehub blog">
+<meta name="robots" content="index, follow">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="FreeCourseHub Blog | Learning Roadmaps & Tech Resources">
+<meta property="og:description" content="Explore expert-curated learning paths for Programming, Artificial Intelligence, and Web Development for free.">
+<meta property="og:image" content="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="../css_files/style.css">
+ <link rel="icon" type="image/png" href="favicon.png">
+
+
+<style>
+/* Result Container */
+#resultContainer {
+    width: 80%; 
+    max-width: 600px; 
+    margin: 20px auto;
+    display: block;
+    background-color: #8c1616; /* Aapka dark red color */
+    color: #ffffff;            /* Text ko white kiya taaki dikhe */
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    text-align: left;
+}
+
+/* Result item ka text color */
+.result-item {
+    color: #140101 !important;
+    padding: 8px;
+    cursor: pointer;
+    border-bottom: 1px solid #a82e2e; /* Thoda light shade border */
+}
+
+/* Highlight style (Light mode jaisa hi rakhen ya contrast badhayen) */
+.highlighted {
+    background-color: #f1c40f !important; /* Bold yellow */
+    color: #000000 !important;            /* Text black kar diya highlight par */
+    border: 2px solid #e67e22 !important;
+    padding: 10px;
+    border-radius: 5px;
+}
+</style>
+
+
+
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">FreeCourseHub</div>
+
+        <ul class="nav-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../sections/Courses.html">Courses</a></li>
+            <li><a href="../sections/Categories.html">Categories</a></li>
+            <li><a href="../sections/blog.html" class="active">Blog</a></li>
+            <li><a href="../SECTIONS/contact.html">Contact</a></li>
+            <li><a href="../sections/favorites.html">My Favorites ❤️</a></li>
+        </ul>
+
+        <button class="theme-toggle-btn" onclick="toggleTheme()" title="थिम बदलें">
+            <i class="fas fa-moon"></i>
+        </button>
+
+        <a href="../sections/Courses.html" class="nav-btn">Explore</a>
+    </nav>
+
+    <section class="hero">
+        <h1>FreeCourseHub Blog</h1>
+        <p>Programming, AI, Career Tips & Learning Resources</p>
+    </section>
+
+
+<div class="search">
+    <input type="search" id="universalSearch" oninput="universalSearch()" placeholder="Search anything on this page..." aria-label="Search">
+</div>
+
+<div id="resultContainer" style="margin: 20px 0; background: #f9f9f9; padding: 10px;"></div>
+
+
+    <section class="featured">
+        <div class="featured-card">
+            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200" alt="Web Development Workstation">
+            <div class="featured-content">
+                <h2>Best Free Web Development Courses in 2026</h2>
+                <p>Discover the top free courses to become a web developer.</p>
+                <a href="../categories/web_development.html" class="btn">Read More</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="categories">
+        <h2>Categories</h2>
+        <div class="category-list">
+            <div class="category">HTML</div>
+            <div class="category">CSS</div>
+            <div class="category">JavaScript</div>
+            <div class="category">Python</div>
+            <div class="category">AI</div>
+            <div class="category">Career</div>
+        </div>
+    </section>
+
+    <section class="popular">
+        <h2>Popular Posts</h2>
+        <div class="post-grid">
+            <div class="post-card">
+                <h3>Top 10 HTML Courses</h3>
+                <p>Best HTML resources for beginners.</p>
+            </div>
+            <div class="post-card">
+                <h3>Python Learning Roadmap</h3>
+                <p>Learn Python step-by-step.</p>
+            </div>
+            <div class="post-card">
+                <h3>AI Beginner Guide</h3>
+                <p>Start learning Artificial Intelligence.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="roadmaps">
+        <h2>Learning Roadmaps</h2>
+        <div class="roadmap-grid">
+            <div class="roadmap-card"><i class="fas fa-layer-group" style="margin-right:15px; color:#4f46e5;"></i> HTML → CSS → JavaScript → React</div>
+            <div class="roadmap-card"><i class="fab fa-python" style="margin-right:15px; color:#4f46e5;"></i> Python → Django → Projects</div>
+            <div class="roadmap-card"><i class="fas fa-robot" style="margin-right:15px; color:#4f46e5;"></i> AI → Machine Learning → Deep Learning</div>
+        </div>
+    </section>
+
+    <section class="featured-course">
+        <h2>Featured Course Of The Week</h2>
+        <div class="course-box">
+            <h3>Complete HTML & CSS Course</h3>
+            <p>Learn modern web development with projects.</p>
+            <a href="../categories/web_development.html" class="btn">View Course</a>
+        </div>
+    </section>
+
+    <section class="blogs">
+        <h2>Latest Articles</h2>
+        <div class="blog-grid" id="blogGrid">
+
+            <div class="blog-card">
+                <a href="https://www.youtube.com/watch?v=ATpBuofe2Ro" target="_blank" rel="noopener noreferrer">
+                    <img src="https://html.com/wp-content/uploads/html-hpg-featured-new.png" alt="HTML Coding Structure">
+                </a>
+                <div class="blog-content">
+                    <h3>HTML Roadmap</h3>
+                    <p>Learn HTML from beginner to advanced.</p>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <a href="https://edu.skillcourse.in/dashboard/course/17" target="_blank" rel="noopener noreferrer">
+                    <img src="https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=800" alt="Python Programming Screen">
+                </a>
+                <div class="blog-content">
+                    <h3>Python Roadmap</h3>
+                    <p>Become a Python developer in 2026.</p>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <a href="https://www.youtube.com/playlist?list=PLTukPelH6ee59Kt9WLEcR5Yea9uFZTuiO" target="_blank" rel="noopener noreferrer">
+                    <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800" alt="AI Robot Tech Concept">
+                </a>
+                <div class="blog-content">
+                    <h3>AI Tools</h3>
+                    <p>Best AI tools for students and developers.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="author">
+        <img src="../image/logo2.png" alt="Munendra Singh - Founder">
+        <h2>Munendra Singh</h2>
+        <p>
+            I share free programming, AI, web development
+            and technology resources to help students learn
+            without spending money.
+        </p>
+    </section>
+
+<section class="newsletter">
+    <h2>FreeCourseHub</h2>
+    <p>Programming aur AI seekhne ka sabse aasaan aur free raasta. Yahan milte hain best learning roadmaps aur career guidance, taki aap bina ek rupaya kharch kiye ek expert developer ban sakein.</p>
+    
+    <!-- Yahan link sirf ek baar hona chahiye -->
+    <a href="https://whatsapp.com/channel/0029Vb8KkbI6hENqSupf7h1h" class="btn" style="background-color: #25D366; color: white; padding: 12px 25px; text-decoration: none; border-radius: 5px; font-weight: bold;">
+        <i class="fab fa-whatsapp"></i> Join WhatsApp Channel
+    </a>
+</section>
+
+    <footer>
+        <p>© 2026 FreeCourseHub | All Rights Reserved</p>
+        All courses and videos belong to their respective owners. <br> We only organize and share free educational links
+    </footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    // 1. Blog Search Logic
+    const blogSearch = document.getElementById("blogSearch");
+    const blogCards = document.querySelectorAll("#blogGrid .blog-card");
+
+    if (blogSearch) {
+        blogSearch.addEventListener("keyup", function() {
+            const query = this.value.toLowerCase();
+            blogCards.forEach(card => {
+                const title = card.querySelector("h3")?.textContent.toLowerCase() || "";
+                const description = card.querySelector("p")?.textContent.toLowerCase() || "";
+                card.style.display = (title.includes(query) || description.includes(query)) ? "" : "none";
+            });
+        });
+    }
+
+    // 2. Navigation Active Link Logic
+    let currentPath = window.location.pathname.split("/").pop() || "index.html";
+    const navLinks = document.querySelectorAll('.nav-links a');
+    
+    navLinks.forEach(link => {
+        const hrefAttr = link.getAttribute('href');
+        // 'blog.html' के लिए चेक जोड़ा गया है
+        if (hrefAttr === currentPath || (currentPath.includes("blog.html") && hrefAttr.includes("blog.html"))) {
+            link.classList.add('active');
+        }
+    });
+
+    // 3. Universal Search Logic
+    const uniSearchInput = document.getElementById('universalSearch');
+    if (uniSearchInput) {
+        uniSearchInput.addEventListener("input", universalSearch);
+    }
+});
+
+function universalSearch() {
+    let query = document.getElementById('universalSearch').value.toLowerCase();
+    let resultContainer = document.getElementById('resultContainer');
+    
+    if (!resultContainer) return;
+
+    if (query === "") {
+        resultContainer.innerHTML = "";
+        return;
+    }
+
+    let items = document.querySelectorAll('h3, p, .category, .roadmap-card');
+    resultContainer.innerHTML = "<h4>Search Results:</h4>";
+    let found = false;
+
+    items.forEach(item => {
+        let text = item.innerText.toLowerCase();
+        if (text.includes(query)) {
+            let match = document.createElement('div');
+            match.className = "result-item"; 
+            match.innerText = item.innerText.substring(0, 60) + "...";
+            
+            match.onclick = () => {
+                document.querySelectorAll('.highlighted').forEach(el => el.classList.remove('highlighted'));
+                item.scrollIntoView({behavior: "smooth"});
+                item.classList.add('highlighted');
+            };
+            
+            resultContainer.appendChild(match);
+            found = true;
+        }
+    });
+
+    if (!found) {
+        resultContainer.innerHTML += "<p>No results found.</p>";
+    }
+}
+</script>
+  <script src="../js_files/theme.js"></script>
+</body>
+</html>

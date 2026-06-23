@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payroll Management System | Project Details</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="icon" type="image/png" href="/favicon.png">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body{
+    background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+    min-height: 100vh;
+    padding: 40px 20px 60px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.back-container {
+    width: 100%;
+    max-width: 850px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.back-project-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    background: #ffffff;
+    color: #4f46e5;
+    padding: 10px 22px;
+    border-radius: 30px;
+    font-size: 14.5px;
+    font-weight: 700;
+    box-shadow: 0 4px 15px rgba(79, 70, 229, 0.08);
+    border: 1px solid rgba(79, 70, 229, 0.15);
+    transition: 0.3s ease;
+}
+
+.back-project-btn:hover {
+    background: #4f46e5;
+    color: #ffffff;
+    transform: translateX(-4px);
+    box-shadow: 0 6px 20px rgba(79, 70, 229, 0.2);
+}
+
+.page-title{
+    text-align: center;
+    font-size: 40px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #4f46e5, #06b6d4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+
+.content-box{
+    width: 100%;
+    max-width: 850px;
+    background: #ffffff;
+    border-radius: 24px;
+    box-shadow: 0 15px 35px rgba(79, 70, 229, 0.08);
+    padding: 45px;
+    border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+h2 {
+    color: #1e293b;
+    font-size: 22px;
+    font-weight: 700;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+h2::after {
+    content: '';
+    flex: 1;
+    height: 2px;
+    background: #f1f5f9;
+}
+
+p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #475569;
+    margin-bottom: 18px;
+}
+
+.highlight-box {
+    background: #f0fdf4;
+    border-left: 4px solid #16a34a; 
+    padding: 20px;
+    border-radius: 12px;
+    margin: 25px 0;
+}
+
+.highlight-box h3 {
+    color: #16a34a;
+    font-size: 16px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+
+ul.feature-list, ul.use-cases {
+    list-style: none;
+    margin-bottom: 25px;
+}
+
+ul.feature-list li, ul.use-cases li {
+    font-size: 14.5px;
+    color: #475569;
+    line-height: 1.6;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+ul.feature-list li::before {
+    content: "\f058"; 
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color: #16a34a; 
+}
+
+ul.use-cases li::before {
+    content: "\f0ad"; 
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color: #06b6d4; 
+}
+
+.footer{
+    text-align: center;
+    margin-top: 40px;
+    color: #94a3b8;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 4px;
+}
+</style>
+</head>
+<body>
+
+<div class="back-container">
+    <a href="#" onclick="history.back(); return false;" class="back-project-btn">
+        <i class="fa-solid fa-arrow-left"></i> Back to Projects
+    </a>
+</div>
+
+<h1 class="page-title">
+    <i class="fa-solid fa-money-check-dollar"></i> Payroll Management System
+</h1>
+
+<div class="content-box">
+
+    <h2><i class="fa-solid fa-file-contract" style="color: #4f46e5;"></i> परियोजना का विवरण</h2>
+    <p>
+        <strong>ऑटोमेटेड पेरोल मैनेजमेंट सिस्टम</strong> Microsoft Excel में विकसित एक ऐसा समाधान है, जो कर्मचारियों के वेतन (Salary) की गणना और प्रबंधन को सरल, तेज़ और सटीक बनाता है। इस सिस्टम में कर्मचारी की जानकारी, मूल वेतन, भत्ते, ओवरटाइम, कटौतियां (Deductions), कर (Tax) आदि का विवरण दर्ज किया जाता है।
+    </p>
+
+    <div class="highlight-box">
+        <h3><i class="fa-solid fa-calculator"></i> मुख्य कार्यप्रणाली</h3>
+        <p>Excel के एडवांस फ़ॉर्मूलों (IF, VLOOKUP, SUM) का उपयोग करके Gross Salary, Total Deductions और Net Salary की गणना पूरी तरह स्वचालित है, जिससे मैनुअल गलतियों की संभावना खत्म हो जाती है।</p>
+    </div>
+
+    <h2><i class="fa-solid fa-star" style="color: #eab308;"></i> प्रमुख विशेषताएँ</h2>
+    <ul class="feature-list">
+        <li>कर्मचारियों की जानकारी का व्यवस्थित प्रबंधन।</li>
+        <li>HRA, DA, बोनस और ओवरटाइम की स्वचालित गणना।</li>
+        <li>PF, Tax और अन्य कटौतियों का सटीक प्रबंधन।</li>
+        <li>उपस्थिति (Attendance) के आधार पर वेतन समायोजन।</li>
+        <li>पेशेवर पेरोल रिपोर्ट और मासिक सारांश तैयार करना।</li>
+    </ul>
+
+    <h2><i class="fa-solid fa-laptop-code" style="color: #06b6d4;"></i> Tech Stack & Skills</h2>
+    <ul class="use-cases">
+        <li><strong>Microsoft Excel:</strong> मुख्य प्लेटफॉर्म।</li>
+        <li><strong>Advanced Formulas:</strong> IF, SUM, COUNTIF, VLOOKUP/XLOOKUP।</li>
+        <li><strong>Data Tools:</strong> Conditional Formatting, Data Validation।</li>
+        
+    </ul>
+
+    <p>
+        यह प्रोजेक्ट वेतन गणना की प्रक्रिया को स्वचालित बनाता है, जिससे संगठनों के लिए सटीक रिकॉर्ड रखना और प्रभावी पेरोल प्रबंधन करना बेहद आसान हो जाता है।
+    </p>
+
+</div>
+
+<div class="footer">
+    THANK YOU
+</div>
+
+
+
+<script>
+function goBack() {
+    // अगर हिस्ट्री में पिछला पेज है तो पीछे जाएं
+    if (window.history.length > 1) {
+        window.history.back();
+    } else {
+        // अगर हिस्ट्री नहीं है, तो मुख्य पेज (Home) पर भेज दें
+        window.location.href = "index.html"; // यहाँ अपने मुख्य पेज का नाम लिखें
+    }
+}
+</script>
+</body>
+</html>

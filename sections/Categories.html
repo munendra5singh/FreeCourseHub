@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>Browse Free Course Categories | FreeCourseHub</title>
+    <meta name="description" content="Explore online course categories at FreeCourseHub. Find free verified study links for Web Development, Programming, AI, MS Office, Databases, Graphic Design, and Communication Skills.">
+    <meta name="keywords" content="course categories, free computer courses, learn ai programming, ms office tutorials free, graphic design categories, freecoursehub sections">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Explore Free Course Categories | FreeCourseHub">
+    <meta property="og:description" content="Choose your favorite learning stream and master new professional skills completely for free.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=800">
+
+    <!-- Linking Style Sheets -->
+    <link rel="stylesheet" href="../css_files/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+     <link rel="icon" type="image/png" href="favicon.png">
+</head>
+<body>
+
+    <!-- FIXED: Perfect Navbar Sync with Theme Toggle Button -->
+    <nav class="navbar">
+        <div class="logo">FreeCourseHub</div>
+
+        <ul class="nav-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../sections/Courses.html">Courses</a></li>
+            <li><a href="../sections/Categories.html"  class="active">Categories</a></li>
+            <li><a href="../sections/blog.html">Blog</a></li>
+            <li><a href="../sections/contact.html">Contact</a></li>
+            <li><a href="../sections/favorites.html">My Favorites ❤️</a></li>
+        </ul>
+
+        <button class="theme-toggle-btn" onclick="toggleTheme()" title="थिम बदलें">
+            <i class="fas fa-moon"></i>
+        </button>
+
+        <a href="../sections/Courses.html" class="nav-btn">Explore</a>
+    </nav>
+
+    <header class="page-header">
+        <h1>Explore Categories</h1>
+        <p>Choose your favorite learning category and start today.</p>
+    </header>
+
+    <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search Category...">
+    </div>
+
+    <section class="categories">
+        <div class="category-grid">
+
+            <a href="../categories/web_development.html" class="category-card">
+                <div class="category-icon"><i class="fas fa-globe"></i></div>
+                <h3>Web Development</h3>
+                <p>Build responsive, professional websites and web applications through top free courses.</p>
+            </a>
+
+            <a href="../categories/programming.html" class="category-card">
+                <div class="category-icon"><i class="fas fa-laptop-code"></i></div>
+                <h3>Programming</h3>
+                <p>coding fundamentals and build real-world applications with top free programming courses.</p>
+            </a>
+
+            <a href="../categories/artificial_Intelligence.html" class="category-card">
+                <div class="category-icon"><i class="fas fa-robot"></i></div>
+                <h3>Artificial Intelligence</h3>
+                <p>Master AI tools, machine learning concepts, and real-world applications with free courses.</p>
+            </a>
+
+            <a href="../categories/ms_office.html" class="category-card">
+                <div class="category-icon"><i class="fas fa-chart-bar"></i></div>
+                <h3>MS Office</h3>
+                <p>Learn document creation, data management, and professional presentations through free MS Office courses.</p>
+            </a>
+
+            <a href="../categories/databass.html" class="category-card">
+                <div class="category-icon"><i class="fas fa-database"></i></div>
+                <h3>Database</h3>
+                <p>MySQL, PostgreSQL, and database design through curated free learning resources.</p>
+            </a>
+
+            <a href="../categories/communication_skill.html" class="category-card">
+                <div class="category-icon"><i class="fas fa-microphone"></i></div>
+                <h3>Communication Skills</h3>
+                <p>Speaking and Professional Communication</p>
+            </a>
+
+            <a href="../categories/graphic_design.html" class="category-card">
+                <div class="category-icon"><i class="fas fa-paint-brush"></i></div>
+                <h3>Graphic Design</h3>
+                <p>Learn to create stunning visuals, logos, social media posts, and professional designs with free courses.</p>
+            </a>
+
+            <a href="../categories/data_analytics.html" class="category-card">
+                <div class="category-icon"><i class="fas fa-chart-line"></i></div>
+                <h3>Data Analytics</h3>
+                <p>Learn data analysis, visualization, and reporting with the best free industry-focused courses.</p>
+            </a>
+
+            <a href="../categories/career.html" class="category-card">
+                <div class="category-icon"><i class="fas fa-briefcase"></i></div> 
+                <h3>Career</h3>
+                <p>Explore career paths, skill-building opportunities, and expert guidance to achieve your professional goals</p>
+            </a>
+
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 FreeCourseHub | All Rights Reserved</p>
+        <p>All courses and videos belong to their respective owners. <br> We only organize and share free educational links</p>
+    </footer>
+
+    
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        // 1. Search Logic
+        const searchInput = document.getElementById("searchInput");
+        const cards = document.querySelectorAll(".category-card");
+
+        if (searchInput) {
+            searchInput.addEventListener("keyup", function() {
+                let value = this.value.toLowerCase();
+                cards.forEach(card => {
+                    let title = card.querySelector("h3").textContent.toLowerCase();
+                    card.style.display = title.includes(value) ? "" : "none";
+                });
+            });
+        }
+
+        // 2. Active Link Indicator Logic
+        let currentUrl = window.location.pathname.split("/").pop();
+        if (currentUrl === "" || currentUrl === "index.html") {
+            currentUrl = "index.html";
+        }
+
+        const navLinks = document.querySelectorAll('.nav-links a');
+        navLinks.forEach(link => {
+            const hrefAttr = link.getAttribute('href');
+            // Check for direct match or specific sections
+            if (hrefAttr === currentUrl || (currentUrl === "section.html" && hrefAttr === "section.html")) {
+                link.classList.add('active');
+            }
+        });
+    });
+</script>
+    
+    <script src="../js_files/theme.js"></script>
+</body>
+</html>

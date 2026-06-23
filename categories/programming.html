@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Programming Courses | FreeCourseHub</title>
+    <link rel="stylesheet" href="../css_files/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" type="image/png" href="/favicon.png">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="logo">FreeCourseHub</div>
+    <ul class="nav-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../sections/Courses.html">Courses</a></li>
+            <li><a href="../sections/Categories.html" class="active">Program</a></li>
+            <li><a href="../sections/blog.html">Blog</a></li>
+            <li><a href="../sections/contact.html">Contact</a></li>
+            <li><a href="../sections/favorites.html">My Favorites ❤️</a></li>
+    </ul>
+    <button class="theme-toggle-btn" onclick="toggleTheme()" title="थिम बदलें">
+        <i class="fas fa-moon"></i>
+    </button>
+    <a href="index.html#courses" class="nav-btn">Explore</a>
+</nav>
+
+<header>
+    <h1>Programming Courses</h1>
+    <p>Learn Programming Completely Free</p>
+</header>
+
+<div class="search-box">
+    <input type="text" id="searchInput" placeholder="Search Course...">
+</div>
+
+<section class="course-section">
+    <div class="course-grid" id="programmingGrid"></div>
+</section>
+
+<footer>
+    <p>© 2026 FreeCourseHub | All Rights Reserved</p>
+    All courses and videos belong to their respective owners. <br> We only organize and share free educational links
+</footer>
+
+<script src="../js_files/all_courses.js"></script>
+<script src="../js_files/theme.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        // सिर्फ 'Programming' कैटेगरी वाले कोर्सेज यहाँ रेंडर करें
+        renderCourses("programmingGrid", "Programming");
+
+        // सर्च लॉजिक
+        document.getElementById("searchInput").addEventListener("keyup", function(){
+            const value = this.value.toLowerCase();
+            document.querySelectorAll(".course-card").forEach(card => {
+                const title = card.querySelector("h3").textContent.toLowerCase();
+                card.style.display = title.includes(value) ? "" : "none";
+            });
+        });
+    });
+</script>
+
+</body>
+</html>

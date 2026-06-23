@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>FreeCourseHub | Project Details</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="icon" type="image/png" href="/favicon.png">
+<style>
+    * { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    body { background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%); min-height: 100vh; padding: 40px 20px 60px; display: flex; flex-direction: column; align-items: center; }
+    .back-container { width: 100%; max-width: 850px; margin-bottom: 20px; }
+    .back-project-btn { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; background: #ffffff; color: #4f46e5; padding: 10px 22px; border-radius: 30px; font-size: 14.5px; font-weight: 700; box-shadow: 0 4px 15px rgba(79, 70, 229, 0.08); border: 1px solid rgba(79, 70, 229, 0.15); transition: 0.3s ease; }
+    .back-project-btn:hover { background: #4f46e5; color: #ffffff; transform: translateX(-4px); }
+    .page-title { text-align: center; font-size: 40px; font-weight: 800; background: linear-gradient(135deg, #4f46e5, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 30px; text-transform: uppercase; }
+    .content-box { width: 100%; max-width: 850px; background: #ffffff; border-radius: 24px; box-shadow: 0 15px 35px rgba(79, 70, 229, 0.08); padding: 45px; border: 1px solid rgba(226, 232, 240, 0.8); }
+    h2 { color: #1e293b; font-size: 22px; font-weight: 700; margin-top: 25px; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+    h2::after { content: ''; flex: 1; height: 2px; background: #f1f5f9; }
+    p { font-size: 15px; line-height: 1.7; color: #475569; margin-bottom: 18px; }
+    .highlight-box { background: #f0fdf4; border-left: 4px solid #16a34a; padding: 20px; border-radius: 12px; margin: 25px 0; }
+    .highlight-box h3 { color: #16a34a; font-size: 16px; margin-bottom: 12px; text-transform: uppercase; }
+    ul.feature-list { list-style: none; margin-bottom: 25px; }
+    ul.feature-list li { font-size: 14.5px; color: #475569; line-height: 1.6; margin-bottom: 12px; display: flex; align-items: flex-start; gap: 12px; }
+    ul.feature-list li::before { content: "\f058"; font-family: "Font Awesome 6 Free"; font-weight: 900; color: #16a34a; }
+    .grid-categories { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; margin: 20px 0; }
+    .category-tag { background: #f1f5f9; padding: 8px 12px; border-radius: 6px; font-size: 14px; color: #334155; font-weight: 600; text-align: center; border: 1px solid #e2e8f0; }
+    .footer { text-align: center; margin-top: 40px; color: #94a3b8; font-size: 18px; font-weight: 700; letter-spacing: 4px; }
+</style>
+</head>
+<body>
+
+<div class="back-container">
+    <a href="#" onclick="history.back(); return false;" class="back-project-btn">
+        <i class="fa-solid fa-arrow-left"></i> Back to Projects
+    </a>
+</div>
+
+<h1 class="page-title">FreeCourseHub</h1>
+
+<div class="content-box">
+    <h2><i class="fa-solid fa-graduation-cap" style="color: #4f46e5;"></i> परियोजना का विवरण</h2>
+    <p>FreeCourseHub एक आधुनिक, स्मार्ट और 100% निःशुल्क (Free) एजुकेशन क्यूरेशन प्लेटफ़ॉर्म है, जिसे छात्रों, नौकरी की तैयारी करने वाले अभ्यर्थियों, प्रोफेशनल्स और स्किल डेवलपमेंट करने वाले शिक्षार्थियों के लिए डिज़ाइन किया गया है। इसका उद्देश्य इंटरनेट पर उपलब्ध सर्वोत्तम मुफ्त कोर्सों को एक ही स्थान पर व्यवस्थित रूप से उपलब्ध कराना है।</p>
+
+    <div class="highlight-box">
+        <h3><i class="fa-solid fa-bullseye"></i> हमारा उद्देश्य</h3>
+        <p>हमारा उद्देश्य शिक्षा को सभी के लिए सुलभ बनाना है। FreeCourseHub गुणवत्तापूर्ण, विश्वसनीय और मुफ्त शिक्षण संसाधन उपलब्ध कराकर कौशल विकास, करियर निर्माण और आत्मनिर्भरता की दिशा में सहायता करता है।</p>
+    </div>
+
+    <h2><i class="fa-solid fa-star" style="color: #eab308;"></i> मुख्य विशेषताएँ</h2>
+    <ul class="feature-list">
+        <li><strong>लाइव सर्च बार:</strong> उन्नत सुविधा के माध्यम से कोर्स और तकनीकें रियल-टाइम में खोजें।</li>
+        <li><strong>ऑटोमैटिक एक्टिव लिंक इंडिकेटर:</strong> नेविगेशन को आसान बनाने के लिए वर्तमान पेज की पहचान।</li>
+        <li><strong>100% फ्री कोर्सेज:</strong> बिना किसी भुगतान, सब्सक्रिप्शन या छिपे शुल्क के।</li>
+        <li><strong>सर्वश्रेष्ठ चयन:</strong> केवल उच्च गुणवत्ता वाले और विश्वसनीय स्रोतों के लिंक।</li>
+        <li><strong>हिंदी भाषा समर्थन:</strong> हिंदी भाषी विद्यार्थियों के लिए सीखने की प्रभावी सुविधा।</li>
+    </ul>
+
+    <h2><i class="fa-solid fa-layer-group" style="color: #06b6d4;"></i> उपलब्ध कोर्स श्रेणियाँ</h2>
+    <div class="grid-categories">
+        <span class="category-tag">Web Development</span>
+        <span class="category-tag">Programming</span>
+        <span class="category-tag">AI & Machine Learning</span>
+        <span class="category-tag">Data Analytics</span>
+        <span class="category-tag">Microsoft Excel</span>
+        <span class="category-tag">Power BI</span>
+        <span class="category-tag">SQL & Database</span>
+        <span class="category-tag">Python</span>
+        <span class="category-tag">UI/UX Design</span>
+        <span class="category-tag">Cloud Computing</span>
+        <span class="category-tag">Cyber Security</span>
+        <span class="category-tag">App Development</span>
+    </div>
+
+    <h2><i class="fa-solid fa-rocket" style="color: #ef4444;"></i> FreeCourseHub क्यों चुनें?</h2>
+    <ul class="feature-list">
+        <li>नियमित रूप से अपडेट होने वाली सामग्री।</li>
+        <li>आधुनिक और उपयोगकर्ता-अनुकूल इंटरफ़ेस।</li>
+        <li>कैरियर और इंटरव्यू की तैयारी में मददगार।</li>
+    </ul>
+
+    <p style="text-align: center; font-weight: bold; color: #4f46e5;">FreeCourseHub – आपका मुफ्त डिजिटल लर्निंग साथी, जहाँ सीखना है आसान और गुणवत्तापूर्ण।</p>
+</div>
+
+<div class="footer">THANK YOU</div>
+
+</body>
+</html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>About the Creator | Munendra Singh - FreeCourseHub</title>
+    <meta name="description" content="Meet Munendra Singh, the creator behind FreeCourseHub. Learn about my mission to provide free programming, web development, AI, and technology education resources to help students succeed.">
+    <meta name="keywords" content="Munendra Singh, FreeCourseHub creator, contact Munendra Singh, free web development teacher, free computer courses founder">
+    <meta name="robots" content="index, follow">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../css_files/style.css">
+     <link rel="icon" type="image/png" href="favicon.png">
+
+
+    <style>
+    /* पूरे सेक्शन का बैकग्राउंड (स्क्रीनशॉट की तरह ब्लैक रखने के लिए) */
+    .followers-section {
+        background-color: #000;
+        padding: 20px;
+        color: #fff;
+    }
+
+    /* कैप्सूल (Pill) डिज़ाइन */
+    .members-badge {
+        background-color: #1a1a1a; /* डार्क ग्रे बैकग्राउंड */
+        color: #8a8a8a;            /* 'MEMBERS' टेक्स्ट का ग्रे कलर */
+        font-family: sans-serif;
+        font-weight: bold;
+        font-size: 14px;
+        padding: 8px 24px;
+        border-radius: 50px;       /* गोल कोनों के लिए */
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;                 /* टेक्स्ट और नंबर के बीच की दूरी */
+        border: 1px solid #262626; /* हल्का सा बॉर्डर */
+    }
+
+    /* हरे रंग का नंबर */
+    .count-number {
+        color: #00ff66;            /* स्क्रीनशॉट जैसा नियॉन ग्रीन */
+        font-size: 18px;
+        font-weight: bold;
+    }
+</style>
+</head>
+<body>
+
+    <!-- SYNCHRONIZED NAVBAR (Theme Toggle के साथ) -->
+    <nav class="navbar">
+        <div class="logo">FreeCourseHub</div>
+
+        <ul class="nav-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../sections/Courses.html">Courses</a></li>
+            <li><a href="../sections/Categories.html">Categories</a></li>
+            <li><a href="../sections/blog.html">Blog</a></li>
+            <li><a href="../sections/contact.html" class="active">Contact</a></li>
+            <li><a href="../sections/favorites.html">My Favorites ❤️</a></li>
+        </ul>
+
+        <button class="theme-toggle-btn" onclick="toggleTheme()" title="थिम बदलें">
+            <i class="fas fa-moon"></i>
+        </button>
+
+        <a href="../sections/Courses.html" class="nav-btn">Explore</a>
+    </nav>
+
+    <!-- Creator Section -->
+    <section class="creator">
+        <img src="../image/my_photo.png" alt="Munendra Singh - Creator of FreeCourseHub">
+        <h1>Munendra Singh</h1>
+        <p>
+            Welcome to FreeCourseHub.
+            I share free programming, web development,
+            AI and technology courses to help students
+            learn new skills without spending money.
+        </p>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats">
+        <div class="stat-box">
+            <h2>100+</h2>
+            <p>Free Courses</p>
+        </div>
+        <div class="stat-box">
+            <h2>5K+</h2>
+            <p>Visitors</p>
+        </div>
+        <div class="stat-box">
+            <h2>24/7</h2>
+            <p>Learning Support</p>
+        </div>
+    </section>
+
+
+
+ <!-- yaha per ek follo div do jisme sabho followes show honge aur jab box se jyda ho jayenge tav scroll add ho jaye ) -->
+
+
+<section class="followers-section">
+    <h2 style="text-align: center; color: white; font-family: sans-serif;">Community Members</h2>
+
+    <div style="text-align: center; margin-bottom: 20px;">
+        <span class="members-badge">
+            MEMBERS <span id="memberCount" class="count-number">0</span>
+        </span>
+    </div>
+
+    <div class="followers-container" id="followerGrid">
+        </div>
+
+    <div style="text-align: center; margin-top: 10px;">
+        <button class="follow-btn" onclick="openPopup()">+ Follow Me</button>
+    </div>
+</section>
+
+
+
+
+
+
+<!-- Popup Modal -->
+<div id="followPopup" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closePopup()">&times;</span>
+        <h3>Join My Community</h3>
+        <input type="text" id="userName" placeholder="Enter your name">
+        <input type="text" id="userPhone" placeholder="Enter phone number">
+        
+        <div class="gender-container">
+            <span class="gender-label">Gender:</span>
+            <label class="toggle-switch">
+                <input type="checkbox" id="genderToggle" onchange="toggleGenderText()">
+                <span class="slider"></span>
+            </label>
+            <span id="genderText" class="gender-text male-mode">Male 👨‍💼</span>
+        </div>
+        
+        <button onclick="addFollower()" class="submit-btn">Submit</button>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <!-- Social Section (Original Layout Restored) -->
+    <section class="social-section">
+        <h2 class="social-title">Connect With Me</h2>
+        <div class="social-grid">
+            <a href="https://www.youtube.com/@songlyric7953" target="_blank" rel="noopener noreferrer" class="social-card">
+                <i class="fab fa-youtube"></i>
+                <h3>YouTube Channel</h3>
+                <p>Watch tutorials and free courses.</p>
+            </a>
+            <a href="https://github.com/munendra5singh" target="_blank" rel="noopener noreferrer" class="social-card">
+                <i class="fab fa-github"></i>
+                <h3>GitHub</h3>
+                <p>Source codes and projects.</p>
+            </a>
+            <a href="https://www.linkedin.com/in/munendra-singh-7706443b3/" target="_blank" rel="noopener noreferrer" class="social-card">
+                <i class="fab fa-linkedin"></i>
+                <h3>LinkedIn</h3>
+                <p>Professional profile.</p>
+            </a>
+            <a href="https://www.facebook.com/share/1BK4vg2yzt/" target="_blank" rel="noopener noreferrer" class="social-card">
+                <i class="fab fa-facebook"></i>
+                <h3>Facebook</h3>
+                <p>Latest updates and community.</p>
+            </a>
+            <a href="https://www.instagram.com/sosingh4211/" target="_blank" rel="noopener noreferrer" class="social-card">
+                <i class="fab fa-instagram"></i>
+                <h3>Instagram</h3>
+                <p>Daily content and reels.</p>
+            </a>
+            <a href="#" target="_blank" rel="noopener noreferrer" class="social-card">
+                <i class="fab fa-telegram"></i>
+                <h3>Telegram</h3>
+                <p>Join the learning community.</p>
+            </a>
+            <a href="mailto:singh2005munendra@gmail.com" class="social-card">
+                <i class="fas fa-envelope"></i>
+                <h3>Email</h3>
+                <p>Send me an email directly.</p>
+            </a>
+            <a href="../my_projects/portfolio.html" class="social-card">
+                <i class="fas fa-globe"></i>
+                <h3>Portfolio Website</h3>
+                <p>Visit my personal website.</p>
+            </a>
+        </div>
+    </section>
+
+    <div class="contact-box">
+        <h2>Need Help?</h2>
+        <p>Contact me directly on WhatsApp.</p>
+        <a href="https://wa.me/919105523282" target="_blank" rel="noopener noreferrer" class="whatsapp-btn">
+            Message on WhatsApp
+        </a>
+    </div>
+
+
+
+    <!-- Hidden Admin Panel -->
+<div id="adminPanel" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 20px; box-shadow: 0 0 15px rgba(0,0,0,0.5); z-index: 1000; border-radius: 8px;">
+    <h3>Add New Course</h3>
+    <input type="text" id="c-id" placeholder="Course ID (e.g. course-new)" required><br><br>
+    <input type="text" id="c-category" placeholder="Category" required><br><br>
+    <input type="text" id="c-name" placeholder="Course Name" required><br><br>
+    <input type="text" id="c-img" placeholder="Image URL"><br><br>
+    <input type="text" id="c-desc" placeholder="Description"><br><br>
+    <input type="text" id="c-link" placeholder="Course Link"><br><br>
+    
+    <button onclick="addNewCourse()">Add Course & Download JSON</button>
+    <button onclick="closeAdminPanel()" style="background: red; color: white;">Close</button>
+</div>
+
+<!-- Overlay for background -->
+<div id="overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 999;"></div>
+
+
+
+
+    <!-- Footer -->
+    <footer>
+        © 2026 FreeCourseHub | Created by Munendra Singh
+    </footer>
+
+<!-- Toast Notification -->
+<div id="toast" style="visibility: hidden; min-width: 350px; background: #ffffff; color: #333; text-align: center; border-radius: 15px; padding: 20px; position: fixed; z-index: 9999; left: 50%; top: 20px; transform: translateX(-50%); box-shadow: 0 10px 30px rgba(0,0,0,0.2); border-left: 8px solid #25D366; font-family: sans-serif;">
+    <p id="toastName" style="margin: 0; font-weight: bold; font-size: 18px; color: #25D366;"></p>
+    <p style="margin: 10px 0; font-size: 15px;">Thank you for joining FreeCourseHub. Saath milkar seekhte hain! 🚀</p>
+    <a href="https://whatsapp.com/channel/0029Vb8KkbI6hENqSupf7h1h" 
+   class="whatsapp-highlight" 
+   target="_blank">
+   📱 Follow WhatsApp Channel
+</a>
+
+</div>
+<audio id="toastSound" src="https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3"></audio>
+
+
+
+
+<script>
+    function openPopup() {
+        console.log("Popup opening..."); // Test ke liye
+        document.getElementById('followPopup').style.display = 'block';
+    }
+    
+    function closePopup() {
+        document.getElementById('followPopup').style.display = 'none';
+    }
+</script>
+
+<script src="../js_files/theme.js"></script>
+<script type="module" src="../js_files/firebase-config.js"></script>
+<script type="module" src="../js_files/community.js"></script>
+
+</body>
+</html>

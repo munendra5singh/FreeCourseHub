@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>Free Course Hub | Learn Programming, AI & Digital Skills for Free</title>
+    <meta name="description" content="Discover the best free online courses with verified links. Learn HTML, CSS, JavaScript, Python, Excel, and AI from trusted platforms without spending money.">
+    <meta name="keywords" content="free online courses, learn coding free, free HTML course, free Python tutorial, advance excel free, FreeCourseHub">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Free Course Hub | Learn New Skills For Free">
+    <meta property="og:description" content="Upgrade your skills with 100% free and verified online course links.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=800">
+
+    <!-- Linking Style Sheets -->
+    <link rel="stylesheet" href="css_files/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+
+</head>
+<body class="home-page">
+
+    <!-- Universal Synchronized Navbar -->
+    <header>
+        <nav class="navbar">
+            
+            <div class="logo"> FreeCourseHub</div>
+
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="sections/Courses.html">Courses</a></li>
+                <li><a href="sections/Categories.html">Categories</a></li>
+                <li><a href="sections/blog.html">Blog</a></li>
+                <li><a href="sections/contact.html">Contact</a></li>
+                <li><a href="sections/favorites.html">My Favorites ❤️</a></li>
+            </ul>
+
+            <button class="theme-toggle-btn" onclick="toggleTheme()" title="थिम बदलें">
+                <i class="fas fa-moon"></i>
+            </button>
+
+            <a href="#courses" class="nav-btn">Explore</a>
+        </nav>
+    </header>
+
+    <!-- FIXED: Perfect Gradient Match Banner Header -->
+    <section class="hero">
+    
+        <div class="hero-content">
+            <h1>Learn New Skills For Free</h1>
+            <p>
+                Discover the best free online course links from trusted learning platforms. 
+                Upgrade your skills without spending a single rupee.
+            </p>
+            <div class="hero-action-buttons">
+                <a href="#courses" class="hero-btn">Browse Free Courses</a>
+                <a href="sections/Categories.html" class="hero-secondary-btn">Explore Tracks <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+        <!-- Search Section -->
+    <section class="search-section">
+        <div class="search-box" style="margin: 0; padding: 0; max-width: 100%;">
+            <input type="text" id="searchInput" placeholder="Type to filter verified courses instantly...">
+        </div>
+    </section>
+
+    <!-- MODERN BENTO GRID -->
+    <section class="bento-section">
+        <h2 class="modern-section-title">Engineered For Dynamic Growth</h2>
+        <p class="modern-section-subtitle">Everything you need to accelerate your technical growth under one clean roof.</p>
+        
+        <div class="bento-grid">
+            
+            <div class="bento-card col-2">
+                <div class="icon-box"><i class="fas fa-layer-group"></i></div>
+                <h3>Structured Engineering Paths</h3>
+                <p>We systematically filter high-quality video tutorials and study links into clean learning playlists. From frontend structures like HTML and CSS properties to advanced backend database query sets, find everything neatly arranged.</p>
+            </div>
+
+            <div class="bento-card row-2">
+                <div>
+                    <div class="icon-box"><i class="fas fa-route"></i></div>
+                    <h3>Curated Tracks</h3>
+                    <p>Jump straight into curated category architectures designed for continuous skill acquisition.</p>
+                </div>
+                <ul class="bento-link-list">
+                    <li><a href="categories/web_development.html">Web Development Path <i class="fas fa-arrow-right" style="font-size:11px;"></i></a></li>
+                    <li><a href="categories/data_analytics.html">Data Analytics Foundations <i class="fas fa-arrow-right" style="font-size:11px;"></i></a></li>
+                    <li><a href="categories/ms_office.html">Office Automation & AI <i class="fas fa-arrow-right" style="font-size:11px;"></i></a></li>
+                </ul>
+            </div>
+
+            <div class="bento-card">
+                <div class="icon-box"><i class="fas fa-heart"></i></div>
+                <h3>Interactive Bookmark</h3>
+                <p>Tap the ❤️ heart toggle on any catalog track to pin it directly to your browser's LocalStorage playlist. Zero accounts needed.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="icon-box"><i class="fas fa-user-shield"></i></div>
+                <h3>Secure Outbound Links</h3>
+                <p>Every single connection attribute is safe, featuring verified safe targets for reliable redirection.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Search Section --
+    <section class="search-section">
+        <div class="search-box" style="margin: 0; padding: 0; max-width: 100%;">
+            <input type="text" id="searchInput" placeholder="Type to filter verified courses instantly...">
+        </div>
+    </section> 
+
+
+    <!-- Courses Grid Section (Now with Synced Favorites System) -->
+    <section class="courses" id="courses">
+        <h2 class="modern-section-title" style="margin-top:0;">Popular Free Courses</h2>
+     
+
+        <div id="courseGrid" class="course-grid">
+    </div>
+
+        <div class="view-more-container">
+            <button id="viewMoreBtn" class="view-more-btn">View More Courses</button>
+        </div>        
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <h2>Start Learning Today</h2>
+        <p>Thousands of free courses are waiting for you.</p>
+        <a href="sections/Courses.html#course" class="hero-btn">Explore Courses</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <h3>FreeCourseHub</h3>
+            <p>Your destination for finding the best free online courses.</p>
+            <p>© 2026 FreeCourseHub. All Rights Reserved.</p>
+            <p style="font-size: 13px; color: #9ca3af; margin-top: 5px;">
+                All courses and videos belong to their respective owners. <br> We only organize and share free educational links
+            </p>
+        </div>
+    </footer>
+
+<script src="js_files/all_courses.js"></script>
+
+<script src="js_files/theme.js"></script>
+
+
+
+<script>
+    const container = document.getElementById("courseGrid");
+    const searchInput = document.getElementById("searchInput");
+    const viewMoreBtn = document.getElementById("viewMoreBtn");
+    const bentoSection = document.querySelector(".bento-section");
+    
+    let isExpanded = false; 
+
+    // रैंडम कोर्सेज का लॉजिक
+    function getDailyCourses(data) {
+        const seed = new Date().toDateString();
+        let shuffled = [...data].sort(() => {
+            return 0.5 - Math.abs(Math.sin(seed.length + Date.parse(seed)));
+        });
+        return shuffled.slice(0, 6);
+    }
+
+    // रेंडरिंग फंक्शन
+function renderCourses(filter = "") {
+    if (typeof allCoursesMasterData === 'undefined') return;
+
+    const sourceData = (filter.length > 0) 
+        ? allCoursesMasterData.filter(c => c.name.toLowerCase().includes(filter.toLowerCase()))
+        : getDailyCourses(allCoursesMasterData);
+
+    container.innerHTML = ""; 
+
+    // अगर कोई कोर्स नहीं मिलता, तो यूजर को प्यारा सा मैसेज दिखाएं
+    if (sourceData.length === 0 && filter.length > 0) {
+        container.innerHTML = `
+            <div style="text-align:center; padding: 40px; color: #4f46e5;">
+                <i class="fas fa-search" style="font-size: 50px; margin-bottom: 20px; opacity: 0.5;"></i>
+                <h3 style="font-size: 24px;">ओह! "${filter}" के लिए कोई कोर्स नहीं मिला</h3>
+                <p style="color: #666; margin-top: 10px;">शायद आपने कुछ गलत टाइप किया है, या यह कोर्स अभी हमारी लाइब्रेरी में नहीं है।</p>
+                <p style="margin-top: 10px;">कोई बात नहीं, आप हमारे पॉपुलर कोर्सेज देख सकते हैं!</p>
+                <div style="text-align: center; width: 100%;">
+    <button onclick="location.reload()" class="course-btn" style="margin-top: 25px; border:none; cursor:pointer; display: inline-block;">
+        वापस जाएं
+    </button>
+    <a href="sections/courses.html" class="course-btn" style="text-decoration:none; background: #4f46e5; color: white; padding: 10px 20px; border-radius: 30px;">Find Your Perfect Path 🎯</a>
+</div>
+            </div>`;
+        viewMoreBtn.style.display = "none";
+        return;
+    }
+
+    if (filter.length > 0) {
+        viewMoreBtn.style.display = "none";
+        displayItems(sourceData);
+    } else {
+        viewMoreBtn.style.display = "block";
+        const limit = isExpanded ? 6 : 3;
+        displayItems(sourceData.slice(0, limit));
+        viewMoreBtn.textContent = isExpanded ? "Show Less" : "View More Courses";
+    }
+}
+
+
+    function displayItems(data) {
+        data.forEach(course => {
+            const desc = course.description || "Learn this skill effectively.";
+            container.innerHTML += `
+                <div class="course-card" data-name="${course.name}">
+                    <img src="${course.img}" alt="${course.name}">
+                    <h3>${course.name}</h3>
+                    <p>${desc}</p>
+                    <a href="${course.link}" target="_blank" class="course-btn">View Course</a>
+                </div>
+            `;
+        });
+    }
+
+    // सर्च इनपुट लॉजिक - केवल बेंटो को हैंडल करेगा
+    searchInput.addEventListener("input", (e) => {
+        const value = e.target.value;
+        isExpanded = false;
+        
+        // केवल बेंटो सेक्शन को टारगेट करें
+        if (bentoSection) {
+            if (value.length > 0) {
+                bentoSection.style.display = "none"; // CSS क्लास की जगह डायरेक्ट स्टाइल
+            } else {
+                bentoSection.style.display = "block";
+            }
+        }
+        
+        renderCourses(value);
+        
+        if (value.length > 0) {
+            document.getElementById("courses").scrollIntoView({ behavior: 'smooth' });
+        }
+    });
+
+    viewMoreBtn.addEventListener("click", () => {
+        isExpanded = !isExpanded;
+        renderCourses();
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+        renderCourses();
+    });
+</script>
+
+</body>
+</html>
