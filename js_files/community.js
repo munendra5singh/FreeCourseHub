@@ -28,34 +28,49 @@ function createCard(name, gender) {
     return card;
 }
 
-// 1. FRONTEND: Real-time Data Sync (Naya follower top par + Auto Counter)
+// 1. FRONTEND: Real-time Data Sync (Home aur Contact dono ke liye optimized)
 onSnapshot(doc(db, "community", "members"), (docSnap) => {
+    let firebaseCount = 0;
+    const followers = docSnap.exists() ? (docSnap.data().followers || []) : [];
+    firebaseCount = followers.length;
+
+    // A. AGAR GRID HAI (Yani user Contact page par hai)
     if (grid) {
         grid.innerHTML = ""; 
-        let firebaseCount = 0;
         
-        // Sabse pehle Firebase wale add karein (Reversed: Naya follower top par)
-        if (docSnap.exists()) {
-            const followers = docSnap.data().followers || [];
-            firebaseCount = followers.length;
+        // Sabse pehle Firebase wale add karein (Naya follower top par)
+        if (firebaseCount > 0) {
             [...followers].reverse().forEach(user => grid.appendChild(createCard(user.name, user.gender)));
         }
         
         // Uske baad Dummy list niche dikhegi
         dummyUsers.forEach(user => grid.appendChild(createCard(user.name, user.gender)));
+    }
 
-        // TOTAL COUNT UPDATE (Firebase + Dummy Users)
-        const totalCount = firebaseCount + dummyUsers.length;
-        const memberCountEl = document.getElementById('memberCount');
-        if (memberCountEl) {
-            memberCountEl.innerText = totalCount;
-        }
+    // B. TOTAL COUNT UPDATE (Yeh dono pages par chalega bina error ke)
+    const totalCount = firebaseCount + dummyUsers.length;
+
+    // 1. Contact Page Counter Update (ID target)
+    const memberCountEl = document.getElementById('memberCount');
+    if (memberCountEl) {
+        memberCountEl.innerText = totalCount;
+    }
+
+    // 2. Home Page Counter Update (Class target - Naya Badge)
+    const homeCounters = document.querySelectorAll('.memberCount');
+    if (homeCounters.length > 0) {
+        homeCounters.forEach(el => {
+            el.innerText = totalCount;
+        });
     }
 });
 
 // 2. ADMIN PANEL: List Render (Firebase)
 window.renderListFirebase = async function() {
-    const listDisplay = document.getElementById('listDisplay').querySelector('tbody');
+    const listDisplayEl = document.getElementById('listDisplay');
+    if (!listDisplayEl) return; // Error handling agar admin page na ho
+    
+    const listDisplay = listDisplayEl.querySelector('tbody');
     listDisplay.innerHTML = '<tr><td colspan="4">Loading...</td></tr>';
     
     const docSnap = await getDoc(doc(db, "community", "members"));
@@ -85,7 +100,7 @@ window.removeFollowerFirebase = async function(index) {
     let followers = docSnap.data().followers;
     followers.splice(index, 1);
     await updateDoc(docRef, { followers: followers });
-    window.renderListFirebase(); 
+    if (typeof window.renderListFirebase === "function") window.renderListFirebase(); 
 };
 
 // 4. ADMIN PANEL: Export Excel
@@ -106,6 +121,7 @@ window.exportToExcelFirebase = async function() {
 window.addFollower = async function() {
     const nameInput = document.getElementById('userName');
     const phoneInput = document.getElementById('userPhone');
+    if (!nameInput || !phoneInput) return;
     
     // नए टॉगल स्विच से जेंडर गेट करना
     const genderToggle = document.getElementById('genderToggle');
@@ -131,7 +147,9 @@ window.addFollower = async function() {
     await updateDoc(docRef, { followers: arrayUnion({ name, phone, gender }) });
     
     // फॉर्म रीसेट और पॉपअप बंद करें
-    document.getElementById('followPopup').style.display = 'none';
+    const popup = document.getElementById('followPopup');
+    if (popup) popup.style.display = 'none';
+    
     nameInput.value = '';
     phoneInput.value = '';
     if(genderToggle) {
@@ -157,7 +175,6 @@ window.triggerToast = function(name) {
     }
 };
 
-
 // टॉगल बदलने पर टेक्स्ट और उसका रंग (Blue/Pink) अपडेट करने के लिए फंक्शन
 window.toggleGenderText = function() {
     const toggle = document.getElementById('genderToggle');
@@ -174,7 +191,6 @@ window.toggleGenderText = function() {
     }
 }
 
-
 // कीबोर्ड के Esc बटन से पॉपअप बंद करने के लिए
 window.addEventListener('keydown', function(event) {
     if (event.key === 'Escape') {
@@ -183,8 +199,11 @@ window.addEventListener('keydown', function(event) {
             popup.style.display = 'none'; // पॉपअप बंद कर देगा
             
             // फॉर्म इनपुट्स को भी साफ (Reset) कर देगा
-            document.getElementById('userName').value = '';
-            document.getElementById('userPhone').value = '';
+            const nameInp = document.getElementById('userName');
+            const phoneInp = document.getElementById('userPhone');
+            if (nameInp) nameInp.value = '';
+            if (phoneInp) phoneInp.value = '';
+            
             const toggle = document.getElementById('genderToggle');
             if(toggle) {
                 toggle.checked = false;
