@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Professional GST Calculator with Live Invoice Summary and Print Capabilities. Supports CGST, SGST, and IGST calculations."/>
+  <title>💼 Corporate GST & Invoice Calculator</title>
+  
+  <style>
+    /* --- CSS VARIABLES & PREMIUM THEMING --- */
+    :root {
+      --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+      --card-bg: rgba(255, 255, 255, 0.85);
+      --card-border: rgba(255, 255, 255, 0.5);
+      --text-main: #2d3748;
+      --text-muted: #718096;
+      --input-bg: #ffffff;
+      --input-border: #cbd5e0;
+      --primary: #4f46e5;
+      --primary-hover: #4338ca;
+      --success: #10b981;
+      --success-hover: #059669;
+      --secondary: #0ea5e9;
+      --secondary-hover: #0284c7;
+      --shadow: rgba(31, 38, 135, 0.06);
+      --table-border: #e2e8f0;
+    }
+
+    body.dark-mode {
+      --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      --card-bg: rgba(30, 41, 59, 0.85);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --input-bg: #1e293b;
+      --input-border: #475569;
+      --primary: #6366f1;
+      --primary-hover: #4f46e5;
+      --shadow: rgba(0, 0, 0, 0.4);
+      --table-border: #334155;
+    }
+
+    /* --- BASE STYLES & RESET --- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background: var(--bg-gradient);
+      min-height: 100vh;
+      color: var(--text-main);
+      padding: 30px 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .container {
+      max-width: 700px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    /* --- GLASSMORPHISM CARD --- */
+    .card {
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      box-shadow: 0 10px 40px 0 var(--shadow);
+      padding: 35px;
+      transition: all 0.3s ease;
+    }
+
+    .header-section {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .header-section h1 {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+
+    .header-section p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* --- FORM CONTROLS --- */
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--text-main);
+    }
+
+    .input-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .input-prefix {
+      position: absolute;
+      left: 14px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    input[type="number"], select {
+      width: 100%;
+      padding: 14px 14px 14px 35px;
+      font-size: 16px;
+      font-weight: 500;
+      background: var(--input-bg);
+      border: 2px solid var(--input-border);
+      border-radius: 12px;
+      color: var(--text-main);
+      outline: none;
+      transition: all 0.2s ease;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+    select {
+      padding-left: 15px;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23718096' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      background-size: 16px;
+    }
+
+    input:focus, select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+    }
+
+    /* --- MODE & SUPPLY SWITCHES --- */
+    .radio-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .radio-label {
+      border: 2px solid var(--input-border);
+      padding: 14px;
+      border-radius: 12px;
+      text-align: center;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+      background: var(--input-bg);
+    }
+
+    .radio-group input[type="radio"] {
+      display: none;
+    }
+
+    .radio-group input[type="radio"]:checked + .radio-label {
+      border-color: var(--primary);
+      background: rgba(99, 102, 241, 0.1);
+      color: var(--primary);
+    }
+
+    .checkbox-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(0,0,0,0.02);
+      padding: 12px 15px;
+      border-radius: 12px;
+      margin-bottom: 25px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    body.dark-mode .checkbox-container {
+      background: rgba(255,255,255,0.02);
+    }
+
+    input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+      accent-color: var(--primary);
+    }
+
+    /* --- ACTIONS ROW --- */
+    .actions-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 12px;
+    }
+
+    button {
+      padding: 14px;
+      font-size: 16px;
+      font-weight: 700;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-calc { background: var(--primary); color: white; }
+    .btn-calc:hover { background: var(--primary-hover); transform: translateY(-1px); }
+    .btn-reset { background: #64748b; color: white; }
+    .btn-reset:hover { background: #475569; transform: translateY(-1px); }
+
+    .error-msg {
+      color: #ef4444;
+      font-size: 13px;
+      font-weight: 500;
+      margin-top: 6px;
+      display: none;
+    }
+
+    /* --- DASHBOARD DISPLAY PANEL --- */
+    .results-panel {
+      margin-top: 30px;
+      border-top: 1px solid var(--input-border);
+      padding-top: 25px;
+      display: none;
+    }
+
+    .results-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .result-box {
+      background: rgba(0, 0, 0, 0.02);
+      border-left: 4px solid var(--primary);
+      padding: 15px;
+      border-radius: 10px;
+    }
+
+    body.dark-mode .result-box { background: rgba(255, 255, 255, 0.02); }
+    .result-box.full-width { grid-column: span 2; border-left-color: var(--success); background: rgba(16, 185, 129, 0.05); }
+
+    .result-box p { font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+    .result-box h3 { font-size: 20px; font-weight: 700; color: var(--text-main); margin-top: 4px; }
+    .result-box.full-width h3 { font-size: 24px; color: var(--success); }
+
+    /* --- INVOICE SUMMARY REPORT SECTION --- */
+    .invoice-section {
+      margin-top: 25px;
+      border: 1.5px dashed var(--input-border);
+      padding: 20px;
+      border-radius: 14px;
+      background: var(--input-bg);
+    }
+
+    .invoice-title {
+      font-size: 16px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border-bottom: 1px solid var(--table-border);
+      padding-bottom: 8px;
+    }
+
+    .invoice-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 15px;
+      font-size: 14px;
+    }
+
+    .invoice-table td {
+      padding: 10px 5px;
+      border-bottom: 1px solid var(--table-border);
+    }
+
+    .invoice-table tr:last-child td {
+      font-weight: 700;
+      font-size: 16px;
+      border-bottom: none;
+    }
+
+    .output-buttons-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .btn-copy { background: var(--success); color: white; }
+    .btn-copy:hover { background: var(--success-hover); }
+    .btn-print { background: var(--secondary); color: white; }
+    .btn-print:hover { background: var(--secondary-hover); }
+
+    /* --- FOOTER ACTIONS & FLEX BUTTONS --- */
+    .footer-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .btn-group-left {
+      display: flex;
+      gap: 10px;
+    }
+
+    .back-btn {
+      padding: 12px 18px; background: #10b981; color: white; border: none; border-radius: 12px;
+      font-weight: 700; cursor: pointer; text-decoration: none; display: inline-flex;
+      align-items: center; gap: 8px; box-shadow: 0 4px 12px rgba(16,185,129,0.2); transition: all 0.2s ease; font-size: 14px;
+    }
+    .back-btn:hover { background: #059669; transform: translateY(-2px); }
+
+    .detail-btn {
+      padding: 12px 18px; background: var(--secondary); color: white; border: none; border-radius: 12px;
+      font-weight: 700; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+      box-shadow: 0 4px 12px rgba(14,165,233,0.2); transition: all 0.2s ease; font-size: 14px;
+    }
+    .detail-btn:hover { background: var(--secondary-hover); transform: translateY(-2px); }
+
+    .theme-toggle-container {
+      display: flex; align-items: center; gap: 12px; background: var(--card-bg);
+      border: 1px solid var(--card-border); padding: 10px 15px; border-radius: 12px; box-shadow: 0 4px 15px var(--shadow);
+    }
+    .theme-text { font-weight: 600; font-size: 13px; }
+
+    .switch { position: relative; display: inline-block; width: 46px; height: 24px; }
+    .switch input { opacity: 0; width: 0; height: 0; }
+    .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #cbd5e0; transition: 0.3s; border-radius: 34px; }
+    .slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 4px; bottom: 4px; background-color: white; transition: 0.3s; border-radius: 50%; }
+    input:checked + .slider { background-color: var(--primary); }
+    input:checked + .slider:before { transform: translateX(22px); }
+
+    /* --- PRINT STYLESHEET PROFILE --- */
+    @media print {
+      body { background: white !important; color: black !important; padding: 0 !important; }
+      .container { max-width: 100% !important; }
+      .card { border: none !important; box-shadow: none !important; background: transparent !important; padding: 0 !important; }
+      form, .header-section p, .footer-actions, .results-grid, .btn-copy, .btn-print, .invoice-title::after {
+        display: none !important;
+      }
+      .results-panel { display: block !important; border: none !important; padding: 0 !important; }
+      .invoice-section { border: 1px solid #000 !important; background: white !important; color: black !important; border-radius: 0 !important; padding: 30px !important; }
+      .invoice-table td { border-bottom: 1px solid #000 !important; color: black !important; }
+    }
+
+    @media (max-width: 520px) {
+      .results-grid { grid-template-columns: 1fr; }
+      .output-buttons-row { grid-template-columns: 1fr; }
+      .result-box.full-width { grid-column: span 1; }
+      .footer-actions { flex-direction: column; align-items: stretch; }
+      .btn-group-left { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <main class="card">
+      <div class="header-section">
+        <h1>💼 GST & Invoice Calculator</h1>
+        <p>Premium accounting terminal to compute explicit/implicit GST values with structured bill sum summaries.</p>
+      </div>
+
+      <form id="gstForm" onsubmit="event.preventDefault(); processGstCalculation();" autocomplete="off">
+        
+        <div class="radio-group">
+          <div>
+            <input type="radio" id="addGst" name="gstMode" value="add" checked />
+            <label for="addGst" class="radio-label">➕ Add GST</label>
+          </div>
+          <div>
+            <input type="radio" id="removeGst" name="gstMode" value="remove" />
+            <label for="removeGst" class="radio-label">➖ Remove GST</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="baseAmount">Amount (राशि)</label>
+          <div class="input-container">
+            <span class="input-prefix">₹</span>
+            <input type="number" id="baseAmount" placeholder="e.g., 50000" step="0.01" min="0.01" required />
+          </div>
+          <div class="error-msg" id="amountError">❗ Please enter a valid statement amount configuration.</div>
+        </div>
+
+        <div class="form-group">
+          <label for="gstRate">GST Rate (%)</label>
+          <select id="gstRate" required>
+            <option value="3">3% (Precious Items)</option>
+            <option value="5">5% (Essential Commodities)</option>
+            <option value="12">12% (Standard Slab I)</option>
+            <option value="18" selected>18% (Standard Slab II)</option>
+            <option value="28">28% (Luxury & Premium Assets)</option>
+            <option value="40">40% (Super Luxury & Premium Assets)</option>
+          </select>
+        </div>
+
+        <label class="checkbox-container">
+          <input type="checkbox" id="interstateSupply" />
+          <span style="font-size: 14px; font-weight: 600;">Interstate Supply (Apply IGST Only)</span>
+        </label>
+
+        <div class="actions-grid">
+          <button type="submit" class="btn-calc">🧮 Calculate</button>
+          <button type="button" class="btn-reset" onclick="resetGstCalculator()">Reset</button>
+        </div>
+      </form>
+
+      <section class="results-panel" id="resultsPanel">
+        <div class="results-grid">
+          <div class="result-box">
+            <p>Original Amount</p>
+            <h3 id="resNet">₹0.00</h3>
+          </div>
+          <div class="result-box">
+            <p>Total GST Amount</p>
+            <h3 id="resTax" style="color: var(--primary);">₹0.00</h3>
+          </div>
+          <div class="result-box intraloc">
+            <p>CGST</p>
+            <h3 id="resCgst">₹0.00</h3>
+          </div>
+          <div class="result-box intraloc">
+            <p>SGST</p>
+            <h3 id="resSgst">₹0.00</h3>
+          </div>
+          <div class="result-box interloc" style="display: none; grid-column: span 2;">
+            <p>IGST</p>
+            <h3 id="resIgst">₹0.00</h3>
+          </div>
+          <div class="result-box full-width">
+            <p>Final Gross Amount</p>
+            <h3 id="resGross">₹0.00</h3>
+          </div>
+        </div>
+
+        <div class="invoice-section" id="invoiceSection">
+          <div class="invoice-title">🧾 GST Invoice Summary</div>
+          <table class="invoice-table">
+            <tr>
+              <td>Taxable Value (Net Amount):</td>
+              <td align="right" id="invNet">₹0.00</td>
+            </tr>
+            <tr class="inv-intra-row">
+              <td>Central GST (CGST):</td>
+              <td align="right" id="invCgst">₹0.00</td>
+            </tr>
+            <tr class="inv-intra-row">
+              <td>State GST (SGST):</td>
+              <td align="right" id="invSgst">₹0.00</td>
+            </tr>
+            <tr class="inv-inter-row" style="display:none;">
+              <td>Integrated GST (IGST):</td>
+              <td align="right" id="invIgst">₹0.00</td>
+            </tr>
+            <tr>
+              <td>Total Tax Amount:</td>
+              <td align="right" id="invTax">₹0.00</td>
+            </tr>
+            <tr>
+              <td><strong>Total Invoice Value (Gross):</strong></td>
+              <td align="right" id="invGross">₹0.00</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="output-buttons-row">
+          <button class="btn-copy" onclick="copyResultsToClipboard()">📋 Copy Report</button>
+          <button class="btn-print" onclick="window.print()">🖨️ Print Invoice</button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer-actions">
+      <div class="btn-group-left">
+        <button onclick="location.href='index.html'" class="back-btn">
+          🏠 Back to Main Menu
+        </button>
+<button onclick="location.href='gstdetails.html'" class="detail-btn">
+  📁 View GST Details
+</button>
+      </div>
+
+      <div class="theme-toggle-container">
+        <span class="theme-text" id="themeText">Switch to Dark Mode 🌙</span>
+        <label class="switch">
+          <input type="checkbox" id="darkModeCheckbox" onclick="toggleDarkMode()" />
+          <span class="slider"></span>
+        </label>
+      </div>
+    </footer>
+
+  </div>
+
+  <script>
+    let rawCalculationData = null;
+
+    // Formatting currency configuration arrays
+    function formatINR(val) {
+      return '₹' + parseFloat(val).toLocaleString('en-IN', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+    }
+
+    // Calculation Controller Engine
+    function processGstCalculation() {
+      const baseVal = parseFloat(document.getElementById("baseAmount").value);
+      const rateVal = parseFloat(document.getElementById("gstRate").value);
+      const mode = document.querySelector('input[name="gstMode"]:checked').value;
+      const isInterstate = document.getElementById("interstateSupply").checked;
+      const amountError = document.getElementById("amountError");
+
+      if (isNaN(baseVal) || baseVal <= 0) {
+        amountError.style.display = "block";
+        return;
+      }
+      amountError.style.display = "none";
+
+      let netAmount = 0, gstAmount = 0, grossAmount = 0;
+
+      if (mode === "add") {
+        netAmount = baseVal;
+        gstAmount = (baseVal * rateVal) / 100;
+        grossAmount = baseVal + gstAmount;
+      } else {
+        grossAmount = baseVal;
+        netAmount = baseVal / (1 + (rateVal / 100));
+        gstAmount = grossAmount - netAmount;
+      }
+
+      let cgst = 0, sgst = 0, igst = 0;
+      if (isInterstate) {
+        igst = gstAmount;
+      } else {
+        cgst = gstAmount / 2;
+        sgst = gstAmount / 2;
+      }
+
+      // Structure object mapping
+      rawCalculationData = { mode, netAmount, gstAmount, cgst, sgst, igst, grossAmount, rateVal, isInterstate };
+
+      // Render standard visualization nodes
+      document.getElementById("resNet").innerText = formatINR(netAmount);
+      document.getElementById("resTax").innerText = formatINR(gstAmount);
+      document.getElementById("resCgst").innerText = formatINR(cgst);
+      document.getElementById("resSgst").innerText = formatINR(sgst);
+      document.getElementById("resIgst").innerText = formatINR(igst);
+      document.getElementById("resGross").innerText = formatINR(grossAmount);
+
+      // Render Invoice breakdown profile row nodes
+      document.getElementById("invNet").innerText = formatINR(netAmount);
+      document.getElementById("invTax").innerText = formatINR(gstAmount);
+      document.getElementById("invCgst").innerText = formatINR(cgst);
+      document.getElementById("invSgst").innerText = formatINR(sgst);
+      document.getElementById("invIgst").innerText = formatINR(igst);
+      document.getElementById("invGross").innerText = formatINR(grossAmount);
+
+      // Switch view visibility depending on geographic markers
+      const intraElements = document.querySelectorAll(".intraloc, .inv-intra-row");
+      const interElements = document.querySelectorAll(".interloc, .inv-inter-row");
+
+      if (isInterstate) {
+        intraElements.forEach(el => el.style.display = "none");
+        interElements.forEach(el => el.style.display = "table-row");
+        document.querySelector(".interloc").style.display = "block";
+      } else {
+        intraElements.forEach(el => el.style.display = "table-row");
+        interElements.forEach(el => el.style.display = "none");
+        document.querySelectorAll(".intraloc").forEach(el => el.style.display = "block");
+      }
+
+      document.getElementById("resultsPanel").style.display = "block";
+    }
+
+    // Clipboard system string builders
+    function copyResultsToClipboard() {
+      if (!rawCalculationData) return;
+      const data = rawCalculationData;
+      const typeText = data.mode === "add" ? "GST Added (Exclusive)" : "GST Removed (Inclusive)";
+      
+      let taxLines = data.isInterstate ? 
+        `IGST (${data.rateVal}%): ${formatINR(data.igst)}` : 
+        `CGST (${data.rateVal/2}%): ${formatINR(data.cgst)}\nSGST (${data.rateVal/2}%): ${formatINR(data.sgst)}`;
+
+      const reportText = `📊 GST Corporate Invoice Summary\n---------------------------\nCalculation Mode: ${typeText}\nTaxable Net Amount: ${formatINR(data.netAmount)}\nTax Percentage Slab: ${data.rateVal}%\nTotal Tax Collected: ${formatINR(data.gstAmount)}\n${taxLines}\n---------------------------\nTotal Payable Value (Gross): ${formatINR(data.grossAmount)}`;
+
+      navigator.clipboard.writeText(reportText).then(() => {
+        alert("✅ GST Invoice Statement Data Copied to Clipboard!");
+      });
+    }
+
+    // Reset layout logic
+    function resetGstCalculator() {
+      document.getElementById("gstForm").reset();
+      document.getElementById("resultsPanel").style.display = "none";
+      document.getElementById("amountError").style.display = "none";
+      rawCalculationData = null;
+    }
+
+    // --- GLOBAL PERSISTENT LOCALSTORAGE THEMING SYNC ---
+    document.addEventListener("DOMContentLoaded", () => {
+      const isDarkMode = localStorage.getItem("globalDarkMode") === "enabled";
+      const checkbox = document.getElementById("darkModeCheckbox");
+      const statusText = document.getElementById("themeText");
+
+      if (isDarkMode) {
+        document.body.classList.add("dark-mode");
+        if(checkbox) checkbox.checked = true;
+        if(statusText) statusText.innerHTML = "Switch to Light Mode ☀️";
+      } else {
+        if(statusText) statusText.innerHTML = "Switch to Dark Mode 🌙";
+      }
+    });
+
+    function toggleDarkMode() {
+      const checkbox = document.getElementById("darkModeCheckbox");
+      const statusText = document.getElementById("themeText");
+
+      if (checkbox.checked) {
+        document.body.classList.add("dark-mode");
+        localStorage.setItem("globalDarkMode", "enabled");
+        statusText.innerHTML = "Switch to Light Mode ☀️";
+      } else {
+        document.body.classList.remove("dark-mode");
+        localStorage.setItem("globalDarkMode", "disabled");
+        statusText.innerHTML = "Switch to Dark Mode 🌙";
+      }
+    }
+  </script>
+</body>
+</html>

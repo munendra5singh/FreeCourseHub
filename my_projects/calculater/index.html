@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🧮 Munendra's Multi-Tool Box</title>
+  <style>
+    /* Reset & Font */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: #f0f2f5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      color: #222;
+    }
+
+    body.dark-mode {
+      background: #121212;
+      color: #e0e0e0;
+    }
+
+    .container {
+      background: white;
+      padding: 35px 30px;
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.06);
+      max-width: 600px; /* बटन बढ़ने के कारण चौड़ाई थोड़ी बढ़ाई गई है */
+      width: 100%;
+      text-align: center;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    }
+
+    body.dark-mode .container {
+      background: #1e1e1e;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+    }
+
+    /* डैशबोर्ड सेक्शन (Live Clock) */
+    .dashboard {
+      background: #e8f4ff;
+      padding: 15px;
+      border-radius: 12px;
+      margin-bottom: 25px;
+      transition: background-color 0.3s ease;
+    }
+    body.dark-mode .dashboard {
+      background: #2a2a2a;
+    }
+    .dashboard .time {
+      font-size: 24px;
+      font-weight: 800;
+      color: #007bff;
+    }
+    body.dark-mode .dashboard .time {
+      color: #66ccff;
+    }
+    .dashboard .date {
+      font-size: 13px;
+      font-weight: 600;
+      color: #555;
+      margin-top: 4px;
+    }
+    body.dark-mode .dashboard .date {
+      color: #bbb;
+    }
+
+    h1 {
+      color: #111;
+      font-size: 26px;
+      margin-bottom: 4px;
+      font-weight: 700;
+    }
+
+    body.dark-mode h1 {
+      color: #fff;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    body.dark-mode .subtitle {
+      color: #aaa;
+    }
+
+    /* बटन ग्रिड लेआउट - 2 Columns */
+    .button-group {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+
+    .button {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      font-size: 15px;
+      font-weight: 700;
+      color: white;
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      width: 100%;
+      transition: all 0.25s ease-in-out;
+      text-decoration: none;
+    }
+
+    .btn-content {
+      display: flex;
+      align-items: center;
+      text-align: left;
+    }
+
+    .button .icon {
+      font-size: 22px;
+      margin-right: 12px;
+    }
+
+    .arrow-icon {
+      font-size: 16px;
+      opacity: 0.6;
+      transition: transform 0.2s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-3px);
+    }
+    .button:hover .arrow-icon {
+      transform: translateX(4px);
+      opacity: 1;
+    }
+
+    /* पुराने ग्रेडिएंट कलर्स */
+    .btn-diff {
+      background: linear-gradient(135deg, #007bff, #0056b3);
+      box-shadow: 0 4px 15px rgba(0, 123, 255, 0.2);
+    }
+    .btn-diff:hover { box-shadow: 0 8px 25px rgba(0, 123, 255, 0.4); }
+
+    .btn-date {
+      background: linear-gradient(135deg, #28a745, #1e7e34);
+      box-shadow: 0 4px 15px rgba(40,167,69,0.2);
+    }
+    .btn-date:hover { box-shadow: 0 8px 25px rgba(40,167,69,0.4); }
+
+    .btn-day {
+      background: linear-gradient(135deg, #17a2b8, #117a8b);
+      box-shadow: 0 4px 15px rgba(23,162,184,0.2);
+    }
+    .btn-day:hover { box-shadow: 0 8px 25px rgba(23,162,184,0.4); }
+
+    /* नए कैल्कुलेटर के लिए प्रीमियम ग्रेडिएंट कलर्स */
+    .btn-bmi {
+      background: linear-gradient(135deg, #ffc107, #d39e00);
+      box-shadow: 0 4px 15px rgba(255,193,7,0.2);
+      color: #111; /* बेहतर दृश्यता के लिए काला टेक्स्ट */
+    }
+    .btn-bmi .arrow-icon { color: #111; }
+    .btn-bmi:hover { box-shadow: 0 8px 25px rgba(255,193,7,0.4); }
+
+    .btn-emi {
+      background: linear-gradient(135deg, #e83e8c, #b81d5b);
+      box-shadow: 0 4px 15px rgba(232,62,140,0.2);
+    }
+    .btn-emi:hover { box-shadow: 0 8px 25px rgba(232,62,140,0.4); }
+
+    .btn-gst {
+      background: linear-gradient(135deg, #fd7e14, #d35400);
+      box-shadow: 0 4px 15px rgba(253,126,20,0.2);
+    }
+    .btn-gst:hover { box-shadow: 0 8px 25px rgba(253,126,20,0.4); }
+
+
+    .footer {
+      margin-top: 30px;
+      font-size: 14px;
+      color: #666;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    body.dark-mode .footer {
+      color: #999;
+    }
+
+    /* स्लाइडर और टेक्स्ट स्टाइल */
+    .toggle-wrapper {
+      margin-top: 25px;
+      text-align: center;
+      border-top: 1px solid #eee;
+      padding-top: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    body.dark-mode .toggle-wrapper {
+      border-top-color: #333;
+    }
+
+    .toggle-text {
+      font-weight: 600;
+      color: #444;
+      font-size: 14px;
+      min-width: 150px;
+      text-align: right;
+      transition: color 0.3s;
+    }
+
+    body.dark-mode .toggle-text {
+      color: #bbb;
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 26px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: .4s;
+      border-radius: 34px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    input:checked + .slider {
+      background-color: #007bff;
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(24px);
+    }
+
+    /* Mobile Responsive UI */
+    @media (max-width: 520px) {
+      .container {
+        padding: 25px 20px;
+      }
+      .button-group {
+        grid-template-columns: 1fr; /* मोबाइल पर बटन्स एक के नीचे एक आयेंगे */
+        gap: 12px;
+      }
+      h1 {
+        font-size: 22px;
+      }
+      .button {
+        font-size: 15px;
+        padding: 14px 18px;
+      }
+      .dashboard .time {
+        font-size: 21px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="dashboard">
+      <div class="time" id="liveClock">00:00:00 AM</div>
+      <div class="date" id="liveDate">Loading Date...</div>
+    </div>
+
+    <h1>📂 Web Tool Box</h1>
+    <p class="subtitle">Select any tool to start calculation</p>
+
+    <div class="button-group">
+      <button class="button btn-diff" onclick="location.href='main.html'">
+        <div class="btn-content">
+          <span class="icon">📅</span> Date-Time Diff
+        </div>
+        <span class="arrow-icon">➔</span>
+      </button>
+      
+      <button class="button btn-date" onclick="location.href='date.html'">
+        <div class="btn-content">
+          <span class="icon">📆</span> Date Finder
+        </div>
+        <span class="arrow-icon">➔</span>
+      </button>
+      
+      <button class="button btn-day" onclick="location.href='day.html'">
+        <div class="btn-content">
+          <span class="icon">🧮</span> Day Finder
+        </div>
+        <span class="arrow-icon">➔</span>
+      </button>
+
+      <button class="button btn-bmi" onclick="location.href='bmi.html'">
+        <div class="btn-content">
+          <span class="icon">⚖️</span> BMI Calculator
+        </div>
+        <span class="arrow-icon">➔</span>
+      </button>
+
+      <button class="button btn-emi" onclick="location.href='emi.html'">
+        <div class="btn-content">
+          <span class="icon">💰</span> EMI Calculator
+        </div>
+        <span class="arrow-icon">➔</span>
+      </button>
+
+      <button class="button btn-gst" onclick="location.href='gstcal.html'">
+        <div class="btn-content">
+          <span class="icon">🧾</span> GST Calculator
+        </div>
+        <span class="arrow-icon">➔</span>
+      </button>
+    </div>
+
+    <div class="toggle-wrapper">
+      <span class="toggle-text" id="toggleStatusText">Switch to Dark Mode 🌙</span>
+      <label class="switch">
+        <input type="checkbox" id="darkModeCheckbox" onclick="toggleDarkMode()" />
+        <span class="slider"></span>
+      </label>
+    </div>
+  </div>
+
+  <div class="footer">
+    Designed by <span style="color: #007bff; font-weight: 700;">Munendra</span> 💻
+  </div>
+
+  <script>
+    function updateClock() {
+      const now = new Date();
+      
+      let hours = now.getHours();
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+      const ampm = hours >= 12 ? 'PM' : 'AM';
+      hours = hours % 12;
+      hours = hours ? hours : 12; 
+      const timeString = `${String(hours).padStart(2, '0')}:${minutes}:${seconds} ${ampm}`;
+      
+      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      const dateString = now.toLocaleDateString('en-US', options);
+
+      document.getElementById('liveClock').textContent = timeString;
+      document.getElementById('liveDate').textContent = dateString;
+    }
+
+    setInterval(updateClock, 1000);
+
+    // पेज लोड होने पर स्टेट सेट करना
+    document.addEventListener("DOMContentLoaded", () => {
+      updateClock(); 
+      const isDarkMode = localStorage.getItem("globalDarkMode") === "enabled";
+      const checkbox = document.getElementById("darkModeCheckbox");
+      const statusText = document.getElementById("toggleStatusText");
+
+      if (isDarkMode) {
+        document.body.classList.add("dark-mode");
+        checkbox.checked = true;
+        statusText.innerHTML = "Switch to Light Mode ☀️";
+      } else {
+        statusText.innerHTML = "Switch to Dark Mode 🌙";
+      }
+    });
+
+    // डार्क मोड टॉगल लॉजिक
+    function toggleDarkMode() {
+      const checkbox = document.getElementById("darkModeCheckbox");
+      const statusText = document.getElementById("toggleStatusText");
+
+      if (checkbox.checked) {
+        document.body.classList.add("dark-mode");
+        localStorage.setItem("globalDarkMode", "enabled");
+        statusText.innerHTML = "Switch to Light Mode ☀️";
+      } else {
+        document.body.classList.remove("dark-mode");
+        localStorage.setItem("globalDarkMode", "disabled");
+        statusText.innerHTML = "Switch to Dark Mode 🌙";
+      }
+    }
+  </script>
+
+</body>
+</html>
