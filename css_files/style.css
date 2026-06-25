@@ -14,7 +14,7 @@ html{
 
 body{
     background: #f8fafc;
-    color: #333;
+     color: #060000;
     padding-top: 70px; /* Fixed Navbar ke liye desktop spacing */
     transition: background 0.3s, color 0.3s;
 }
@@ -581,7 +581,7 @@ body.home-page .hero-btn:hover {
 }
 
 .modern-section-title { font-size: 36px; font-weight: 800; text-align: center; margin: 60px 0 20px; color: #0f172a; }
-.modern-section-subtitle { text-align: center; color:#ffffff; font-size: 18px; margin-bottom: 5px; }
+.modern-section-subtitle { text-align: center; color:BLACK; font-size: 18px; margin-bottom: 5px; }
 
 .bento-grid {
     display: grid;
@@ -662,6 +662,7 @@ body.dark-mode .bento-card h3 { color: #ffffff; }
 body.dark-mode .bento-card p { color: #94a3b8; }
 body.dark-mode .bento-card .icon-box { background: #1f2937; color: #0971f1; }
 body.dark-mode .modern-section-title { color: #f6f2f2; }
+body.dark-mode .modern-section-subtitle { color: #f6f2f2; }
 body.dark-mode .search-box input { background: #010a18 !important; color: #fff !important; border-color: #1f2937 !important; }
 
 /* Responsive Engineering */
@@ -1030,7 +1031,7 @@ body.dark-mode .newsletter button:hover {
 /* 1. Page Background Black in Dark Mode */
 body.dark-mode { 
     background: #000000 !important; 
-    color: white !important; 
+    color: rgb(20, 1, 1) !important; 
 }
 
 /* 2. Grid & Cards remains White in Dark Mode */
