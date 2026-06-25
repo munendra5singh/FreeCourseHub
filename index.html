@@ -196,6 +196,32 @@ body.dark-mode .pulse-dot {
             padding: 10px 20px; 
             border-radius: 30px;
         }
+
+     .project-buttons-container {
+    display: flex;
+    justify-content: center; /* Buttons ko center mein alignment dene ke liye */
+    gap: 15px;              /* Dono buttons ke beech barabar jagah (spacing) ke liye */
+    margin:-20PX;         /* Upar aur neeche se thoda gap dene ke liye */
+}
+
+.btn-project {
+    background: linear-gradient(45deg, #4facfe, #00f2fe); /* Ek pyaara sa modern gradient color */
+    color: white;
+    padding: 12px 24px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    font-family: sans-serif;
+    transition: transform 0.2s, box-shadow 0.2s; /* Hover effect ko smooth banane ke liye */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Jab mouse button par jaye toh halka sa effect */
+.btn-project:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(79, 172, 254, 0.3);
+}
     </style>
 </head>
 <body class="home-page">
@@ -297,11 +323,10 @@ body.dark-mode .pulse-dot {
         </div>        
     </section>
 
-<div style="text-align:center;">
-    <a href="my_projects/details/game.html"
-       style="background:#4facfe; color:white; padding:10px 20px; border-radius:6px; text-decoration:none; font-size:14px;">
-        Play game
-    </a>
+<div class="project-buttons-container">
+    <a href="my_projects/details/game.html" class="btn-project">Play Game</a>
+    <a href="my_projects/calculater/index.html" class="btn-project">multy Calculator</a>
+    <a href="my_projects/calculater/age.html" class="btn-project">Age Calculator</a>
 </div>
  
 
