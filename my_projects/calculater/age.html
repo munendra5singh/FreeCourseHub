@@ -1,0 +1,1571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chronos - Premium Analytics & Comparison Dashboard</title>
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-glass: rgba(15, 23, 42, 0.45);
+            --card-glass: rgba(30, 41, 59, 0.4);
+            --card-hover: rgba(51, 65, 85, 0.5);
+            --border-glass: rgba(255, 255, 255, 0.08);
+            --accent-glow: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+            --primary: #818cf8;
+            --secondary: #c084fc;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --danger: #f43f5e;
+            --success: #10b981;
+            --page-bg: #020617;
+            --body-gradient: radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.15) 0px, transparent 50%),
+                             radial-gradient(at 100% 100%, rgba(236, 72, 153, 0.12) 0px, transparent 50%),
+                             radial-gradient(at 50% 50%, rgba(168, 85, 247, 0.08) 0px, transparent 50%);
+            --countdown-glow: rgba(168, 85, 247, 0.3);
+        }
+
+        [data-theme="light"] {
+            --bg-glass: rgba(255, 255, 255, 0.65);
+            --card-glass: rgba(241, 245, 249, 0.7);
+            --card-hover: rgba(226, 232, 240, 0.9);
+            --border-glass: rgba(15, 23, 42, 0.08);
+            --primary: #4f46e5;
+            --secondary: #9333ea;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --page-bg: #f8fafc;
+            --body-gradient: radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.1) 0px, transparent 50%),
+                             radial-gradient(at 100% 100%, rgba(236, 72, 153, 0.08) 0px, transparent 50%);
+            --countdown-glow: rgba(99, 102, 241, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        body {
+            background: var(--page-bg);
+            background-image: var(--body-gradient);
+            background-attachment: fixed;
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            position: relative;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            background: var(--bg-glass);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid var(--border-glass);
+            border-radius: 32px;
+            padding: 40px;
+            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            padding-top: 10px;
+        }
+
+        header h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            background: var(--accent-glow);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            padding-right: 40px;
+            padding-left: 40px;
+        }
+
+        .theme-toggle-container {
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: 15;
+        }
+
+        .theme-btn {
+            background: var(--card-glass);
+            border: 1px solid var(--border-glass);
+            color: var(--text-main);
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+        .theme-btn:hover {
+            transform: scale(1.05);
+            border-color: var(--primary);
+        }
+
+        .mode-toggle-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 35px;
+        }
+
+        .toggle-box {
+            background: rgba(15, 23, 42, 0.1);
+            padding: 6px;
+            border-radius: 14px;
+            border: 1px solid var(--border-glass);
+            display: flex;
+            gap: 5px;
+        }
+        [data-theme="dark"] .toggle-box {
+            background: rgba(15, 23, 42, 0.6);
+        }
+
+        .toggle-btn {
+            padding: 10px 22px;
+            border-radius: 10px;
+            border: none;
+            background: transparent;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .toggle-btn.active {
+            background: var(--accent-glow);
+            color: white;
+            box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3);
+        }
+
+        .grid-inputs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin-bottom: 35px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .input-group label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .input-group label i {
+            color: var(--primary);
+        }
+
+        input[type="date"], input[type="text"] {
+            width: 100%;
+            padding: 16px;
+            background: rgba(15, 23, 42, 0.05);
+            border: 1px solid var(--border-glass);
+            border-radius: 16px;
+            color: var(--text-main);
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        [data-theme="dark"] input[type="date"], [data-theme="dark"] input[type="text"] {
+            background: rgba(15, 23, 42, 0.5);
+        }
+
+        input[type="date"]:focus, input[type="text"]:focus {
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 0 4px rgba(129, 140, 248, 0.15);
+        }
+
+        input.error-border {
+            border-color: var(--danger) !important;
+            box-shadow: 0 0 0 4px rgba(244, 63, 94, 0.2) !important;
+        }
+
+        #comparisonInputBlock {
+            display: none;
+        }
+
+        .btn-panel {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .action-btn {
+            flex: 1;
+            padding: 18px;
+            border: none;
+            border-radius: 16px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-calc {
+            background: var(--accent-glow);
+            color: white;
+            box-shadow: 0 8px 25px -5px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-calc:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px -5px rgba(99, 102, 241, 0.6);
+        }
+
+        .btn-reset {
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--text-main);
+            border: 1px solid var(--border-glass);
+        }
+
+        .btn-reset:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--text-muted);
+        }
+
+        .view-section {
+            display: none;
+            opacity: 0;
+            transform: translateY(15px);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .view-section.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hero-metric-card {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(236, 72, 153, 0.05) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 35px 30px;
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .hero-numbers {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .num-box h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--text-main);
+            line-height: 1;
+        }
+
+        .num-box p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-top: 5px;
+            font-weight: 600;
+        }
+
+        .section-headline {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin: 35px 0 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-main);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-headline i {
+            color: var(--secondary);
+        }
+
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .glass-card {
+            background: var(--card-glass);
+            border: 1px solid var(--border-glass);
+            border-radius: 20px;
+            padding: 24px;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .glass-card:hover {
+            background: var(--card-hover);
+            border-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .card-title-bar {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            padding-bottom: 12px;
+            margin-bottom: 16px;
+        }
+
+        .card-title-bar i {
+            font-size: 1.25rem;
+            background: var(--accent-glow);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .card-title-bar h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+        }
+
+        .data-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            font-size: 0.98rem;
+        }
+
+        .data-label { color: var(--text-muted); }
+        .data-val { font-weight: 600; color: var(--text-main); }
+        .ticker-highlight { color: var(--primary) !important; font-family: 'Space Grotesk', monospace; font-size: 1.1rem; }
+
+        .premium-countdown-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-top: 5px;
+        }
+
+        .countdown-segment-card {
+            background: rgba(15, 23, 42, 0.03);
+            border: 1px solid var(--border-glass);
+            border-radius: 16px;
+            padding: 18px 8px;
+            text-align: center;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+        }
+        [data-theme="dark"] .countdown-segment-card {
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .countdown-segment-card.warning-glow {
+            border-color: #f59e0b;
+            box-shadow: 0 0 15px rgba(245, 158, 11, 0.2);
+        }
+        .countdown-segment-card.danger-glow {
+            border-color: var(--danger);
+            box-shadow: 0 0 15px rgba(244, 63, 94, 0.3);
+        }
+
+        .countdown-val {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--text-main);
+            display: block;
+        }
+
+        .countdown-lbl {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .progress-meta {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .progress-track-wrapper {
+            background: rgba(0,0,0,0.1);
+            border-radius: 50px;
+            height: 12px;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            margin-bottom: 15px;
+        }
+        [data-theme="dark"] .progress-track-wrapper {
+            background: rgba(255,255,255,0.05);
+        }
+        .progress-bar-fill {
+            background: var(--accent-glow);
+            height: 100%;
+            width: 0%;
+            border-radius: 50px;
+            transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .profile-badges-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 15px;
+        }
+
+        .profile-tile {
+            background: var(--card-glass);
+            border: 1px solid var(--border-glass);
+            border-radius: 16px;
+            padding: 16px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .profile-tile i {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 2px;
+        }
+
+        .profile-tile .tile-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .profile-tile .tile-value {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 600;
+        }
+
+        .share-composer-card {
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 24px;
+            padding: 30px;
+            color: #ffffff;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+        .share-composer-card::before {
+            content: '';
+            position: absolute;
+            top: -50%; right: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(168,85,247,0.15) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .wrapped-logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            color: #818cf8;
+            margin-bottom: 20px;
+        }
+
+        .wrapped-title {
+            font-size: 1.6rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 25px;
+        }
+        .wrapped-title span {
+            background: var(--accent-glow);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .wrapped-stat-item {
+            border-left: 3px solid #c084fc;
+            padding-left: 15px;
+            margin-bottom: 18px;
+        }
+
+        .wrapped-stat-lbl {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: #94a3b8;
+            letter-spacing: 1px;
+        }
+
+        .wrapped-stat-val {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .share-btn-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .share-action-trigger {
+            flex: 1;
+            min-width: 100px;
+            padding: 12px;
+            border-radius: 12px;
+            border: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: white;
+            background: rgba(255,255,255,0.1);
+            transition: all 0.2s;
+        }
+
+        .share-action-trigger:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-1px);
+        }
+
+        .share-action-trigger.download-trigger {
+            background: var(--accent-glow);
+        }
+
+        .export-resolution-selector {
+            background: rgba(15, 23, 42, 0.4);
+            border: 1px solid var(--border-glass);
+            color: #fff;
+            padding: 8px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            outline: none;
+        }
+
+        .comparison-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .split-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .person-hero-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-glass);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .person-hero-card.lead-card {
+            border-color: rgba(129, 140, 248, 0.5);
+            background: linear-gradient(135deg, rgba(129, 140, 248, 0.06) 0%, transparent 100%);
+            box-shadow: 0 0 20px rgba(129, 140, 248, 0.1);
+        }
+
+        .p-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .p-age-string {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--text-main);
+        }
+
+        .gap-verdict-banner {
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+            border: 1px dashed rgba(168, 85, 247, 0.4);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .gap-verdict-banner h4 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .gap-verdict-banner p {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .gap-visual-meter-wrapper {
+            background: var(--card-glass);
+            border: 1px solid var(--border-glass);
+            border-radius: 20px;
+            padding: 24px;
+        }
+        .gap-metric-bar-group {
+            margin-bottom: 15px;
+        }
+        .gap-bar-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .gap-bar-track {
+            background: rgba(0,0,0,0.1);
+            height: 10px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        [data-theme="dark"] .gap-bar-track { background: rgba(255,255,255,0.05); }
+        .gap-bar-fill-indicator {
+            height: 100%;
+            border-radius: 10px;
+            width: 0%;
+            transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .battle-comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        .battle-comparison-table th {
+            text-align: left;
+            padding: 12px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--border-glass);
+        }
+        .battle-comparison-table td {
+            padding: 16px 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+            font-size: 0.95rem;
+        }
+        .battle-row-title {
+            font-weight: 600;
+            color: var(--text-main);
+        }
+        .winner-badge-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: rgba(16, 185, 129, 0.12);
+            color: #10b981;
+            padding: 4px 10px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .timeline-graphic-card {
+            background: var(--card-glass);
+            border: 1px solid var(--border-glass);
+            border-radius: 20px;
+            padding: 24px;
+        }
+        .timeline-track-lane {
+            position: relative;
+            padding: 20px 0;
+            margin-bottom: 10px;
+        }
+        .timeline-base-line {
+            position: absolute;
+            top: 50%; left: 0; right: 0;
+            height: 4px;
+            background: rgba(0,0,0,0.1);
+            transform: translateY(-50%);
+            border-radius: 2px;
+        }
+        [data-theme="dark"] .timeline-base-line { background: rgba(255,255,255,0.05); }
+        .timeline-progress-segment {
+            position: absolute;
+            top: 50%;
+            height: 6px;
+            transform: translateY(-50%);
+            border-radius: 4px;
+        }
+        .timeline-node-pin {
+            position: absolute;
+            top: 50%;
+            width: 14px; height: 14px;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        }
+        .timeline-node-pin span {
+            position: absolute;
+            top: -18px;
+            transform: translateX(-50%);
+            font-size: 0.75rem;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .copy-floating-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-glass);
+            color: var(--text-main);
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .copy-floating-btn:hover {
+            background: var(--text-main);
+            color: var(--page-bg);
+        }
+
+        .toast {
+            position: fixed;
+            bottom: -80px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--success);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 15px 30px rgba(16, 185, 129, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: bottom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 2000;
+        }
+
+        .toast.show { bottom: 40px; }
+
+        @media(max-width: 920px) {
+            .container { padding: 30px 20px; border-radius: 24px; }
+            header h1 { font-size: 2.3rem; }
+        }
+
+        @media(max-width: 768px) {
+            body { padding: 20px 10px; }
+            .container { padding: 25px 15px; border-radius: 20px; }
+            header p { padding: 0 10px; font-size: 0.95rem; }
+            .theme-toggle-container { top: -5px; right: -5px; }
+            .theme-btn { width: 38px; height: 38px; border-radius: 10px; font-size: 0.9rem; }
+            .grid-inputs { grid-template-columns: 1fr; gap: 15px; }
+            .btn-panel { flex-direction: column; gap: 12px; margin-bottom: 30px; }
+            .action-btn { width: 100%; padding: 15px; }
+            .split-columns { grid-template-columns: 1fr; gap: 20px; }
+            .hero-numbers { gap: 20px; }
+            .num-box h2 { font-size: 2.6rem; }
+            .premium-countdown-container { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+            .countdown-val { font-size: 1.8rem; }
+            .profile-badges-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+            .share-btn-row { flex-direction: column; }
+            .share-action-trigger { width: 100%; }
+            .battle-comparison-table th, .battle-comparison-table td { padding: 10px 6px; font-size: 0.85rem; }
+        }
+
+        @media(max-width: 375px) {
+            header h1 { font-size: 1.9rem; }
+            .num-box h2 { font-size: 2.2rem; }
+            .profile-badges-grid { grid-template-columns: 1fr; }
+            .countdown-val { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body data-theme="dark">
+
+    <div class="container">
+        <!-- Safe inside application container header corner alignment -->
+        <div class="theme-toggle-container">
+            <button class="theme-btn" onclick="toggleGlobalThemeSystem()" title="Switch Design Spectrum">
+                <i class="fa-solid fa-circle-half-stroke"></i>
+            </button>
+        </div>
+
+        <!-- FIXED SUBTITLE WITH SITE POWERED-BY BRANDING INTEGRATION -->
+<header>
+            <h1>CHRONOS</h1>
+            <p>Advanced Intelligence Chronological Metrics & Comparison Suite — <a href="https://munendra5singh.github.io/FreeCourseHub/" target="_blank" rel="noopener noreferrer" style="color: var(--secondary); text-decoration: none; font-weight: 600; border-bottom: 1px dashed var(--secondary); transition: all 0.2s ease;">Powered by FreeCourseHub</a></p>
+        </header>
+
+        <div class="mode-toggle-container">
+            <div class="toggle-box">
+                <button class="toggle-btn active" id="btnSingleMode" onclick="switchMode('single')">Single Age Insight</button>
+                <button class="toggle-btn" id="btnCompareMode" onclick="switchMode('compare')">Compare Two Peoples</button>
+            </div>
+        </div>
+
+        <div class="grid-inputs">
+            <div class="input-group">
+                <label for="userNameInput1"><i class="fa-solid fa-signature"></i> Profile Name</label>
+                <input type="text" id="userNameInput1" placeholder="Enter name (e.g. Munendra)">
+            </div>
+            <div class="input-group" id="user2NameBlock" style="display: none;">
+                <label for="userNameInput2"><i class="fa-solid fa-signature"></i> Person 2 Name</label>
+                <input type="text" id="userNameInput2" placeholder="Enter name (e.g. Rahul)">
+            </div>
+        </div>
+
+        <div class="grid-inputs">
+            <div class="input-group">
+                <label id="lblDob1" for="dob1"><i class="fa-solid fa-user"></i> Date of Birth</label>
+                <input type="date" id="dob1">
+            </div>
+
+            <div class="input-group" id="targetInputBlock">
+                <label for="targetDate"><i class="fa-solid fa-calendar-day"></i> Target Date (Optional)</label>
+                <input type="date" id="targetDate">
+            </div>
+
+            <div class="input-group" id="comparisonInputBlock">
+                <label for="dob2"><i class="fa-solid fa-user-group"></i> Person 2 Birth Date</label>
+                <input type="date" id="dob2">
+            </div>
+        </div>
+
+        <div class="btn-panel">
+            <button class="action-btn btn-calc" onclick="processEngine()"><i class="fa-solid fa-chart-simple"></i> Run Analytics</button>
+            <button class="action-btn btn-reset" onclick="clearUniverse()"><i class="fa-solid fa-arrow-rotate-left"></i> Reset</button>
+        </div>
+
+        <!-- OUTPUT VIEW 1: SINGLE INSIGHT -->
+        <div class="view-section" id="singleViewPanel">
+            <div class="hero-metric-card">
+                <button class="copy-floating-btn" onclick="copySingleAge()" title="Copy Breakdown"><i class="fa-solid fa-share-nodes"></i></button>
+                <p id="lblHeroHeadline" style="color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px;">Chronological Age Standings</p>
+                <div class="hero-numbers">
+                    <div class="num-box"><h2 id="sYear">0</h2><p>Years</p></div>
+                    <div class="num-box"><h2 id="sMonth">0</h2><p>Months</p></div>
+                    <div class="num-box"><h2 id="sDay">0</h2><p>Days</p></div>
+                </div>
+            </div>
+
+            <h3 class="section-headline"><i class="fa-solid fa-stopwatch"></i> Live Celebration Countdown</h3>
+            <div class="split-columns" style="margin-bottom: 30px;">
+                <div class="glass-card">
+                    <div class="card-title-bar"><i class="fa-solid fa-hourglass-half"></i><h3>Time Remaining</h3></div>
+                    <div class="premium-countdown-container">
+                        <div class="countdown-segment-card" id="cardCdDays"><span class="countdown-val" id="premiumCdDays">00</span><span class="countdown-lbl">Days</span></div>
+                        <div class="countdown-segment-card" id="cardCdHours"><span class="countdown-val" id="premiumCdHours">00</span><span class="countdown-lbl">Hours</span></div>
+                        <div class="countdown-segment-card" id="cardCdMins"><span class="countdown-val" id="premiumCdMins">00</span><span class="countdown-lbl">Mins</span></div>
+                        <div class="countdown-segment-card" id="cardCdSecs"><span class="countdown-val" id="premiumCdSecs">00</span><span class="countdown-lbl">Secs</span></div>
+                    </div>
+                </div>
+                <div class="glass-card">
+                    <div class="card-title-bar"><i class="fa-solid fa-cake-candles"></i><h3>Next Birthday Information</h3></div>
+                    <div class="data-row"><span class="data-label">Target Date</span><span class="data-val" id="lblBdayInfoDate">-- -- ----</span></div>
+                    <div class="data-row"><span class="data-label">Day of Week</span><span class="data-val" id="lblBdayInfoDay">--</span></div>
+                    <div class="data-row"><span class="data-label">Remaining Space</span><span class="data-val" id="lblBdayInfoDaysLeft">0 Days</span></div>
+                </div>
+            </div>
+
+            <h3 class="section-headline"><i class="fa-solid fa-compass"></i> Macro Life Journey Map</h3>
+            <div class="glass-card" style="margin-bottom: 30px;">
+                <div class="progress-meta">
+                    <span class="data-label">Actuarial Journey Progress</span>
+                    <span class="data-val" id="lblProgressPercentage">0.00%</span>
+                </div>
+                <div class="progress-track-wrapper">
+                    <div class="progress-bar-fill" id="barLifeJourneyFill"></div>
+                </div>
+                <div class="split-columns" style="gap:15px;">
+                    <div class="data-row" style="background:rgba(0,0,0,0.02); padding:10px 15px; border-radius:12px;"><span class="data-label">Estimated Left (Years)</span><span class="data-val" id="lblProgressYrsLeft">0</span></div>
+                    <div class="data-row" style="background:rgba(0,0,0,0.02); padding:10px 15px; border-radius:12px;"><span class="data-label">Estimated Left (Months)</span><span class="data-val" id="lblProgressMthsLeft">0</span></div>
+                </div>
+            </div>
+
+            <h3 class="section-headline"><i class="fa-solid fa-fingerprint"></i> Celestial Alignment Profile</h3>
+            <div class="profile-badges-grid" style="margin-bottom:30px;">
+                <div class="profile-tile"><i class="fa-solid fa-calendar-day"></i><span class="tile-label">Born On</span><span class="tile-value" id="cWeekday">-</span></div>
+                <div class="profile-tile"><i class="fa-solid fa-sun"></i><span class="tile-label">Zodiac Sign</span><span class="tile-value" id="cZodiac">-</span></div>
+                <div class="profile-tile"><i class="fa-solid fa-dragon"></i><span class="tile-label">Chinese Zodiac</span><span class="tile-value" id="cChinese">-</span></div>
+                <div class="profile-tile"><i class="fa-solid fa-gem"></i><span class="tile-label">Birthstone</span><span class="tile-value" id="cStone">-</span></div>
+                <div class="profile-tile"><i class="fa-solid fa-clover"></i><span class="tile-label">Lucky Number</span><span class="tile-value" id="cLuckyNum">-</span></div>
+                <div class="profile-tile"><i class="fa-solid fa-cloud-sun"></i><span class="tile-label">Birth Season</span><span class="tile-value" id="cSeason">-</span></div>
+            </div>
+
+            <div class="grid-cards">
+                <div class="glass-card">
+                    <div class="card-title-bar"><i class="fa-solid fa-timeline"></i><h3>Lifespan Metrics</h3></div>
+                    <div class="data-row"><span class="data-label">Total Months</span><span class="data-val" id="mTotalMonths">0</span></div>
+                    <div class="data-row"><span class="data-label">Total Weeks</span><span class="data-val" id="mTotalWeeks">0</span></div>
+                    <div class="data-row"><span class="data-label">Total Days</span><span class="data-val" id="mTotalDays">0</span></div>
+                    <div class="data-row"><span class="data-label">Total Hours</span><span class="data-val" id="mTotalHours">0</span></div>
+                    <div class="data-row"><span class="data-label">Live Seconds Tracker</span><span class="data-val ticker-highlight" id="mLiveSeconds">0</span></div>
+                </div>
+
+                <div class="glass-card">
+                    <div class="card-title-bar"><i class="fa-solid fa-atom"></i><h3>Advanced Cosmic Insights</h3></div>
+                    <div class="data-row"><span class="data-label">Estimated Heartbeats</span><span class="data-val" id="bHeart">0</span></div>
+                    <div class="data-row"><span class="data-label">Earth Revolutions</span><span class="data-val" id="bRevolutions">0</span></div>
+                    <div class="data-row"><span class="data-label">Moon Cycles Lived</span><span class="data-val" id="bMoonCycles">0</span></div>
+                    <div class="data-row"><span class="data-label">Estimated Hours Asleep</span><span class="data-val" id="bSleep">0</span></div>
+                    <div class="data-row"><span class="data-label">Estimated Steps Taken</span><span class="data-val" id="bSteps">0</span></div>
+                    <div class="data-row"><span class="data-label">Weekends Lived</span><span class="data-val" id="bWeekends">0</span></div>
+                    <div class="data-row" style="display:none;"><span class="data-label">Next Birthday Weekday</span><span class="data-val" id="nWeekday">-</span></div>
+                    <div class="data-row" style="display:none;"><span class="data-label">Leap Years Witnessed</span><span class="data-val" id="bLeap">0</span></div>
+                    <div class="data-row" style="display:none;"><span class="data-label">Next Birthday Countdown</span><span class="data-val" id="nCountdown">-</span></div>
+                </div>
+
+                <div class="share-composer-card">
+                    <div class="wrapped-logo">CHRONOS WRAPPED</div>
+                    <div class="wrapped-title" id="lblWrappedTitle">Your <span>Chronological</span> Archetype Snapshot</div>
+                    <div class="wrapped-stat-item"><div class="wrapped-stat-lbl">Days on Earth</div><div class="wrapped-stat-val" id="wrapDays">0</div></div>
+                    <div class="wrapped-stat-item"><div class="wrapped-stat-lbl">Zodiac Affinity</div><div class="wrapped-stat-val" id="wrapZodiac">-</div></div>
+                    <div class="wrapped-stat-item"><div class="wrapped-stat-lbl">Total Heartbeats</div><div class="wrapped-stat-val" id="wrapHeart">0</div></div>
+                    
+                    <div style="margin-top:10px; display:flex; gap:10px; align-items:center;">
+                        <span style="font-size:0.75rem; font-weight:700; color:#94a3b8;">Format:</span>
+                        <select id="exportAspectSelection" class="export-resolution-selector">
+                            <option value="square">Square (1080×1080)</option>
+                            <option value="story">Story (1080×1920)</option>
+                            <option value="landscape">Landscape (1200×630)</option>
+                        </select>
+                    </div>
+
+                    <div class="share-btn-row">
+                        <button class="share-action-trigger download-trigger" onclick="generatePremiumWrappedCardAsset()"><i class="fa-solid fa-download"></i> Save Card</button>
+                        <button class="share-action-trigger" onclick="triggerNativeAppShare('instagram')"><i class="fa-brands fa-instagram"></i> Story</button>
+                        <button class="share-action-trigger" onclick="triggerNativeAppShare('whatsapp')"><i class="fa-brands fa-whatsapp"></i> Share</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- OUTPUT VIEW 2: SIDE-BY-SIDE COMPARISON PANEL -->
+        <div class="view-section" id="comparisonViewPanel">
+            <div class="comparison-layout">
+                
+                <div class="gap-verdict-banner">
+                    <h4 id="lblBattleArenaTitle">Age Gap Verdict</h4>
+                    <p id="comparisonVerdictText">Select Dates to Analyze Differences</p>
+                </div>
+
+                <div class="split-columns">
+                    <div class="person-hero-card" id="cardP1">
+                        <div class="p-name" id="lblP1CardHeader">First Person Profile</div>
+                        <div class="p-age-string" id="p1AgeString">0 Years, 0 Months, 0 Days</div>
+                    </div>
+
+                    <div class="person-hero-card" id="cardP2">
+                        <div class="p-name" id="lblP2CardHeader">Second Person Profile</div>
+                        <div class="p-age-string" id="p2AgeString">0 Years, 0 Months, 0 Days</div>
+                    </div>
+                </div>
+
+                <div class="gap-visual-meter-wrapper">
+                    <h3 class="section-headline" style="margin-top:0;"><i class="fa-solid fa-chart-bar"></i> Granular Age Gap Visualization</h3>
+                    <div class="gap-metric-bar-group">
+                        <div class="gap-bar-label"><span class="data-label">Years Segment</span><span class="data-val" id="gapBarValY">0</span></div>
+                        <div class="gap-bar-track"><div class="gap-bar-fill-indicator" id="gapBarFillY" style="background:#6366f1;"></div></div>
+                    </div>
+                    <div class="gap-metric-bar-group">
+                        <div class="gap-bar-label"><span class="data-label">Months Segment</span><span class="data-val" id="gapBarValM">0</span></div>
+                        <div class="gap-bar-track"><div class="gap-bar-fill-indicator" id="gapBarFillM" style="background:#a855f7;"></div></div>
+                    </div>
+                    <div class="gap-metric-bar-group" style="margin-bottom:0;">
+                        <div class="gap-bar-label"><span class="data-label">Days Segment</span><span class="data-val" id="gapBarValD">0</span></div>
+                        <div class="gap-bar-track"><div class="gap-bar-fill-indicator" id="gapBarFillD" style="background:#ec4899;"></div></div>
+                    </div>
+                </div>
+
+                <div class="gap-visual-meter-wrapper">
+                    <h3 class="section-headline" style="margin-top:0;"><i class="fa-solid fa-handfist"></i> Metric Experience Battle Arena</h3>
+                    <table class="battle-comparison-table">
+                        <thead>
+                            <tr><th>Experience Node</th><th id="lblThP1">Person 1</th><th id="lblThP2">Person 2</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="battle-row-title">Total Heartbeats</td><td id="battleP1Heart">0</td><td id="battleP2Heart">0</td></tr>
+                            <tr><td class="battle-row-title">Earth Revolutions</td><td id="battleP1Rev">0</td><td id="battleP2Rev">0</td></tr>
+                            <tr><td class="battle-row-title">Moon Cycles</td><td id="battleP1Moon">0</td><td id="battleP2Moon">0</td></tr>
+                            <tr><td class="battle-row-title">Birthdays Celebrated</td><td id="battleP1Bday">0</td><td id="battleP2Bday">0</td></tr>
+                            <tr><td class="battle-row-title">Weekends Experienced</td><td id="battleP1Wknd">0</td><td id="battleP2Wknd">0</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="timeline-graphic-card">
+                    <h3 class="section-headline" style="margin-top:0;"><i class="fa-solid fa-timeline"></i> Relative Lifespan Timeline Lane</h3>
+                    <div class="timeline-track-lane" style="height:80px;">
+                        <div class="timeline-base-line"></div>
+                        <div class="timeline-progress-segment" id="tlP1Track" style="background:rgba(99,102,241,0.3); left:0;"></div>
+                        <div class="timeline-progress-segment" id="tlP2Track" style="background:rgba(236,72,153,0.3); left:0;"></div>
+                        <div class="timeline-node-pin" id="tlP1Pin" style="background:#6366f1; left:0;"><span class="timeline-lbl-tag" id="lblTlP1Tag" style="color:#6366f1;">P1 Birth</span></div>
+                        <div class="timeline-node-pin" id="tlP2Pin" style="background:#ec4899; left:0;"><span class="timeline-lbl-tag" id="lblTlP2Tag" style="color:#ec4899;">P2 Birth</span></div>
+                        <div class="timeline-node-pin" style="background:var(--success); left:100%;"><span class="timeline-lbl-tag" style="color:var(--success); transform:translateX(-100%);">Today</span></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="toast" id="globalToast"><i class="fa-solid fa-bolt"></i> <span id="toastMessageText">Action Complete</span></div>
+
+    <script>
+        let selectedMode = 'single';
+        let metricsLoopTimer = null;
+        let countdownLiveInterval = null;
+
+        const maxTodayStr = new Date().toISOString().split('T')[0];
+        document.getElementById('dob1').setAttribute('max', maxTodayStr);
+        document.getElementById('dob2').setAttribute('max', maxTodayStr);
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const cacheDob = localStorage.getItem('chronos_dob');
+            if(cacheDob) {
+                document.getElementById('dob1').value = cacheDob;
+                processEngine();
+            }
+        });
+
+        function toggleGlobalThemeSystem() {
+            const bodyEl = document.body;
+            const currentTheme = bodyEl.getAttribute('data-theme');
+            const targetTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            bodyEl.setAttribute('data-theme', targetTheme);
+            triggerToast(`Synchronized to ${targetTheme.toUpperCase()} mode asset metrics!`);
+        }
+
+        // Core Layout switch and state initialization
+        function switchMode(mode) {
+            selectedMode = mode;
+            if (metricsLoopTimer) clearInterval(metricsLoopTimer);
+            if (countdownLiveInterval) clearInterval(countdownLiveInterval);
+
+            const btnS = document.getElementById('btnSingleMode');
+            const btnC = document.getElementById('btnCompareMode');
+            const targetBlock = document.getElementById('targetInputBlock');
+            const compareBlock = document.getElementById('comparisonInputBlock');
+            const lblDob1 = document.getElementById('lblDob1');
+            const user2NameBlock = document.getElementById('user2NameBlock');
+
+            document.getElementById('singleViewPanel').classList.remove('active');
+            document.getElementById('comparisonViewPanel').classList.remove('active');
+
+            if (mode === 'single') {
+                btnS.classList.add('active');
+                btnC.classList.remove('active');
+                targetBlock.style.display = 'flex';
+                compareBlock.style.display = 'none';
+                user2NameBlock.style.display = 'none';
+                lblDob1.innerHTML = `<i class="fa-solid fa-user"></i> Date of Birth`;
+            } else {
+                btnC.classList.add('active');
+                btnS.classList.remove('active');
+                targetBlock.style.display = 'none';
+                compareBlock.style.display = 'flex';
+                user2NameBlock.style.display = 'flex';
+                lblDob1.innerHTML = `<i class="fa-solid fa-user"></i> Person 1 Birth Date`;
+            }
+        }
+
+        function processEngine() {
+            const d1 = document.getElementById('dob1');
+            const d2 = document.getElementById('dob2');
+
+            d1.classList.remove('error-border');
+            d2.classList.remove('error-border');
+
+            if (!d1.value) {
+                d1.classList.add('error-border');
+                triggerToast("Missing profile date parameters!", true);
+                return;
+            }
+
+            if (selectedMode === 'single') {
+                localStorage.setItem('chronos_dob', d1.value);
+                runSingleMetricsEngine();
+            } else {
+                if (!d2.value) {
+                    d2.classList.add('error-border');
+                    triggerToast("Please enter Person 2 Birth Date!", true);
+                    return;
+                }
+                runComparisonMetricsEngine();
+            }
+        }
+
+        function runSingleMetricsEngine() {
+            if (metricsLoopTimer) clearInterval(metricsLoopTimer);
+            if (countdownLiveInterval) clearInterval(countdownLiveInterval);
+            
+            const birthDate = new Date(document.getElementById('dob1').value);
+            const targetInputVal = document.getElementById('targetDate').value;
+            
+            let rawName = document.getElementById('userNameInput1').value.trim();
+            let resolvedName = rawName ? rawName.toUpperCase() : "YOUR";
+            
+            document.getElementById('lblHeroHeadline').innerText = resolvedName === "YOUR" ? "CHRONOLOGICAL AGE STANDINGS" : `${resolvedName}'S CHRONOLOGICAL AGE STANDINGS`;
+            document.getElementById('lblWrappedTitle').innerHTML = resolvedName === "YOUR" ? "Your <span>Chronological</span> Archetype Snapshot" : `${resolvedName}'S <span>Chronological</span> Archetype Snapshot`;
+
+            const handleCalculation = () => {
+                const currentEnd = targetInputVal ? new Date(targetInputVal) : new Date();
+                let diffs = calculateAgeDifferenceToken(birthDate, currentEnd);
+                
+                document.getElementById('sYear').innerText = diffs.y;
+                document.getElementById('sMonth').innerText = diffs.m;
+                document.getElementById('sDay').innerText = diffs.d;
+
+                const deltaMs = currentEnd - birthDate;
+                const secs = Math.floor(deltaMs / 1000);
+                const mins = Math.floor(secs / 60);
+                const hrs = Math.floor(mins / 60);
+                const dys = Math.floor(hrs / 24);
+                
+                document.getElementById('mTotalMonths').innerText = ((diffs.y * 12) + diffs.m).toLocaleString();
+                document.getElementById('mTotalWeeks').innerText = Math.floor(dys / 7).toLocaleString();
+                document.getElementById('mTotalDays').innerText = dys.toLocaleString();
+                document.getElementById('mTotalHours').innerText = hrs.toLocaleString();
+                document.getElementById('mLiveSeconds').innerText = secs.toLocaleString();
+
+                document.getElementById('bRevolutions').innerText = diffs.y;
+                document.getElementById('bMoonCycles').innerText = Math.floor(dys / 29.53).toLocaleString();
+                document.getElementById('bSleep').innerText = Math.floor(hrs * 0.33).toLocaleString();
+                document.getElementById('bSteps').innerText = Math.floor(dys * 4800).toLocaleString();
+                document.getElementById('bWeekends').innerText = Math.floor(dys / 7 * 2).toLocaleString();
+
+                document.getElementById('wrapDays').innerText = dys.toLocaleString();
+                document.getElementById('wrapHeart').innerText = (mins * 72).toLocaleString();
+
+                const m = birthDate.getMonth() + 1;
+                const d = birthDate.getDate();
+                const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+                const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                
+                const currentZodiac = getZodiac(d, m);
+                document.getElementById('cZodiac').innerText = currentZodiac;
+                document.getElementById('wrapZodiac').innerText = currentZodiac;
+                document.getElementById('cChinese').innerText = getChineseZodiac(birthDate.getFullYear());
+                document.getElementById('cStone').innerText = getBirthstone(m);
+                document.getElementById('cWeekday').innerText = weekdays[birthDate.getDay()];
+                document.getElementById('cLuckyNum').innerText = (birthDate.getFullYear() % 9) + 1;
+                
+                const seasons = ["Winter ❄️", "Spring 🌱", "Summer ☀️", "Autumn 🍂"];
+                document.getElementById('cSeason').innerText = seasons[Math.floor((m % 12) / 3)];
+
+                const baselineMax = 82;
+                let currentProgress = Math.min((diffs.y / baselineMax) * 100, 100);
+                document.getElementById('lblProgressPercentage').innerText = currentProgress.toFixed(2) + "%";
+                document.getElementById('barLifeJourneyFill').style.width = currentProgress + "%";
+                document.getElementById('lblProgressYrsLeft').innerText = Math.max(0, baselineMax - diffs.y);
+                document.getElementById('lblProgressMthsLeft').innerText = Math.max(0, (baselineMax - diffs.y) * 12);
+
+                let nextBday = new Date(currentEnd.getFullYear(), birthDate.getMonth(), birthDate.getDate());
+                if(nextBday < currentEnd && !targetInputVal) nextBday.setFullYear(currentEnd.getFullYear() + 1);
+                
+                let nextDiff = nextBday - currentEnd;
+                let nextDays = Math.ceil(nextDiff / (1000*60*60*24));
+                if(nextDays === 366 || nextDays === 0) nextDays = 0;
+
+                document.getElementById('nCountdown').innerText = nextDays === 0 ? "Today! 🎉" : `${nextDays} Days left`;
+                document.getElementById('nWeekday').innerText = weekdays[nextBday.getDay()];
+                document.getElementById('bHeart').innerText = (mins * 72).toLocaleString();
+
+                document.getElementById('lblBdayInfoDate').innerText = `${String(birthDate.getDate()).padStart(2, '0')} ${monthNames[birthDate.getMonth()]} ${nextBday.getFullYear()}`;
+                document.getElementById('lblBdayInfoDay').innerText = weekdays[nextBday.getDay()];
+                document.getElementById('lblBdayInfoDaysLeft').innerText = nextDays === 0 ? "Today! 🎉" : `${nextDays} Days`;
+
+                let leaps = 0;
+                for(let y = birthDate.getFullYear(); y <= currentEnd.getFullYear(); y++) {
+                    if((y%4===0 && y%100!==0) || (y%400===0)) leaps++;
+                }
+                document.getElementById('bLeap').innerText = leaps;
+            };
+
+            const launchCountdownEngine = () => {
+                const birthDate = new Date(document.getElementById('dob1').value);
+                const now = new Date();
+                let nextBday = new Date(now.getFullYear(), birthDate.getMonth(), birthDate.getDate());
+                if (nextBday < now) nextBday.setFullYear(now.getFullYear() + 1);
+
+                let duration = nextBday - now;
+                
+                let days = Math.floor(duration / (1000 * 60 * 60 * 24));
+                let hours = Math.floor((duration % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                let mins = Math.floor((duration % (1000 * 60 * 60)) / (1000 * 60));
+                let secs = Math.floor((duration % (1000 * 60)) / 1000);
+
+                document.getElementById('premiumCdDays').innerText = String(days).padStart(2, '0');
+                document.getElementById('premiumCdHours').innerText = String(hours).padStart(2, '0');
+                document.getElementById('premiumCdMins').innerText = String(mins).padStart(2, '0');
+                document.getElementById('premiumCdSecs').innerText = String(secs).padStart(2, '0');
+
+                const cards = ['cardCdDays', 'cardCdHours', 'cardCdMins', 'cardCdSecs'];
+                cards.forEach(id => {
+                    const el = document.getElementById(id);
+                    el.classList.remove('warning-glow', 'danger-glow');
+                    if (days <= 7) el.classList.add('danger-glow');
+                    else if (days <= 30) el.classList.add('warning-glow');
+                });
+            };
+
+            handleCalculation();
+            launchCountdownEngine();
+
+            if (!targetInputVal) {
+                metricsLoopTimer = setInterval(handleCalculation, 1000);
+                countdownLiveInterval = setInterval(launchCountdownEngine, 1000);
+            }
+
+            document.getElementById('singleViewPanel').classList.add('active');
+        }
+
+        function runComparisonMetricsEngine() {
+            const p1Date = new Date(document.getElementById('dob1').value);
+            const p2Date = new Date(document.getElementById('dob2').value);
+            const genericNow = new Date();
+
+            let rawName1 = document.getElementById('userNameInput1').value.trim();
+            let resolvedName1 = rawName1 ? rawName1.toUpperCase() : "MUNENDRA";
+            let rawName2 = document.getElementById('userNameInput2').value.trim();
+            let resolvedName2 = rawName2 ? rawName2.toUpperCase() : "RAHUL";
+
+            document.getElementById('lblBattleArenaTitle').innerText = `${resolvedName1} VS ${resolvedName2} AGE BATTLE`;
+            document.getElementById('lblP1CardHeader').innerText = `${resolvedName1} PROFILE`;
+            document.getElementById('lblP2CardHeader').innerText = `${resolvedName2} PROFILE`;
+            document.getElementById('lblThP1').innerText = resolvedName1;
+            document.getElementById('lblThP2').innerText = resolvedName2;
+            document.getElementById('lblTlP1Tag').innerText = `${resolvedName1} BIRTH`;
+            document.getElementById('lblTlP2Tag').innerText = `${resolvedName2} BIRTH`;
+
+            let p1Age = calculateAgeDifferenceToken(p1Date, genericNow);
+            let p2Age = calculateAgeDifferenceToken(p2Date, genericNow);
+
+            document.getElementById('p1AgeString').innerText = `${p1Age.y} Years, ${p1Age.m} Months, ${p1Age.d} Days`;
+            document.getElementById('p2AgeString').innerText = `${p2Age.y} Years, ${p2Age.m} Months, ${p2Age.d} Days`;
+
+            const p1Days = Math.floor((genericNow - p1Date) / (1000*60*60*24));
+            const p2Days = Math.floor((genericNow - p2Date) / (1000*60*60*24));
+
+            document.getElementById('battleP1Heart').innerHTML = Math.floor(p1Days * 24 * 60 * 72).toLocaleString();
+            document.getElementById('battleP2Heart').innerHTML = Math.floor(p2Days * 24 * 60 * 72).toLocaleString();
+            document.getElementById('battleP1Rev').innerHTML = p1Age.y;
+            document.getElementById('battleP2Rev').innerHTML = p2Age.y;
+            document.getElementById('battleP1Moon').innerHTML = Math.floor(p1Days / 29.5).toLocaleString();
+            document.getElementById('battleP2Moon').innerHTML = Math.floor(p2Days / 29.5).toLocaleString();
+            document.getElementById('battleP1Bday').innerHTML = p1Age.y;
+            document.getElementById('battleP2Bday').innerHTML = p2Age.y;
+            document.getElementById('battleP1Wknd').innerHTML = Math.floor(p1Days / 7 * 2).toLocaleString();
+            document.getElementById('battleP2Wknd').innerHTML = Math.floor(p2Days / 7 * 2).toLocaleString();
+
+            const appendBadge = (id1, id2, val1, val2) => {
+                if (val1 > val2) document.getElementById(id1).innerHTML += ` <span class="winner-badge-pill"><i class="fa-solid fa-trophy"></i> Win</span>`;
+                else if (val2 > val1) document.getElementById(id2).innerHTML += ` <span class="winner-badge-pill"><i class="fa-solid fa-trophy"></i> Win</span>`;
+            }
+            appendBadge('battleP1Heart', 'battleP2Heart', p1Days, p2Days);
+            appendBadge('battleP1Rev', 'battleP2Rev', p1Age.y, p2Age.y);
+            appendBadge('battleP1Moon', 'battleP2Moon', p1Days, p2Days);
+            appendBadge('battleP1Bday', 'battleP2Bday', p1Age.y, p2Age.y);
+            appendBadge('battleP1Wknd', 'battleP2Wknd', p1Days, p2Days);
+
+            const c1 = document.getElementById('cardP1');
+            const c2 = document.getElementById('cardP2');
+            c1.classList.remove('lead-card');
+            c2.classList.remove('lead-card');
+
+            let older, younger, olderDate, youngerDate;
+            if(p1Date < p2Date) {
+                c1.classList.add('lead-card');
+                older = resolvedName1; younger = resolvedName2;
+                olderDate = p1Date; youngerDate = p2Date;
+            } else if(p2Date < p1Date) {
+                c2.classList.add('lead-card');
+                older = resolvedName2; younger = resolvedName1;
+                olderDate = p2Date; youngerDate = p1Date;
+            } else {
+                document.getElementById('comparisonVerdictText').innerText = "Both profiles possess identical structural twin age loops!";
+                document.getElementById('gapBarFillY').style.width = "0%";
+                document.getElementById('gapBarFillM').style.width = "0%";
+                document.getElementById('gapBarFillD').style.width = "0%";
+                document.getElementById('comparisonViewPanel').classList.add('active');
+                return;
+            }
+
+            let gap = calculateAgeDifferenceToken(olderDate, youngerDate);
+            document.getElementById('comparisonVerdictText').innerText = `${older} is older than ${younger} by ${gap.y} Years, ${gap.m} Months, and ${gap.d} Days`;
+
+            document.getElementById('gapBarValY').innerText = gap.y + " Years";
+            document.getElementById('gapBarValM').innerText = gap.m + " Months";
+            document.getElementById('gapBarValD').innerText = gap.d + " Days";
+            document.getElementById('gapBarFillY').style.width = Math.min((gap.y / 10), 100) + "%";
+            document.getElementById('gapBarFillM').style.width = (gap.m / 12 * 100) + "%";
+            document.getElementById('gapBarFillD').style.width = (gap.d / 31 * 100) + "%";
+
+            const maxTrackMs = genericNow - Math.min(p1Date, p2Date);
+            const p1OffsetPct = ((genericNow - p1Date) / maxTrackMs) * 100;
+            const p2OffsetPct = ((genericNow - p2Date) / maxTrackMs) * 100;
+
+            document.getElementById('tlP1Pin').style.left = (100 - p1OffsetPct) + "%";
+            document.getElementById('tlP2Pin').style.left = (100 - p2OffsetPct) + "%";
+            document.getElementById('tlP1Track').style.left = (100 - p1OffsetPct) + "%";
+            document.getElementById('tlP1Track').style.width = p1OffsetPct + "%";
+            document.getElementById('tlP2Track').style.left = (100 - p2OffsetPct) + "%";
+            document.getElementById('tlP2Track').style.width = p2OffsetPct + "%";
+
+            document.getElementById('comparisonViewPanel').classList.add('active');
+        }
+
+        function calculateAgeDifferenceToken(start, end) {
+            let years = end.getFullYear() - start.getFullYear();
+            let months = end.getMonth() - start.getMonth();
+            let days = end.getDate() - start.getDate();
+
+            if (days < 0) {
+                months--;
+                let prevMonth = new Date(end.getFullYear(), end.getMonth(), 0);
+                days += prevMonth.getDate();
+            }
+            if (months < 0) {
+                years--;
+                months += 12;
+            }
+            return { y: years, m: months, d: days };
+        }
+
+        function getZodiac(d, m) {
+            const signs = ["Capricorn", "Aquarius", "Pisces", "Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius"];
+            const cuts = [20, 19, 21, 20, 21, 21, 23, 23, 23, 23, 22, 22];
+            return (d < cuts[m - 1]) ? signs[m - 1] : signs[m % 12];
+        }
+
+        // Structural Astro Engine Computations
+        function getChineseZodiac(y) {
+            const anims = ["Rat 🐭", "Ox 🐂", "Tiger 🐯", "Rabbit 🐰", "Dragon 🐲", "Snake 🐍", "Horse 🐴", "Goat 🐐", "Monkey 🐵", "Rooster 🐓", "Dog 🐶", "Pig 🐷"];
+            return anims[(y - 4) % 12];
+        }
+
+        function getBirthstone(m) {
+            const stones = ["Garnet", "Amethyst", "Aquamarine", "Diamond", "Emerald", "Pearl", "Ruby", "Peridot", "Sapphire", "Opal", "Topaz", "Turquoise"];
+            return stones[m - 1];
+        }
+
+        function triggerToast(text, isErr = false) {
+            const toast = document.getElementById('globalToast');
+            const msg = document.getElementById('toastMessageText');
+            toast.style.background = isErr ? "var(--danger)" : "var(--success)";
+            msg.innerText = text;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3500);
+        }
+
+        function copySingleAge() {
+            const y = document.getElementById('sYear').innerText;
+            const m = document.getElementById('sMonth').innerText;
+            const d = document.getElementById('sDay').innerText;
+            let rawName = document.getElementById('userNameInput1').value.trim();
+            let namePart = rawName ? `${rawName.toUpperCase()}'S` : "My";
+            const text = `${namePart} precise age breakdown: ${y} Years, ${m} Months, and ${d} Days! Processed via Chronos Premium Age Dashboard.`;
+            navigator.clipboard.writeText(text).then(() => {
+                triggerToast("Age matrix details copied smoothly!");
+            });
+        }
+
+        // ==========================================================================
+        // HIGH FIDELITY CANVAS ASSET GENERATOR (DYNAMIC TEXT WRAPPING MECHANISM)
+        // ==========================================================================
+        function generatePremiumWrappedCardAsset() {
+            const y = document.getElementById('sYear').innerText;
+            const m = document.getElementById('sMonth').innerText;
+            const d = document.getElementById('sDay').innerText;
+            const dys = document.getElementById('wrapDays').innerText;
+            const zodiac = document.getElementById('wrapZodiac').innerText;
+            const heart = document.getElementById('wrapHeart').innerText;
+            
+            let rawName = document.getElementById('userNameInput1').value.trim();
+            let resolvedName = rawName ? rawName.toUpperCase() : "YOUR";
+
+            const canvas = document.createElement('canvas');
+            const mode = document.getElementById('exportAspectSelection').value;
+            
+            if (mode === 'story') {
+                canvas.width = 1080; canvas.height = 1920;
+            } else if (mode === 'landscape') {
+                canvas.width = 1200; canvas.height = 630;
+            } else {
+                canvas.width = 1080; canvas.height = 1080;
+            }
+            
+            const ctx = canvas.getContext('2d');
+            const W = canvas.width;
+            const H = canvas.height;
+
+            let bgGrad = ctx.createLinearGradient(0, 0, W, H);
+            bgGrad.addColorStop(0, '#0f172a');
+            bgGrad.addColorStop(1, '#1e1b4b');
+            ctx.fillStyle = bgGrad;
+            ctx.fillRect(0, 0, W, H);
+
+            ctx.fillStyle = 'rgba(168, 85, 247, 0.12)';
+            ctx.beginPath(); ctx.arc(W * 0.8, H * 0.2, W * 0.4, 0, Math.PI * 2); ctx.fill();
+            ctx.fillStyle = 'rgba(99, 102, 241, 0.08)';
+            ctx.beginPath(); ctx.arc(0, H, W * 0.5, 0, Math.PI * 2); ctx.fill();
+
+            let paddingX = W * 0.09;
+            let currentY = H * 0.12;
+            let fontMultiplier = W / 1080;
+
+            ctx.fillStyle = '#818cf8';
+            ctx.font = `bold ${Math.floor(26 * fontMultiplier)}px "Space Grotesk"`;
+            ctx.fillText('CHRONOS WRAPPED', paddingX, currentY);
+            
+            currentY += H * 0.07;
+
+            // DYNAMIC FONT SCALE WRAPPING BOX (FIX FOR TEXT WRAPPING DISCREPANCIES IN LANDSCAPE MODES)
+            ctx.fillStyle = '#ffffff';
+            ctx.font = `bold ${Math.floor(46 * fontMultiplier)}px "Plus Jakarta Sans"`;
+            
+            let fullTitleText = (resolvedName === "YOUR") ? "YOUR CHRONOLOGICAL ARCHETYPE SNAPSHOT" : `${resolvedName}'S CHRONOLOGICAL ARCHETYPE SNAPSHOT`;
+            let words = fullTitleText.split(' ');
+            let line = '';
+            let maxWidth = W - (paddingX * 2);
+            let lineHeight = 60 * fontMultiplier;
+
+            for (let n = 0; n < words.length; n++) {
+                let testLine = line + words[n] + ' ';
+                let metrics = ctx.measureText(testLine);
+                let testWidth = metrics.width;
+                if (testWidth > maxWidth && n > 0) {
+                    ctx.fillText(line, paddingX, currentY);
+                    line = words[n] + ' ';
+                    currentY += lineHeight;
+                } else {
+                    line = testLine;
+                }
+            }
+            ctx.fillText(line, paddingX, currentY);
+            
+            currentY += H * 0.08;
+
+            const renderWrappedStatRowCanvas = (label, val, colorHex) => {
+                if (currentY > H * 0.85) return; 
+                
+                ctx.fillStyle = '#c084fc';
+                ctx.fillRect(paddingX, currentY - 26, 4, 46);
+
+                ctx.fillStyle = '#94a3b8';
+                ctx.font = `600 ${Math.floor(22 * fontMultiplier)}px "Plus Jakarta Sans"`;
+                ctx.fillText(label.toUpperCase(), paddingX + 22, currentY - 4);
+
+                ctx.fillStyle = colorHex;
+                ctx.font = `bold ${Math.floor(42 * fontMultiplier)}px "Space Grotesk"`;
+                ctx.fillText(val, paddingX + 22, currentY + 36);
+
+                currentY += (mode === 'landscape') ? H * 0.16 : H * 0.13;
+            };
+
+            renderWrappedStatRowCanvas("Days on Earth", `${dys} Days Lived`, '#ffffff');
+            renderWrappedStatRowCanvas("Zodiac Affinity", zodiac, '#818cf8');
+            renderWrappedStatRowCanvas("Total Heartbeats", `${heart} Beats`, '#ec4899');
+
+            // PERMANENT SYSTEM WATERMARK LOGO BINDING
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.25)';
+            ctx.font = `600 ${Math.floor(22 * fontMultiplier)}px "Space Grotesk"`;
+            ctx.textAlign = "right";
+            ctx.fillText("Deployed at FreeCourseHub", W - paddingX, H - 40);
+
+            const dataUrl = canvas.toDataURL('image/png');
+            const link = document.createElement('a');
+            link.download = `Chronos_Wrapped_${resolvedName}_${y}Yrs.png`;
+            link.href = dataUrl;
+            link.click();
+            triggerToast("High-resolution blueprint card saved smoothly!");
+        }
+
+        function triggerNativeAppShare(platform) {
+            const y = document.getElementById('sYear').innerText;
+            let rawName = document.getElementById('userNameInput1').value.trim();
+            let namePart = rawName ? `${rawName.toUpperCase()}'S` : "My";
+            const text = encodeURIComponent(`${namePart} precise age standing is ${y} Years! Track your premium chronological metrics instantly via Chronos.`);
+            let url = platform === 'whatsapp' ? `https://api.whatsapp.com/send?text=${text}` : `https://twitter.com/intent/tweet?text=${text}`;
+            window.open(url, '_blank');
+        }
+
+        function clearUniverse() {
+            if (metricsLoopTimer) clearInterval(metricsLoopTimer);
+            if (countdownLiveInterval) clearInterval(countdownLiveInterval);
+            document.getElementById('dob1').value = '';
+            document.getElementById('dob2').value = '';
+            document.getElementById('targetDate').value = '';
+            document.getElementById('userNameInput1').value = '';
+            document.getElementById('userNameInput2').value = '';
+            document.getElementById('singleViewPanel').classList.remove('active');
+            document.getElementById('comparisonViewPanel').classList.remove('active');
+            localStorage.removeItem('chronos_dob');
+            triggerToast("All environment setups have been reset.");
+        }
+    </script>
+</body>
+</html>
