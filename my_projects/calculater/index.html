@@ -4,362 +4,496 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>🧮 Munendra's Multi-Tool Box</title>
+  <!-- Google Fonts & Font Awesome Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
   <style>
-    /* Reset & Font */
+    :root {
+      --bg-page: #f8fafc;
+      --bg-surface: #ffffff;
+      --bg-widget: rgba(241, 245, 249, 0.6);
+      --border-color: rgba(15, 23, 42, 0.06);
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --accent-glow: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #c084fc 100%);
+      
+      /* Premium Tool Card Gradients */
+      --grad-diff: linear-gradient(135deg, #3b82f6, #1d4ed8);
+      --grad-date: linear-gradient(135deg, #10b981, #047857);
+      --grad-day: linear-gradient(135deg, #14b8a6, #0f766e);
+      --grad-bmi: linear-gradient(135deg, #f59e0b, #b45309);
+      --grad-emi: linear-gradient(135deg, #ec4899, #be185d);
+      --grad-gst: linear-gradient(135deg, #f97316, #c2410c);
+      --grad-age: linear-gradient(135deg, #8b5cf6, #6d28d9);
+    }
+
+    body.dark-mode {
+      --bg-page: #020617;
+      --bg-surface: rgba(15, 23, 42, 0.6);
+      --bg-widget: rgba(30, 41, 59, 0.5);
+      --border-color: rgba(255, 255, 255, 0.06);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
     }
 
     body {
-      background: #f0f2f5;
+      background: var(--bg-page);
+      color: var(--text-main);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 20px;
-      transition: background-color 0.3s ease, color 0.3s ease;
-      color: #222;
+      padding: 40px 20px;
+      transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow-x: hidden;
     }
 
-    body.dark-mode {
-      background: #121212;
-      color: #e0e0e0;
+    /* Ambient Decorative Glow Elements */
+    body::before, body::after {
+      content: '';
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      filter: blur(150px);
+      opacity: 0.15;
+      z-index: -1;
+      transition: opacity 0.4s;
     }
+    body::before { top: -10%; left: -10%; background: #4f46e5; }
+    body::after { bottom: -10%; right: -10%; background: #ec4899; }
+    body.dark-mode::before { opacity: 0.12; }
+    body.dark-mode::after { opacity: 0.08; }
 
     .container {
-      background: white;
-      padding: 35px 30px;
-      border-radius: 20px;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.06);
-      max-width: 600px; /* बटन बढ़ने के कारण चौड़ाई थोड़ी बढ़ाई गई है */
+      background: var(--bg-surface);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 40px;
+      border-radius: 28px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.04);
+      max-width: 900px;
       width: 100%;
-      text-align: center;
-      transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+      transition: background-color 0.4s, box-shadow 0.4s, border-color 0.4s;
+      animation: fadeInPage 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     }
-
     body.dark-mode .container {
-      background: #1e1e1e;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
     }
 
-    /* डैशबोर्ड सेक्शन (Live Clock) */
-    .dashboard {
-      background: #e8f4ff;
-      padding: 15px;
-      border-radius: 12px;
-      margin-bottom: 25px;
-      transition: background-color 0.3s ease;
-    }
-    body.dark-mode .dashboard {
-      background: #2a2a2a;
-    }
-    .dashboard .time {
-      font-size: 24px;
-      font-weight: 800;
-      color: #007bff;
-    }
-    body.dark-mode .dashboard .time {
-      color: #66ccff;
-    }
-    .dashboard .date {
-      font-size: 13px;
-      font-weight: 600;
-      color: #555;
-      margin-top: 4px;
-    }
-    body.dark-mode .dashboard .date {
-      color: #bbb;
-    }
-
-    h1 {
-      color: #111;
-      font-size: 26px;
-      margin-bottom: 4px;
-      font-weight: 700;
-    }
-
-    body.dark-mode h1 {
-      color: #fff;
-    }
-
-    .subtitle {
-      font-size: 14px;
-      color: #666;
-      margin-bottom: 20px;
-    }
-
-    body.dark-mode .subtitle {
-      color: #aaa;
-    }
-
-    /* बटन ग्रिड लेआउट - 2 Columns */
-    .button-group {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 15px;
-    }
-
-    .button {
+    /* Dashboard Premium Header */
+    .dashboard-header-card {
+      background: var(--bg-widget);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 20px 24px;
+      margin-bottom: 35px;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      padding: 16px 20px;
-      font-size: 15px;
-      font-weight: 700;
-      color: white;
-      border: none;
-      border-radius: 14px;
-      cursor: pointer;
-      width: 100%;
-      transition: all 0.25s ease-in-out;
-      text-decoration: none;
-    }
-
-    .btn-content {
-      display: flex;
       align-items: center;
-      text-align: left;
+      flex-wrap: wrap;
+      gap: 20px;
     }
 
-    .button .icon {
-      font-size: 22px;
-      margin-right: 12px;
+    .clock-widget {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
     }
 
-    .arrow-icon {
-      font-size: 16px;
-      opacity: 0.6;
-      transition: transform 0.2s ease;
+    .clock-widget .time {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      background: var(--accent-glow);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
-    .button:hover {
-      transform: translateY(-3px);
-    }
-    .button:hover .arrow-icon {
-      transform: translateX(4px);
-      opacity: 1;
-    }
-
-    /* पुराने ग्रेडिएंट कलर्स */
-    .btn-diff {
-      background: linear-gradient(135deg, #007bff, #0056b3);
-      box-shadow: 0 4px 15px rgba(0, 123, 255, 0.2);
-    }
-    .btn-diff:hover { box-shadow: 0 8px 25px rgba(0, 123, 255, 0.4); }
-
-    .btn-date {
-      background: linear-gradient(135deg, #28a745, #1e7e34);
-      box-shadow: 0 4px 15px rgba(40,167,69,0.2);
-    }
-    .btn-date:hover { box-shadow: 0 8px 25px rgba(40,167,69,0.4); }
-
-    .btn-day {
-      background: linear-gradient(135deg, #17a2b8, #117a8b);
-      box-shadow: 0 4px 15px rgba(23,162,184,0.2);
-    }
-    .btn-day:hover { box-shadow: 0 8px 25px rgba(23,162,184,0.4); }
-
-    /* नए कैल्कुलेटर के लिए प्रीमियम ग्रेडिएंट कलर्स */
-    .btn-bmi {
-      background: linear-gradient(135deg, #ffc107, #d39e00);
-      box-shadow: 0 4px 15px rgba(255,193,7,0.2);
-      color: #111; /* बेहतर दृश्यता के लिए काला टेक्स्ट */
-    }
-    .btn-bmi .arrow-icon { color: #111; }
-    .btn-bmi:hover { box-shadow: 0 8px 25px rgba(255,193,7,0.4); }
-
-    .btn-emi {
-      background: linear-gradient(135deg, #e83e8c, #b81d5b);
-      box-shadow: 0 4px 15px rgba(232,62,140,0.2);
-    }
-    .btn-emi:hover { box-shadow: 0 8px 25px rgba(232,62,140,0.4); }
-
-    .btn-gst {
-      background: linear-gradient(135deg, #fd7e14, #d35400);
-      box-shadow: 0 4px 15px rgba(253,126,20,0.2);
-    }
-    .btn-gst:hover { box-shadow: 0 8px 25px rgba(253,126,20,0.4); }
-
-
-    .footer {
-      margin-top: 30px;
-      font-size: 14px;
-      color: #666;
+    .clock-widget .date {
+      font-size: 0.8rem;
       font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
       letter-spacing: 0.5px;
     }
 
-    body.dark-mode .footer {
-      color: #999;
+    /* Controls System */
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 15px;
     }
 
-    /* स्लाइडर और टेक्स्ट स्टाइल */
-    .toggle-wrapper {
-      margin-top: 25px;
-      text-align: center;
-      border-top: 1px solid #eee;
-      padding-top: 20px;
+    .tool-counter-badge {
+      background: rgba(79, 70, 229, 0.1);
+      color: #4f46e5;
+      padding: 6px 14px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      border: 1px solid rgba(79, 70, 229, 0.15);
+    }
+    body.dark-mode .tool-counter-badge {
+      background: rgba(192, 132, 252, 0.1);
+      color: #c084fc;
+      border-color: rgba(192, 132, 252, 0.2);
+    }
+
+    .theme-action-btn {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 12px;
+      transition: all 0.2s;
+    }
+    .theme-action-btn:hover {
+      transform: scale(1.05);
+      border-color: #4f46e5;
     }
 
-    body.dark-mode .toggle-wrapper {
-      border-top-color: #333;
+    /* App Branding Hero Titles */
+    .app-hero-branding {
+      text-align: left;
+      margin-bottom: 35px;
     }
 
-    .toggle-text {
-      font-weight: 600;
-      color: #444;
-      font-size: 14px;
-      min-width: 150px;
-      text-align: right;
-      transition: color 0.3s;
+    .app-hero-branding h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: -1px;
+      margin-bottom: 6px;
     }
 
-    body.dark-mode .toggle-text {
-      color: #bbb;
+    .app-hero-branding p.subtitle {
+      font-size: 1rem;
+      color: var(--text-muted);
+      font-weight: 500;
     }
 
-    .switch {
-      position: relative;
-      display: inline-block;
-      width: 50px;
-      height: 26px;
+    /* Modern Responsive Layout Grid System */
+    .button-group {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
     }
 
-    .switch input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
-
-    .slider {
-      position: absolute;
+    /* Refactored Interactive Tool Cards Structure */
+    .button {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      padding: 24px;
+      border-radius: 20px;
       cursor: pointer;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: #ccc;
-      transition: .4s;
-      border-radius: 34px;
+      width: 100%;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+      transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), 
+                  box-shadow 0.3s cubic-bezier(0.25, 1, 0.5, 1), 
+                  border-color 0.3s;
     }
 
-    .slider:before {
+    .button::before {
+      content: '';
       position: absolute;
-      content: "";
-      height: 18px;
-      width: 18px;
-      left: 4px;
-      bottom: 4px;
-      background-color: white;
-      transition: .4s;
+      top: 0; left: 0; width: 5px; height: 100%;
+      transition: width 0.25s ease;
+      z-index: 1;
+    }
+
+    /* Tool Specific Token Card Style Gradients Mapping */
+    .btn-diff::before { background: var(--grad-diff); }
+    .btn-date::before { background: var(--grad-date); }
+    .btn-day::before { background: var(--grad-day); }
+    .btn-bmi::before { background: var(--grad-bmi); }
+    .btn-emi::before { background: var(--grad-emi); }
+    .btn-gst::before { background: var(--grad-gst); }
+    .btn-age::before { background: var(--grad-age); }
+
+    .btn-content {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      z-index: 2;
+    }
+
+    .button .icon {
+      font-size: 1.8rem;
+      background: var(--bg-widget);
+      width: 52px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 14px;
+      border: 1px solid var(--border-color);
+      transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .card-meta-text {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .card-title-node {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .card-desc-node {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      line-height: 1.3;
+    }
+
+    .arrow-icon {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      background: var(--bg-widget);
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       border-radius: 50%;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      border: 1px solid var(--border-color);
+      transition: all 0.25s ease;
+      z-index: 2;
     }
 
-    input:checked + .slider {
-      background-color: #007bff;
+    /* High Fidelity Hover Mechanics System */
+    .button:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 20px -8px rgba(15, 23, 42, 0.08);
+      border-color: rgba(15, 23, 42, 0.15);
+    }
+    body.dark-mode .button:hover {
+      box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.6);
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+    
+    .button:hover::before {
+      width: 8px;
     }
 
-    input:checked + .slider:before {
-      transform: translateX(24px);
+    .button:hover .icon {
+      transform: scale(1.05);
     }
 
-    /* Mobile Responsive UI */
-    @media (max-width: 520px) {
+    .button:hover .arrow-icon {
+      background: var(--text-main);
+      color: var(--bg-surface);
+      transform: rotate(-45deg);
+    }
+
+    /* Footer Meta Structures & Credits Link Rules */
+    .footer {
+      margin-top: 35px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .footer a {
+      color: #4f46e5;
+      text-decoration: none;
+      font-weight: 700;
+      border-bottom: 1px dashed rgba(79, 70, 229, 0.4);
+      transition: all 0.2s;
+    }
+    .footer a:hover {
+      color: #7c3aed;
+      border-bottom-color: #7c3aed;
+    }
+    body.dark-mode .footer a {
+      color: #c084fc;
+      border-bottom-color: rgba(192, 132, 252, 0.4);
+    }
+
+    /* Page Keyframe Load Timers */
+    @keyframes fadeInPage {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Hidden Native Switch Integration Bridge */
+    .toggle-wrapper {
+      display: none;
+    }
+
+    /* ==========================================================================
+       MOBILE OPTIMIZATION (Strict Compliance Layout Fixes)
+       ========================================================================== */
+    @media (max-width: 768px) {
+      .button-group {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
       .container {
         padding: 25px 20px;
+        border-radius: 24px;
       }
-      .button-group {
-        grid-template-columns: 1fr; /* मोबाइल पर बटन्स एक के नीचे एक आयेंगे */
-        gap: 12px;
+      .app-hero-branding h1 {
+        font-size: 1.8rem;
       }
-      h1 {
-        font-size: 22px;
-      }
-      .button {
-        font-size: 15px;
-        padding: 14px 18px;
-      }
-      .dashboard .time {
-        font-size: 21px;
-      }
+    }
+
+    @media (max-width: 480px) {
+      body { padding: 20px 10px; }
+      .dashboard-header-card { padding: 16px; flex-direction: column; align-items: flex-start; gap: 15px; }
+      .header-controls { width: 100%; justify-content: space-between; }
+      .button { padding: 18px; }
+      .button .icon { width: 44px; height: 44px; font-size: 1.5rem; }
     }
   </style>
 </head>
 <body>
 
   <div class="container">
-    <div class="dashboard">
-      <div class="time" id="liveClock">00:00:00 AM</div>
-      <div class="date" id="liveDate">Loading Date...</div>
+    <!-- Premium Interactive Dashboard Header -->
+    <div class="dashboard-header-card">
+      <div class="clock-widget">
+        <div class="time" id="liveClock">00:00:00 AM</div>
+        <div class="date" id="liveDate">Loading System Space Date...</div>
+      </div>
+      
+      <div class="header-controls">
+        <div class="tool-counter-badge"><i class="fa-solid fa-layer-group"></i> 7 Active Engines</div>
+        <!-- Fully Optimized Floating Theme Control Button Matrix -->
+        <button class="theme-action-btn" onclick="toggleGlobalDashboardTheme()" id="btnThemeToggleNode" title="Switch Design Spectrum">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+      </div>
     </div>
 
-    <h1>📂 Web Tool Box</h1>
-    <p class="subtitle">Select any tool to start calculation</p>
+    <!-- App Hero Banner Segment -->
+    <div class="app-hero-branding">
+      <h1>🧰 Web Tool Box</h1>
+      <p class="subtitle">Professional collection of everyday calculators and utility platforms</p>
+    </div>
 
+    <!-- Restructured Structural Grid Cards System -->
     <div class="button-group">
-      <button class="button btn-diff" onclick="location.href='main.html'">
+      <a href="main.html" class="button btn-diff">
         <div class="btn-content">
-          <span class="icon">📅</span> Date-Time Diff
+          <div class="icon">📅</div>
+          <div class="card-meta-text">
+            <span class="card-title-node">Date-Time Diff</span>
+            <span class="card-desc-node">Calculate precise chronological difference windows</span>
+          </div>
         </div>
-        <span class="arrow-icon">➔</span>
-      </button>
+        <span class="arrow-icon"><i class="fa-solid fa-arrow-right"></i></span>
+      </a>
       
-      <button class="button btn-date" onclick="location.href='date.html'">
+      <a href="date.html" class="button btn-date">
         <div class="btn-content">
-          <span class="icon">📆</span> Date Finder
+          <div class="icon">📆</div>
+          <div class="card-meta-text">
+            <span class="card-title-node">Date Finder</span>
+            <span class="card-desc-node">Add or subtract calendar steps smoothly</span>
+          </div>
         </div>
-        <span class="arrow-icon">➔</span>
-      </button>
+        <span class="arrow-icon"><i class="fa-solid fa-arrow-right"></i></span>
+      </a>
       
-      <button class="button btn-day" onclick="location.href='day.html'">
+      <a href="day.html" class="button btn-day">
         <div class="btn-content">
-          <span class="icon">🧮</span> Day Finder
+          <div class="icon">🧮</div>
+          <div class="card-meta-text">
+            <span class="card-title-node">Day Finder</span>
+            <span class="card-desc-node">Identify historical calendar target weekdays</span>
+          </div>
         </div>
-        <span class="arrow-icon">➔</span>
-      </button>
+        <span class="arrow-icon"><i class="fa-solid fa-arrow-right"></i></span>
+      </a>
 
-      <button class="button btn-bmi" onclick="location.href='bmi.html'">
+      <a href="bmi.html" class="button btn-bmi">
         <div class="btn-content">
-          <span class="icon">⚖️</span> BMI Calculator
+          <div class="icon">⚖️</div>
+          <div class="card-meta-text">
+            <span class="card-title-node">BMI Calculator</span>
+            <span class="card-desc-node">Compute body mass analytics proportions</span>
+          </div>
         </div>
-        <span class="arrow-icon">➔</span>
-      </button>
+        <span class="arrow-icon"><i class="fa-solid fa-arrow-right"></i></span>
+      </a>
 
-      <button class="button btn-emi" onclick="location.href='emi.html'">
+      <a href="emi.html" class="button btn-emi">
         <div class="btn-content">
-          <span class="icon">💰</span> EMI Calculator
+          <div class="icon">💰</div>
+          <div class="card-meta-text">
+            <span class="card-title-node">EMI Calculator</span>
+            <span class="card-desc-node">Calculate absolute finance amortization lines</span>
+          </div>
         </div>
-        <span class="arrow-icon">➔</span>
-      </button>
+        <span class="arrow-icon"><i class="fa-solid fa-arrow-right"></i></span>
+      </a>
 
-      <button class="button btn-gst" onclick="location.href='gstcal.html'">
+      <a href="gstcal.html" class="button btn-gst">
         <div class="btn-content">
-          <span class="icon">🧾</span> GST Calculator
+          <div class="icon">🧾</div>
+          <div class="card-meta-text">
+            <span class="card-title-node">GST Calculator</span>
+            <span class="card-desc-node">Process nested fiscal taxation variables</span>
+          </div>
         </div>
-        <span class="arrow-icon">➔</span>
-      </button>
+        <span class="arrow-icon"><i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+
+      <a href="age.html" class="button btn-age">
+        <div class="btn-content">
+          <div class="icon">🎂</div>
+          <div class="card-meta-text">
+            <span class="card-title-node">AGE Calculator</span>
+            <span class="card-desc-node">Advanced premium age intelligence platform insights</span>
+          </div>
+        </div>
+        <span class="arrow-icon"><i class="fa-solid fa-arrow-right"></i></span>
+      </a>
     </div>
-
+    
+    <!-- Hidden checkbox input to safely preserve legacy state hooks -->
     <div class="toggle-wrapper">
-      <span class="toggle-text" id="toggleStatusText">Switch to Dark Mode 🌙</span>
-      <label class="switch">
-        <input type="checkbox" id="darkModeCheckbox" onclick="toggleDarkMode()" />
-        <span class="slider"></span>
-      </label>
+      <span id="toggleStatusText">Preserve State Loop</span>
+      <input type="checkbox" id="darkModeCheckbox"/>
     </div>
   </div>
 
+  <!-- TARGET BLANK ASSIGNED DEPLOYMENT CREDITS FOOTER BINDINGS -->
   <div class="footer">
-    Designed by <span style="color: #007bff; font-weight: 700;">Munendra</span> 💻
+    Designed by  Munendra <a href="https://munendra5singh.github.io/FreeCourseHub/" target="_blank" rel="noopener noreferrer"> — Powered by FreeCourseHub 💻</a>
   </div>
 
   <script>
@@ -383,35 +517,37 @@
 
     setInterval(updateClock, 1000);
 
-    // पेज लोड होने पर स्टेट सेट करना
+    // Synchronize client instance data loop state on page loads
     document.addEventListener("DOMContentLoaded", () => {
       updateClock(); 
       const isDarkMode = localStorage.getItem("globalDarkMode") === "enabled";
       const checkbox = document.getElementById("darkModeCheckbox");
-      const statusText = document.getElementById("toggleStatusText");
+      const iconNode = document.getElementById("btnThemeToggleNode").querySelector('i');
 
       if (isDarkMode) {
         document.body.classList.add("dark-mode");
         checkbox.checked = true;
-        statusText.innerHTML = "Switch to Light Mode ☀️";
+        iconNode.className = "fa-solid fa-sun";
       } else {
-        statusText.innerHTML = "Switch to Dark Mode 🌙";
+        iconNode.className = "fa-solid fa-moon";
       }
     });
 
-    // डार्क मोड टॉगल लॉजिक
-    function toggleDarkMode() {
+    // Modern High Fidelity Hardware-Accelerated Toggle Interface Logic
+    function toggleGlobalDashboardTheme() {
       const checkbox = document.getElementById("darkModeCheckbox");
-      const statusText = document.getElementById("toggleStatusText");
+      const iconNode = document.getElementById("btnThemeToggleNode").querySelector('i');
 
-      if (checkbox.checked) {
+      if (!document.body.classList.contains("dark-mode")) {
         document.body.classList.add("dark-mode");
+        checkbox.checked = true;
         localStorage.setItem("globalDarkMode", "enabled");
-        statusText.innerHTML = "Switch to Light Mode ☀️";
+        iconNode.className = "fa-solid fa-sun";
       } else {
         document.body.classList.remove("dark-mode");
+        checkbox.checked = false;
         localStorage.setItem("globalDarkMode", "disabled");
-        statusText.innerHTML = "Switch to Dark Mode 🌙";
+        iconNode.className = "fa-solid fa-moon";
       }
     }
   </script>
