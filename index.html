@@ -143,71 +143,98 @@ body.dark-theme .pulse-dot,
 body.dark-mode .pulse-dot {
     background-color: #00ff66;
 }
-        /* --- Search & Grid State Helpers --- */
-        .search-box {
-            margin: 0; 
-            padding: 0; 
-            max-width: 100%;
-        }
+     /* --- Search & Grid State Helpers --- */
+.search-box {
+    margin: 0; 
+    padding: 0; 
+    max-width: 100%;
 
-        .bento-link-list i {
-            font-size: 11px;
-        }
+}
 
-        .courses h2 {
-            margin-top: 0;
-        }
+.bento-link-list i {
+    font-size: 11px;
+}
 
-        .empty-search-container {
-            text-align: center; 
-            padding: 40px; 
-            color: #4f46e5;
-        }
+.courses h2 {
+    margin-top: 0;
+}
 
-        .empty-search-container i {
-            font-size: 50px; 
-            margin-bottom: 20px; 
-            opacity: 0.5;
-        }
+.empty-search-container {
+    text-align: center; 
+    padding: 40px 20px; 
+    color: #4f46e5;
+    box-sizing: border-box;
+}
 
-        .empty-search-container h3 {
-            font-size: 24px;
-        }
+.empty-search-container i {
+    font-size: 50px; 
+    margin-bottom: 20px; 
+    opacity: 0.5;
+}
 
-        .empty-search-container p {
-            color: #666; 
-            margin-top: 10px;
-        }
+.empty-search-container h3 {
+    font-size: 24px;
+}
 
-        .empty-search-wrapper-btn {
-            text-align: center; 
-            width: 100%;
-        }
+.empty-search-container p {
+    color: #666; 
+    margin-top: 10px;
+}
 
-        .empty-search-wrapper-btn .course-btn {
-            margin-top: 25px; 
-            border: none; 
-            cursor: pointer; 
-            display: inline-block;
-        }
-
-        .empty-search-wrapper-btn a.course-btn {
-            text-decoration: none; 
-            background: #4f46e5; 
-            color: white; 
-            padding: 10px 20px; 
-            border-radius: 30px;
-        }
-
-     .project-buttons-container {
+/* --- Buttons Container (Upar-Neeche Alignment) --- */
+.empty-search-wrapper-btn {
     display: flex;
-    justify-content: center; /* Buttons ko center mein alignment dene ke liye */
-    gap: 15px;              /* Dono buttons ke beech barabar jagah (spacing) ke liye */
-    margin:-20PX;         /* Upar aur neeche se thoda gap dene ke liye */
+    flex-direction: column; 
+    align-items: center;    
+    gap: 12px;              
+    margin-top: 25px; 
+    width: 100%;
+}
+
+/* 🌟 UPDATED: Dono Buttons Ki Design Ko Bilkul Ek Jaisa (Same) Karne Ke Liye 🌟 */
+.empty-search-wrapper-btn .course-btn,
+.empty-search-wrapper-btn a.course-btn {
+    display: inline-block;
+    width: 100%;            
+    max-width: 240px;       /* Dono ki width ek barabar rahegi */
+    padding: 12px 20px;     /* Padding dono me bilkul same */
+    background: #4f46e5;    /* Ek jaisa primary purple color */
+    color: #ffffff;         /* White text color */
+    border-radius: 30px;    /* Rounded pill shape corners */
+    font-size: 14px;        
+    font-weight: 600;       
+    font-family: sans-serif;
+    text-decoration: none; 
+    text-align: center;
+    box-sizing: border-box;
+    cursor: pointer;
+    border: none;           /* Kisi me extra border nahi dikhega */
+    outline: none;
+    transition: background 0.2s ease, transform 0.1s ease;
+}
+
+/* Hover Effect (Dono par ek sath kaam karega) */
+.empty-search-wrapper-btn .course-btn:hover,
+.empty-search-wrapper-btn a.course-btn:hover {
+    background: #3b33c7;    /* Hover karne par halka dark color */
+    transform: translateY(-1px);
+}
+
+/* --- Sirf Buttons Ke Container Aur Items Ki CSS (Replace with this) --- */
+.project-buttons-container {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    flex-wrap: nowrap;       /* Buttons ko mobile aur desktop dono par ek line me rakhega */
+    gap: 15px;              
+    margin: 10px auto;        
+    padding: 0 10px;
+    box-sizing: border-box;
+    width: 100%;
 }
 
 .btn-project {
-    background: linear-gradient(45deg, #4facfe, #00f2fe); /* Ek pyaara sa modern gradient color */
+    background: linear-gradient(45deg, #4facfe, #00f2fe); 
     color: white;
     padding: 12px 24px;
     border-radius: 6px;
@@ -215,14 +242,30 @@ body.dark-mode .pulse-dot {
     font-size: 14px;
     font-weight: bold;
     font-family: sans-serif;
-    transition: transform 0.2s, box-shadow 0.2s; /* Hover effect ko smooth banane ke liye */
+    transition: transform 0.2s, box-shadow 0.2s; 
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    white-space: nowrap;     /* Text ko button ke andar tutne se rokega */
+    flex: 0 1 auto;          /* Screen choti hone par buttons ko squeeze hone dega */
 }
 
-/* Jab mouse button par jaye toh halka sa effect */
+/* Hover Effect */
 .btn-project:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 12px rgba(79, 172, 254, 0.3);
+}
+
+/* --- Mobile view me buttons ko ek hi line me fit karne ke liye responsive rule --- */
+@media screen and (max-width: 600px) {
+    .project-buttons-container {
+        gap: 8px;            /* Mobile par gap thoda kam */
+        padding: 0 5px;
+    }
+
+    .btn-project {
+        padding: 10px 12px;  /* Mobile par halki padding taaki fit ho sakein */
+        font-size: 11px;     /* Mobile screen ke mutabik font size adjust kiya */
+    }
 }
     </style>
 </head>
@@ -325,18 +368,17 @@ body.dark-mode .pulse-dot {
         </div>        
     </section>
 
-<div class="project-buttons-container">
-    <a href="my_projects/details/game.html" class="btn-project">Play Game</a>
-    <a href="my_projects/calculater/index.html" class="btn-project">multy Calculator</a>
-    <a href="my_projects/calculater/age.html" class="btn-project">Age Calculator</a>
-</div>
- 
-
     <section class="cta">
         <h2>Start Learning Today</h2>
         <p>Thousands of free courses are waiting for you.</p>
         <a href="sections/Courses.html#course" class="hero-btn">Explore Courses</a>
     </section>
+
+ <div class="project-buttons-container">
+    <a href="my_projects/details/game.html" class="btn-project">Play Game</a>
+    <a href="my_projects/calculater/index.html" class="btn-project">multy Calculator</a>
+    <a href="my_projects/calculater/age.html" class="btn-project">Age Calculator</a>
+</div>
 
     <footer>
         <div class="footer-content">
