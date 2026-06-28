@@ -137,9 +137,9 @@ function mainScrollAndHighlight(courseId, shouldOpen) {
 document.addEventListener("DOMContentLoaded", () => {
     initThemeSync();
     
-    const container = document.getElementById("courses-container");
+    const container = document.getElementById("allCourseGrid");
     if (container) {
-        const isRendered = renderCourses("courses-container");
+        const isRendered = renderCourses("allCourseGrid");
         
         if (isRendered) {
             const params = new URLSearchParams(window.location.search);
