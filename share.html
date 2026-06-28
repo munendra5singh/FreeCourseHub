@@ -19,10 +19,10 @@
     <meta property="og:description" content="FreeCourseHub offers free online courses in Web Development, Programming, AI, Data Analytics, and career skills.">
     <meta property="og:url" content="https://munendra5singh.github.io/FreeCourseHub/share.html">
     
-    <!-- इमेज प्रीव्यू फिक्स टैग्स (JPG इमेज के साथ) -->
-    <meta property="og:image" content="https://raw.githubusercontent.com/munendra5singh/FreeCourseHub/main/preview.jpg">
-    <meta property="og:image:secure_url" content="https://raw.githubusercontent.com/munendra5singh/FreeCourseHub/main/preview.png">
-    <meta property="og:image:type" content="image/jpeg">
+    <!-- ✅ इमेज प्रीव्यू फिक्स टैग्स (PNG इमेज के लिए बिल्कुल सही सेटिंग्स) -->
+    <meta property="og:image" content="https://raw.githubusercontent.com/munendra5singh/FreeCourseHub/main/preview.png">
+    <meta property="og:image:secure_url" content="https://raw.githubusercontent.com/munendra5singh/FreeCourseHub/main/preview.png"> 
+    <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:site_name" content="FreeCourseHub">
@@ -86,14 +86,16 @@
             const courseId = params.get('id');
 
             if (courseId) {
-                const mainSite = "https://munendra5singh.github.io/FreeCourseHub/sections/Courses.html?course=" + encodeURIComponent(courseId) + "&open=true";
+                // सीधे कोर्सेज वाले पेज पर भेजेगा जहाँ 1.10 scale (10% ज़ूम) काम करेगा
+                const mainSite = "https://munendra5singh.github.io/FreeCourseHub/sections/Courses.html?course=" + encodeURIComponent(courseId);
+                
                 setTimeout(() => {
                     window.location.replace(mainSite);
-                }, 1000);
+                }, 400);
             } else {
                 setTimeout(() => {
                     window.location.replace("https://munendra5singh.github.io/FreeCourseHub/");
-                }, 1000);
+                }, 400);
             }
         };
     </script>
