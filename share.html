@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,7 +18,11 @@
     <meta property="og:title" content="Explore Premium Free Courses | FreeCourseHub">
     <meta property="og:description" content="Learn new skills for free. Explore high-quality courses in Programming, AI, Web Development, Data Analytics, MS Office and more.">
     <meta property="og:url" content="https://munendra5singh.github.io/FreeCourseHub/share.html">
+    
+    <!-- इमेज प्रीव्यू फिक्स टैग्स -->
     <meta property="og:image" content="https://raw.githubusercontent.com/munendra5singh/FreeCourseHub/main/preview.png">
+    <meta property="og:image:secure_url" content="https://raw.githubusercontent.com/munendra5singh/FreeCourseHub/main/preview.png">
+    <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:site_name" content="FreeCourseHub">
@@ -85,11 +89,11 @@
                 const mainSite = "https://munendra5singh.github.io/FreeCourseHub/sections/Courses.html?course=" + encodeURIComponent(courseId) + "&open=true";
                 setTimeout(() => {
                     window.location.replace(mainSite);
-                }, 3000);
+                }, 1000);
             } else {
                 setTimeout(() => {
                     window.location.replace("https://munendra5singh.github.io/FreeCourseHub/");
-                }, 3000);
+                }, 1000);
             }
         };
     </script>
