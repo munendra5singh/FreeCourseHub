@@ -108,30 +108,31 @@ function mainScrollAndHighlight(courseId, shouldOpen) {
         return;
     }
 
-    // 1. स्मूथ स्क्रॉल
+    // 1. स्मूथ स्क्रॉल (कार्ड को स्क्रीन के बीच में लाएगा)
     element.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
-    // 2. बुलेटप्रूफ हाईलाइट (outlineOffset और Box-shadow का उपयोग)
-    element.style.outline = "4px solid #3b82f6";
-    element.style.outlineOffset = "4px";
-    element.style.transform = "scale(1.02)"; // थोड़ा सा ज़ूम इफ़ेक्ट ताकि ध्यान आकर्षित हो
+    // 2. बुलेटप्रूफ हाईलाइट और ज़ूम (cssText + !important का उपयोग ताकि CSS इसे रोक न पाए)
+    // ज़ूम को 1.02 से बढ़ाकर 1.07 कर दिया है ताकि बड़ा होना साफ-साफ दिखाई दे!
+    element.style.cssText += `
+        outline: 4px solid #3b82f6 !important;
+        outline-offset: 4px !important;
+        transform: scale(1.07) !important;
+        box-shadow: 0 12px 30px rgba(59, 130, 246, 0.6) !important;
+        z-index: 99 !important;
+        transition: transform 0.3s ease, outline 0.3s ease !important;
+    `;
 
-    // 3. हाईलाइट हटाना
+    // 3. 3 सेकंड बाद हाईलाइट को धीरे से हटाना
     setTimeout(() => { 
-        element.style.outline = "none"; 
-        element.style.transform = "none";
+        element.style.outline = "";
+        element.style.outlineOffset = "";
+        element.style.transform = "";
+        element.style.boxShadow = "";
+        element.style.zIndex = "";
     }, 3000);
 
-    // 4. ऑटो-ओपन लॉजिक
-    if (shouldOpen === "true" && typeof allCoursesMasterData !== 'undefined') {
-        const course = allCoursesMasterData.find(c => c.id === courseId);
-        if (course && course.link) {
-            const newWindow = window.open(course.link, '_blank');
-            if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {
-                window.location.href = course.link; 
-            }
-        }
-    }
+    // 4. फिक्स: ऑटो-ओपन लॉजिक को पूरी तरह हटा दिया गया है। 
+    // अब यूज़र इसी पेज पर रहेगा, जब वह खुद "Start Learning" बटन दबाएगा, तभी कोर्स खुलेगा!
 }
 
 document.addEventListener("DOMContentLoaded", () => {
