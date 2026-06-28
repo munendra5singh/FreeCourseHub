@@ -40,7 +40,8 @@ function shareCourse(event, courseId, name) {
     event.preventDefault();
     event.stopPropagation();
     
-    const shareUrl = `${window.location.origin}/FreeCourseHub/share.html?id=${courseId}`;
+    // फिक्स: बीच से /FreeCourseHub/ हटा दिया गया है ताकि सीधा कस्टम डोमेन इस्तेमाल हो
+    const shareUrl = `${window.location.origin}/share.html?id=${courseId}`;
     
     if (navigator.share) {
         navigator.share({
@@ -53,7 +54,6 @@ function shareCourse(event, courseId, name) {
         alert("Link copied! Now sharing with a rich preview.");
     }
 }
-
 // 3. MASTER RENDERER (IQ 1000 सुधार: अब यह रेंडर होने के बाद True रिटर्न करता है)
 function renderCourses(containerId, filterCategory = null) {
     const container = document.getElementById(containerId);
