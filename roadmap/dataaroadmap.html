@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Data Analytics Roadmap | Premium Learning Path</title>
+    <meta name="description" content="Master Data Analytics with this comprehensive, step-by-step curriculum. Learn Excel, SQL, Python, Power BI, Statistics, and AI tools.">
+    
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Free Course Hub | Data Analytics roadmap">
+    <meta property="og:description" content="Upgrade your skills with 100% free and verified online course links.">
+    <meta property="og:image" content="https://raw.githubusercontent.com/munendra5singh/FreeCourseHub/main/preview.png">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- CSS CUSTOM PROPERTIES & THEMES --- */
+        :root[data-theme="dark"] {
+            --bg-primary: #0a0a0c;
+            --bg-secondary: #111115;
+            --glass-bg: rgba(18, 18, 24, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #06b6d4 100%);
+            --accent-blue: #3b82f6;
+            --accent-purple: #8b5cf6;
+            --accent-cyan: #06b6d4;
+            --shadow-glow: rgba(139, 92, 246, 0.15);
+            --card-glow: rgba(6, 182, 212, 0.05);
+        }
+
+        :root[data-theme="light"] {
+            --bg-primary: #f8fafc;
+            --bg-secondary: #ffffff;
+            --glass-bg: rgba(255, 255, 255, 0.75);
+            --glass-border: rgba(15, 23, 42, 0.08);
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --accent-gradient: linear-gradient(135deg, #1d4ed8 0%, #6d28d9 50%, #0e7490 100%);
+            --accent-blue: #1d4ed8;
+            --accent-purple: #6d28d9;
+            --accent-cyan: #0e7490;
+            --shadow-glow: rgba(109, 40, 217, 0.05);
+            --card-glow: rgba(14, 116, 144, 0.02);
+        }
+
+        /* --- CSS RESET & BASE STYLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.1s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 16px;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* --- REUSABLE UTILITIES --- */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 1.25rem;
+        }
+
+        .text-gradient {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 2rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* --- STICKY HEADER & NAV --- */
+        .header-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid var(--glass-border);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 4.5rem;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a.active, .nav-links a:hover {
+            color: var(--text-main);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-gradient);
+            transition: width 0.3s;
+        }
+
+        .nav-links a.active::after, .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        /* Toggle Button styling */
+        .theme-btn {
+            background: none;
+            border: 1px solid var(--glass-border);
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-main);
+        }
+
+        .theme-btn:hover {
+            background: var(--glass-border);
+            transform: scale(1.05);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            position: relative;
+            padding: 10rem 0 6rem 0;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero-bg-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.15;
+            animation: float 8s ease-in-out infinite alternate;
+        }
+
+        .shape-1 {
+            top: 10%;
+            left: 15%;
+            width: 300px;
+            height: 300px;
+            background: var(--accent-blue);
+        }
+
+        .shape-2 {
+            bottom: 10%;
+            right: 15%;
+            width: 350px;
+            height: 350px;
+            background: var(--accent-purple);
+            animation-delay: -3s;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 2.5rem auto;
+            font-weight: 400;
+        }
+
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.85rem 2rem;
+            border-radius: 2rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            border: 1px solid transparent;
+            transform: translateY(0);
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            background: var(--accent-gradient);
+            color: #ffffff;
+            box-shadow: 0 4px 20px var(--shadow-glow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px var(--shadow-glow);
+        }
+
+        .btn-secondary {
+            background: var(--glass-bg);
+            border-color: var(--glass-border);
+            color: var(--text-main);
+        }
+
+        .btn-secondary:hover {
+            background: var(--glass-border);
+            transform: translateY(-2px);
+        }
+
+        /* --- GLOBAL LEARNING ORDER PREVIEW --- */
+        .order-section {
+            padding: 4rem 0;
+            border-top: 1px solid var(--glass-border);
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--bg-secondary);
+        }
+
+        .order-section h2 {
+            text-align: center;
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 2.5rem;
+        }
+
+        .order-track-wrapper {
+            overflow-x: auto;
+            padding-bottom: 1rem;
+            scrollbar-width: thin;
+        }
+
+        .order-track {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            width: max-content;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .order-step {
+            padding: 0.75rem 1.2rem;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+        }
+
+        .order-arrow {
+            color: var(--accent-cyan);
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        /* --- CONTROL BAR (SEARCH & PROGRESS) --- */
+        .control-bar {
+            position: sticky;
+            top: 4.5rem;
+            z-index: 900;
+            padding: 1.25rem 0;
+            margin-bottom: 3rem;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .control-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 2.5rem;
+            border-radius: 2rem;
+            border: 1px solid var(--glass-border);
+            background: var(--bg-primary);
+            color: var(--text-main);
+            font-family: inherit;
+            font-size: 0.9rem;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--accent-purple);
+        }
+
+        .search-box::before {
+            content: "🔍";
+            position: absolute;
+            left: 0.9rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.9rem;
+            opacity: 0.6;
+        }
+
+        .progress-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .progress-text {
+            font-size: 0.85rem;
+            font-weight: 600;
+            min-width: 110px;
+            color: var(--text-muted);
+        }
+
+        .progress-track-bg {
+            flex-grow: 1;
+            height: 0.6rem;
+            background: var(--glass-border);
+            border-radius: 1rem;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: var(--accent-gradient);
+            border-radius: 1rem;
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* --- ROADMAP TIMELINE SECTION --- */
+        .roadmap-section {
+            padding: 2rem 0 6rem 0;
+        }
+
+        .timeline-container {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Center vertical line */
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--glass-border);
+            transform: translateX(-50%);
+        }
+
+        .timeline-block {
+            position: relative;
+            margin-bottom: 4rem;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-block::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* Nodes on vertical line */
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 2rem;
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+            background: var(--bg-primary);
+            border: 3px solid var(--accent-cyan);
+            transform: translateX(-50%);
+            z-index: 10;
+        }
+
+        .timeline-content {
+            position: relative;
+            width: 45%;
+            padding: 2rem;
+            box-shadow: 0 10px 30px var(--card-glow);
+        }
+
+        .timeline-block:nth-child(even) .timeline-content {
+            float: right;
+        }
+
+        .timeline-block:nth-child(odd) .timeline-content {
+            float: left;
+        }
+
+        /* Meta header layout inside milestone cards */
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .step-number {
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: var(--accent-cyan);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .duration-badge {
+            background: rgba(6, 182, 212, 0.1);
+            color: var(--accent-cyan);
+            border: 1px solid rgba(6, 182, 212, 0.2);
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.25rem;
+            letter-spacing: -0.01em;
+        }
+
+        /* Checklist structural elements */
+        .topic-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.65rem;
+        }
+
+        .topic-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            font-size: 0.9rem;
+            cursor: pointer;
+            padding: 0.25rem;
+            border-radius: 0.25rem;
+        }
+
+        .topic-item:hover {
+            background: rgba(255,255,255,0.02);
+        }
+
+        .topic-item input[type="checkbox"] {
+            margin-top: 0.25rem;
+            accent-color: var(--accent-purple);
+            cursor: pointer;
+            width: 1.05rem;
+            height: 1.05rem;
+        }
+
+        .topic-item input[type="checkbox"]:checked + span {
+            color: var(--text-muted);
+            text-decoration: line-through;
+        }
+
+        /* --- PORTFOLIO PROJECT MATRIX --- */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .project-card {
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid var(--glass-border);
+            border-radius: 1rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--accent-gradient);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        .project-card h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            border-top: 1px solid var(--glass-border);
+            background: var(--bg-secondary);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-weight: 800;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-mocks {
+            display: flex;
+            justify-content: center;
+            gap: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-icon {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            background: var(--glass-border);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            cursor: pointer;
+        }
+
+        .social-icon:hover {
+            color: var(--text-main);
+            background: var(--glass-border);
+        }
+
+        .copyright {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* --- FLOATING CONTROLS --- */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* --- KEYFRAME ANIMATIONS --- */
+        @keyframes float {
+            0% { transform: translateY(0px) scale(1); }
+            100% { transform: translateY(-20px) scale(1.05); }
+        }
+
+        /* --- RESPONSIVE MEDIA QUERIES --- */
+        @media (max-width: 992px) {
+            html { font-size: 15px; }
+            .timeline-container::before { left: 2rem; }
+            .timeline-dot { left: 2rem; }
+            .timeline-content { width: calc(100% - 4rem); float: right !important; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; } /* Simplified mobile handling */
+            .control-grid { grid-template-columns: 1fr; gap: 1rem; }
+            .hero h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- STICKY HEADER -->
+    <header class="header-nav glass-card">
+        <div class="container nav-container">
+            <a href="#" class="logo text-gradient">FreeCourseHub</a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#" class="nav-link active" data-sec="hero">Home</a></li>
+                    <li><a href="#roadmap" class="nav-link" data-sec="roadmap">Curriculum</a></li>
+                    <li><a href="#projects" class="nav-link" data-sec="projects">Projects</a></li>
+                </ul>
+            </nav>
+            <div class="nav-actions">
+                <button class="theme-btn" id="themeToggle" aria-label="Toggle Light/Dark Theme">🌓</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section class="hero" id="hero">
+            <div class="hero-bg-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+            </div>
+            <div class="container">
+                <span class="badge btn-secondary" style="margin-bottom: 1rem;">2026 Structured Blueprint</span>
+                <h1>Become a Professional <span class="text-gradient">Data Analyst</span></h1>
+                <p>Learn every essential skill required to safely navigate corporate landscapes and land a technical data role from absolute scratch.</p>
+                <div class="hero-btns">
+                    <a href="#roadmap" class="btn btn-primary">Start Learning</a>
+                    <a href="#order-preview" class="btn btn-secondary">Explore Roadmap</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- HORIZONTAL ORDER PREVIEW -->
+        <section class="order-section" id="order-preview">
+            <div class="container">
+                <h2>Recommended Progression Track</h2>
+                <div class="order-track-wrapper">
+                    <div class="order-track">
+                        <div class="order-step glass-card"><span>1️⃣</span> Excel</div>
+                        <div class="order-arrow">→</div>
+                        <div class="order-step glass-card"><span>2️⃣</span> SQL</div>
+                        <div class="order-arrow">→</div>
+                        <div class="order-step glass-card"><span>3️⃣</span> Statistics</div>
+                        <div class="order-arrow">→</div>
+                        <div class="order-step glass-card"><span>4️⃣</span> Power BI</div>
+                        <div class="order-arrow">→</div>
+                        <div class="order-step glass-card"><span>5️⃣</span> Python</div>
+                        <div class="order-arrow">→</div>
+                        <div class="order-step glass-card"><span>6️⃣</span> Git & GitHub</div>
+                        <div class="order-arrow">→</div>
+                        <div class="order-step glass-card"><span>7️⃣</span> Portfolio Projects</div>
+                        <div class="order-arrow">→</div>
+                        <div class="order-step glass-card"><span>8️⃣</span> AI Tools</div>
+                        <div class="order-arrow">→</div>
+                        <div class="order-step glass-card"><span>9️⃣</span> Resume</div>
+                        <div class="order-arrow">→</div>
+                        <div class="order-step glass-card"><span>🔟</span> Interview Prep</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEARCH AND PROGRESS BAR MIXIN -->
+        <div class="control-bar glass-card">
+            <div class="container dialectical-controls">
+                <div class="control-grid">
+                    <div class="search-box">
+                        <input type="text" id="moduleSearch" placeholder="Search roadmap modules or specific tools...">
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-text">Course Progress: <span id="progressPercent">0%</span></div>
+                        <div class="progress-track-bg">
+                            <div class="progress-fill" id="progressBar"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MAIN CORE CONTENT TIMELINE -->
+        <section class="roadmap-section" id="roadmap">
+            <div class="container">
+                <div class="timeline-container">
+
+                    <!-- STEP 1 -->
+                    <div class="timeline-block module-card">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content glass-card">
+                            <div class="card-header">
+                                <span class="step-number">Step 01</span>
+                                <span class="badge duration-badge">2–4 Weeks</span>
+                            </div>
+                            <h3 class="card-title">Microsoft Excel</h3>
+                            <ul class="topic-list">
+                                <li class="topic-item"><label><input type="checkbox"> <span>Excel Basics & Fundamentals</span></label></li>
+                                <li class="topic-item"><label><input type="checkbox"> <span>Core Formulas (SUM, AVERAGE, IF)</span></label></li>
+                                <li class="topic-item"><label><input type="checkbox"> <span>Data Lookup (XLOOKUP, VLOOKUP)</span></label></li>
+                                <li class="topic-item"><label><input type="checkbox"> <span>INDEX + MATCH Matrices</span></label></li>
+                                <li class="topic-item"><label><input type="checkbox"> <span>Conditional Operators (COUNTIF, SUMIF)</span></label></li>
+                                <li class="topic-item"><label><input type="checkbox"> <span>Conditional Formatting Rules</span></label></li>
+                                <li class="topic-item"><label><input type="checkbox"> <span>Data Validation & Structuring</span></label></li>
+                                <li class="topic-item"><label><input type="checkbox"> <span>Pivot Tables & Pivot Charts</span></label></li>
+                                <li class="topic-item"><label><input type="checkbox"> <span>Dynamic Dashboard Assembly</span></label></li>
+                                <li class="topic-item"><label><input type="checkbox"> <span>Power Query ETL Automation</span></label></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- STEP 2 -->
+                    <div class="timeline-block module-card">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content glass-card">
+                            <div class="card-header">
+                                <span class="step-number">Step 02</span>
+                                <span class="badge duration-badge">3–4 Weeks</span>
+                            </div>
+                            <h3 class="card-title">SQL (Structured Query Language)</h3>
+                            <ul class="topic-list">
+                                <li class="topic-item"><label><input type="checkbox"> <span>Relational Database Basics</span></label></li>
+                                <li class="topic-item"><label><input type="checkbox"> <span>Data Selection (SELECT, WHERE, ORDER BY)</span></label></li>
+                                <li class="topic-item"><label><input type="checkbox"> <span>Aggregation (GROUP BY, HAVING)</span></label></li>
+                                <li class="topic-item"><label><input type="checkbox"> <span>Joins (INNER, LEFT, RIGHT JOIN)</span></label></li>
+                                <li class="topic-item"><label><input type="checkbox"> <span>Subqueries & Nested Evaluations</span></label></li>
+                                <li class="topic-item"><label><input type="checkbox"> <span>CTEs (Common Table Expressions)</span></label></li>
+                                <li class="topic-item"><label><input type="checkbox"> <span>Window Functions (RANK, ROW_NUMBER)</span></label></li>
+                                <li class="topic-item"><label><input type="checkbox"> <span>Database Views & Optimization</span></label></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- STEP 3 -->
+                    <div class="timeline-block module-card">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content glass-card">
+                            <div class="card-header">
+                                <span class="step-number">Step 03</span>
+                                <span class="badge duration-badge">5–6 Weeks</span>
+                            </div>
+                            <h3 class="card-title">Python Architecture</h3>
+                            <ul class="topic-list">
+                                <li class="topic-item"><label><input type="checkbox"> <span>Python Basics (Variables, Loops, Functions)</span></label></li>
+                                <li class="topic-item"><label><input type="checkbox"> <span>Data Structures (Lists, Tuples, Dicts)</span></label></li>
+                                <li class="topic-item"><label><input type="checkbox"> <span>File Input/Output Handling</span></label></li>
+                                <li class="topic-item"><label><input type="checkbox"> <span>NumPy Array Vectorization</span></label></li>
+                                <li class="topic-item"><label><input type="checkbox"> <span>Pandas DataFrames Manipulation</span></label></li>
+                                <li class="topic-item"><label><input type="checkbox"> <span>Data Cleaning & Null Filtering</span></label></li>
+                                <li class="topic-item"><label><input type="checkbox"> <span>DataFrame Merge, GroupBy & Pivots</span></label></li>
+                                <li class="topic-item"><label><input type="checkbox"> <span>Matplotlib & Plotly Visualizations</span></label></li>
+                                <li class="topic-item"><label><input type="checkbox"> <span>Jupyter Notebook Documentation</span></label></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- STEP 4 -->
+                    <div class="timeline-block module-card">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content glass-card">
+                            <div class="card-header">
+                                <span class="step-number">Step 04</span>
+                                <span class="badge duration-badge">2 Weeks</span>
+                            </div>
+                            <h3 class="card-title">Mathematical Statistics</h3>
+                            <ul class="topic-list">
+                                <li class="topic-item"><label><input type="checkbox"> <span>Central Tendency (Mean, Median, Mode)</span></label></li>
+                                <li class="topic-item"><label><input type="checkbox"> <span>Dispersion (Variance, Standard Deviation)</span></label></li>
+                                <li class="topic-item"><label><input type="checkbox"> <span>Correlation Coefficients & Covariance</span></label></li>
+                                <li class="topic-item"><label><input type="checkbox"> <span>Probability Distribution Theory</span></label></li>
+                                <li class="topic-item"><label><input type="checkbox"> <span>Normal Distribution & Z-Scores</span></label></li>
+                                <li class="topic-item"><label><input type="checkbox"> <span>Hypothesis Testing (P-Values, T-Tests)</span></label></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- STEP 5 -->
+                    <div class="timeline-block module-card">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content glass-card">
+                            <div class="card-header">
+                                <span class="step-number">Step 05</span>
+                                <span class="badge duration-badge">3 Weeks</span>
+                            </div>
+                            <h3 class="card-title">Power BI Enterprise</h3>
+                            <ul class="topic-list">
+                                <li class="topic-item"><label><input type="checkbox"> <span>Multi-source Data Ingestion</span></label></li>
+                                <li class="topic-item"><label><input type="checkbox"> <span>Advanced Power Query Cleaning</span></label></li>
+                                <li class="topic-item"><label><input type="checkbox"> <span>Star Schema Relationship Modeling</span></label></li>
+                                <li class="topic-item"><label><input type="checkbox"> <span>DAX Basics (Calculated Columns & Measures)</span></label></li>
+                                <li class="topic-item"><label><input type="checkbox"> <span>Interactive Charts & Visual Architecture</span></label></li>
+                                <li class="topic-item"><label><input type="checkbox"> <span>Cross-filtering & Advanced Interactions</span></label></li>
+                                <li class="topic-item"><label><input type="checkbox"> <span>Drill-down Matrices & Context Parameters</span></label></li>
+                                <li class="topic-item"><label><input type="checkbox"> <span>KPI Indicator Assemblies</span></label></li>
+                                <li class="topic-item"><label><input type="checkbox"> <span>Publishing Reports to Service Architecture</span></label></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- STEP 6 -->
+                    <div class="timeline-block module-card">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content glass-card">
+                            <div class="card-header">
+                                <span class="step-number">Step 06</span>
+                                <span class="badge duration-badge">1 Week</span>
+                            </div>
+                            <h3 class="card-title">Data Cleaning Operations</h3>
+                            <ul class="topic-list">
+                                <li class="topic-item"><label><input type="checkbox"> <span>Deduplication Paradigms</span></label></li>
+                                <li class="topic-item"><label><input type="checkbox"> <span>Missing Value Imputation Frameworks</span></label></li>
+                                <li class="topic-item"><label><input type="checkbox"> <span>Structural Type Casting</span></label></li>
+                                <li class="topic-item"><label><input type="checkbox"> <span>Outlier Identification via IQR & Z-Score</span></label></li>
+                                <li class="topic-item"><label><input type="checkbox"> <span>Schema Constraint Validation</span></label></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- STEP 7 -->
+                    <div class="timeline-block module-card">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content glass-card">
+                            <div class="card-header">
+                                <span class="step-number">Step 07</span>
+                                <span class="badge duration-badge">2 Weeks</span>
+                            </div>
+                            <h3 class="card-title">Data Visualization & Design</h3>
+                            <ul class="topic-list">
+                                <li class="topic-item"><label><input type="checkbox"> <span>Categorical Configurations (Bar, Line, Pie)</span></label></li>
+                                <li class="topic-item"><label><input type="checkbox"> <span>Continuous Metrics (Scatter Plots, Heatmaps)</span></label></li>
+                                <li class="topic-item"><label><input type="checkbox"> <span>UI/UX Dashboard Grid Systems</span></label></li>
+                                <li class="topic-item"><label><input type="checkbox"> <span>Narrative Context & Cognitive Load Rules</span></label></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- STEP 8 -->
+                    <div class="timeline-block module-card">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content glass-card">
+                            <div class="card-header">
+                                <span class="step-number">Step 08</span>
+                                <span class="badge duration-badge">2 Weeks</span>
+                            </div>
+                            <h3 class="card-title">Business Knowledge Core</h3>
+                            <ul class="topic-list">
+                                <li class="topic-item"><label><input type="checkbox"> <span>Sales Pipeline Analytics</span></label></li>
+                                <li class="topic-item"><label><input type="checkbox"> <span>Corporate Finance Basics</span></label></li>
+                                <li class="topic-item"><label><input type="checkbox"> <span>Marketing Attributions & Conversion Funnels</span></label></li>
+                                <li class="topic-item"><label><input type="checkbox"> <span>HR Utilization Metrics</span></label></li>
+                                <li class="topic-item"><label><input type="checkbox"> <span>Customer Lifecycle & Cohort Tracking</span></label></li>
+                                <li class="topic-item"><label><input type="checkbox"> <span>Executive KPI Mapping Strategies</span></label></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- STEP 9 -->
+                    <div class="timeline-block module-card">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content glass-card">
+                            <div class="card-header">
+                                <span class="step-number">Step 09</span>
+                                <span class="badge duration-badge">1 Week</span>
+                            </div>
+                            <h3 class="card-title">Git & Version Control</h3>
+                            <ul class="topic-list">
+                                <li class="topic-item"><label><input type="checkbox"> <span>Local Repository Instantiation</span></label></li>
+                                <li class="topic-item"><label><input type="checkbox"> <span>Staging & Committing Lifecycle</span></label></li>
+                                <li class="topic-item"><label><input type="checkbox"> <span>Remote Protocols (Push, Pull Operations)</span></label></li>
+                                <li class="topic-item"><label><input type="checkbox"> <span>Branching, Merging & Conflict Fixes</span></label></li>
+                                <li class="topic-item"><label><input type="checkbox"> <span>GitHub Portfolio Architecture Design</span></label></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- STEP 10 -->
+                    <div class="timeline-block module-card">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content glass-card">
+                            <div class="card-header">
+                                <span class="step-number">Step 10</span>
+                                <span class="badge duration-badge">1 Week</span>
+                            </div>
+                            <h3 class="card-title">AI Tool Integration</h3>
+                            <ul class="topic-list">
+                                <li class="topic-item"><label><input type="checkbox"> <span>Prompt Engineering via LLMs (ChatGPT, Gemini)</span></label></li>
+                                <li class="topic-item"><label><input type="checkbox"> <span>GitHub Copilot for Code Acceleration</span></label></li>
+                                <li class="topic-item"><label><input type="checkbox"> <span>Automated Query Engineering (AI for SQL)</span></label></li>
+                                <li class="topic-item"><label><input type="checkbox"> <span>AI-Driven Excel Formula Syntax Generators</span></label></li>
+                                <li class="topic-item"><label><input type="checkbox"> <span>Automated Executive Summary Synthesis</span></label></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- STEP 11 -->
+                    <div class="timeline-block module-card" id="projects">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content glass-card" style="width: 100%; float: none;">
+                            <div class="card-header">
+                                <span class="step-number">Step 11</span>
+                                <span class="badge duration-badge" style="background: rgba(139, 92, 246, 0.1); color: var(--accent-purple); border-color: rgba(139, 92, 246, 0.2)">Target: 10+ Projects</span>
+                            </div>
+                            <h3 class="card-title">Portfolio Projects Matrix</h3>
+                            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">Check off projects as you compile your portfolio repository.</p>
+                            
+                            <div class="project-grid">
+                                <div class="project-card"><label class="topic-item"><input type="checkbox"> <span><h4>Sales Performance Dashboard</h4><p style="font-size:0.8rem; color:var(--text-muted)">Revenue optimization tracking via Power BI.</p></span></label></div>
+                                <div class="project-card"><label class="topic-item"><input type="checkbox"> <span><h4>HR Capital Analytics</h4><p style="font-size:0.8rem; color:var(--text-muted)">Attrition models and demographic distribution.</p></span></label></div>
+                                <div class="project-card"><label class="topic-item"><input type="checkbox"> <span><h4>E-Commerce Market Basket</h4><p style="font-size:0.8rem; color:var(--text-muted)">Transaction cohorts analyzed using Python Pandas.</p></span></label></div>
+                                <div class="project-card"><label class="topic-item"><input type="checkbox"> <span><h4>Cricket / IPL Analysis</h4><p style="font-size:0.8rem; color:var(--text-muted)">Player performance indexing and game variables.</p></span></label></div>
+                                <div class="project-card"><label class="topic-item"><input type="checkbox"> <span><h4>Netflix Catalog Insights</h4><p style="font-size:0.8rem; color:var(--text-muted)">Content pattern clusters & regional distributions.</p></span></label></div>
+                                <div class="project-card"><label class="topic-item"><input type="checkbox"> <span><h4>Hospital Resource Allocation</h4><p style="font-size:0.8rem; color:var(--text-muted)">Patient flow metrics & bed occupancy layout.</p></span></label></div>
+                                <div class="project-card"><label class="topic-item"><input type="checkbox"> <span><h4>Student Performance Indices</h4><p style="font-size:0.8rem; color:var(--text-muted)">Multivariate statistical tracking over cohorts.</p></span></label></div>
+                                <div class="project-card"><label class="topic-item"><input type="checkbox"> <span><h4>Customer Churn Diagnostics</h4><p style="font-size:0.8rem; color:var(--text-muted)">Logistical predictive behaviors using SQL queries.</p></span></label></div>
+                                <div class="project-card"><label class="topic-item"><input type="checkbox"> <span><h4>Financial Ledger Tracker</h4><p style="font-size:0.8rem; color:var(--text-muted)">Expense margin calculations via advanced Excel structures.</p></span></label></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- STEP 12 -->
+                    <div class="timeline-block module-card">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content glass-card">
+                            <div class="card-header">
+                                <span class="step-number">Step 12</span>
+                                <span class="badge duration-badge">Continuous</span>
+                            </div>
+                            <h3 class="card-title">Corporate Soft Skills</h3>
+                            <ul class="topic-list">
+                                <li class="topic-item"><label><input type="checkbox"> <span>Asynchronous Technical Communication</span></label></li>
+                                <li class="topic-item"><label><input type="checkbox"> <span>Executive Presence & Slide Presentations</span></label></li>
+                                <li class="topic-item"><label><input type="checkbox"> <span>Structured Analytical Frameworks (MECE)</span></label></li>
+                                <li class="topic-item"><label><input type="checkbox"> <span>Critical Hypothesis Validation</span></label></li>
+                                <li class="topic-item"><label><input type="checkbox"> <span>Translating Data Metrics into Dollar Action</span></label></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER ARCHITECTURE -->
+    <footer>
+        <div class="container">
+            <div class="footer-logo text-gradient">Complete Data Analytics Roadmap</div>
+            <div class="social-mocks">
+                <span class="social-icon" title="GitHub Mock">GH</span>
+                <span class="social-icon" title="LinkedIn Mock">LN</span>
+                <span class="social-icon" title="YouTube Mock">YT</span>
+            </div>
+            <p class="copyright">Powered by <strong><a href="https://freecoursehub.xyz/index.html">FreeCourseHub</a></strong>. Shared under professional education distributions.</p>
+        </div>
+    </footer>
+
+    <!-- BACK TO TOP BUTTON -->
+    <button class="back-to-top" id="backToTop" aria-label="Scroll back to top">↑</button>
+
+    <!-- VANILLA JAVASCRIPT RUNTIME ENGINE -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // 1. THEME SWITCHER LOGIC
+            const themeToggle = document.getElementById('themeToggle');
+            const root = document.documentElement;
+            
+            themeToggle.addEventListener('click', () => {
+                const currentTheme = root.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                root.setAttribute('data-theme', newTheme);
+            });
+
+            // 2. SEARCH & INTERACTIVE FILTER LOGIC
+            const searchInput = document.getElementById('moduleSearch');
+            const cards = document.querySelectorAll('.module-card');
+
+            searchInput.addEventListener('input', (e) => {
+                const query = e.target.value.toLowerCase().trim();
+
+                cards.forEach(card => {
+                    const text = card.textContent.toLowerCase();
+                    if (text.includes(query)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+
+            // 3. AGGREGATED PROGRESS CALCULATION ENGINE
+            const checkboxes = document.querySelectorAll('.topic-list input[type="checkbox"], .project-grid input[type="checkbox"]');
+            const progressPercent = document.getElementById('progressPercent');
+            const progressBar = document.getElementById('progressBar');
+
+            function recalculateProgress() {
+                const total = checkboxes.length;
+                if(total === 0) return;
+                
+                const checkedCount = document.querySelectorAll('.topic-list input[type="checkbox"]:checked, .project-grid input[type="checkbox"]:checked').length;
+                const mathematicalPercentage = Math.round((checkedCount / total) * 100);
+                
+                progressPercent.textContent = `${mathematicalPercentage}%`;
+                progressBar.style.width = `${mathematicalPercentage}%`;
+            }
+
+            checkboxes.forEach(box => {
+                box.addEventListener('change', recalculateProgress);
+            });
+
+            // 4. BACK TO TOP APPEARANCE CONTROLLER
+            const backToTopBtn = document.getElementById('backToTop');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 400) {
+                    backToTopBtn.classList.add('visible');
+                } else {
+                    backToTopBtn.classList.remove('visible');
+                }
+            });
+
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // 5. SCROLL SPY INTERSECTION OBSERVER IMPLEMENTATION
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '-50% 0px -50% 0px', // Evaluates intersection at center threshold viewport cross lines
+                threshold: 0
+            };
+
+            const sectionObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const activeId = entry.target.getAttribute('id');
+                        navLinks.forEach(link => {
+                            if (link.getAttribute('data-sec') === activeId) {
+                                link.classList.add('active');
+                            } else {
+                                link.classList.remove('active');
+                            }
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => sectionObserver.observe(section));
+        });
+    </script>
+</body>
+</html>
